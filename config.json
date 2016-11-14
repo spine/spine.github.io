@@ -1,0 +1,26 @@
+{
+  "locals": {
+    "url": "http://localhost:8000",
+    "name": "Spine JS",
+    "owner": "@aeischeid",
+    "description": "documentation for Spine JS and associated projects"
+  },
+  "plugins": [
+    "./plugins/paginator.coffee"
+  ],
+  "require": {
+    "moment": "moment",
+    "_": "underscore",
+    "typogr": "typogr"
+  },
+  "jade": {
+    "pretty": true
+  },
+  "markdown": {
+    "smartLists": true,
+    "smartypants": true
+  },
+  "paginator": {
+    "perPage": 3
+  }
+}
