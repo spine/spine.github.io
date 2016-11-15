@@ -1,4 +1,78 @@
 extends layout
 
 block content
-	.container!= page.md
+	.container.col-sm-3
+		h2 Documentation
+		article
+			div
+				h3
+					a(href='introduction.html') Introduction
+				span Overview of Spine
+			div
+				h3
+					a(href='started.html') Getting started
+				span Getting started with Spine
+			div
+				h3
+					a(href='controllers.html') Controllers
+				span Intro to Spine's Controllers
+			div
+				h3
+					a(href='models.html') Models
+				span Data storage and manipulation
+			div
+				h3
+					a(href='events.html') Events
+				span Custom and controller events
+			div
+				h3
+					a(href='routing.html') Routing
+				span HTML5 history and hash support
+			div
+				h3
+					a(href='views.html') Views
+				span JS Template rendering
+			div
+				h3
+					a(href='example.html') Examples
+				span TodoList example
+			div
+				h3
+					a(href='bindings.html') Two-Way Bindings
+				span Expiremental Two-Way binding module
+		h2 Guides
+		article
+			div
+				h3
+					a(href='controller_patterns.html') Controller patterns
+				span Common controller abstractions
+			div
+				h3
+					a(href='manager.html') Manager
+				span Controller state machine
+			div
+				h3
+					a(href='forms.html') Forms & Validation
+				span Process forms and validate models
+			div
+				h3
+					a(href='ajax.html') Ajax
+				span Custom Ajax integration with models
+			div
+				h3
+					a(href='hem.html') Hem
+				span Dependency management with Hem
+			div
+				h3
+					a(href='app.html') Spine.app
+				span Generating Spine Apps
+			div
+				h3
+					a(href='rails.html') Rails integration
+				span Integrate Spine with Rails using REST
+			div
+				h3
+					a(href='realtime.html') Realtime apps
+				span Make your Spine app realtime!
+
+	.container.col-sm-9!= page.html
