@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title= locals.title
+  body
+    h1= page.title
+    != page.html
+    footer#footer
+      ul
+       li: a(href="/") Home
+       li: a(href="docs/") Documentation
+       li: a(href="https://github.com/spine/spine") GitHub
