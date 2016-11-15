@@ -1,6 +1,4 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    title!= locals.title + ' - ' + page.title
-  body!= page.md
+extends layout
+
+block content
+	.container!= page.md
