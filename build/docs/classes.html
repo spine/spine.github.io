@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><p>Classes are a great way of encapsulating logic and name-spacing. They’re used throughout Spine, especially when it comes to models and controllers. JavaScript’s object literals are fine for static classes, but it’s often useful to create classical classes with inheritance and instances.</p>
+<p>Although JavaScript doesn’t have native class support, it can be emulated fairly convincingly using constructor functions and prototypal inheritance. Classes are just another tool, and are as useful in JavaScript as they are in any other language. </p>
+<p>If you’re using pure JavaScript to build your applications, rather than CoffeeScript, you should check out the penultimate section in this guide, <em>JavaScript Classes</em>. </p>
+<p>##Implementation</p>
+<p>For classes, Spine uses CoffeeScript’s <a href="http://arcturo.github.com/library/coffeescript/03_classes.html">native class implementation</a>, for example:</p>
+<pre><code>class User
+  # Class method
+  @find: (id) -&gt;
+    (@records or= {})[id]
+
+  # called on instantiation
+  constructor: (attributes = {}) -&gt;
+    @attributes = attributes
+
+  # Instance methods
+  save: -&gt;
+  destroy: -&gt;
+</code></pre><p>To instantiate classes, use the <code>new</code> keyword (behind the scenes, classes are constructor functions).</p>
+<pre><code>user = new User(name: &quot;Dark Knight&quot;)
+user.save()
+user.destroy()
+
+user = User.find(1)
+</code></pre><p>To inherit one class for another in CoffeeScript, use <code>extends</code>.</p>
+<pre><code>class Users extends Spine.Controller
+  constructor: -&gt;
+    super
+</code></pre><p>If you’re extending another class, and overriding the <code>constructor</code> function, make sure you call <code>super</code> - especially when it comes to Spine models and controllers.</p>
+<p>##Context</p>
+<p>JavaScript programs often involve a lot of context changes, especially when it comes to event callbacks. Rather than manually proxying callbacks, so they’re executed in the correct scope, CoffeeScript’s function syntax provides a useful alternative, fat arrow functions (<code>=&gt;</code>). </p>
+<pre><code>class TaskApp extends Spine.Controller
+  constructor: -&gt;
+    super
+    Task.bind(&quot;create&quot;,  @addOne)
+    Task.bind(&quot;refresh&quot;, @addAll)
+    Task.fetch()
+
+  addOne: (task) =&gt;
+    view = new Tasks(item: task)
+    @append(view.render())
+
+  addAll: =&gt;
+    Task.each(@addOne)
+</code></pre><p>In the example above, <code>addOne()</code> and <code>addAll()</code> are both using the fat arrow function definitions (<code>=&gt;</code>), rather than the normal thin arrows (<code>-&gt;</code>). This preserves the function’s execution context, so although the <code>Task</code> event callbacks are executing them in the context of <code>Task</code>, they’re proxied and run in the the correct context, <code>TaskApp</code>.</p>
+<p>For more information about classes, see <a href="http://arcturo.github.com/library/coffeescript/03_classes.html">The Little Book on CoffeeScript</a>.</p>
+<p>##Modules</p>
+<p>Spine extends CoffeeScript’s classes with support for modules, using <code>Spine.Module</code>. This gives you <code>@extend()</code> and <code>@include()</code> support, for easily adding class and instance properties respectively. To use modules, just inherit a class from <code>Spine.Module</code>.</p>
+<pre><code>class MyTest extends Spine.Module
+  @extend ClassModule
+  @include InstanceModule
+</code></pre><p>Spine’s internal classes inherit from <code>Spine.Module</code>, so they all have <code>@extend()</code> and <code>@include()</code> support:</p>
+<pre><code>class User extends Spine.Model
+  @configure &quot;User&quot;
+  @extend Spine.Model.Ajax
+</code></pre><p>Modules are simply a set of properties, like so:</p>
+<pre><code>OrmModule = {
+  find: (id) -&gt; /* ... */
+}
+</code></pre><p>Modules can also contain callback functions, <code>extended()</code> and <code>included()</code>:</p>
+<pre><code>OrmModule =
+  find: (id) -&gt; /* ... */
+  extended: -&gt; 
+    console.log(&quot;module extended: &quot;, @)
+</code></pre><p>##JavaScript classes</p>
+<p>If you’re writing your CoffeeScript languages in plain JavaScript, you obviously don’t have access to CoffeeScript’s class syntax. Spine solves this problem for you, by exposing <code>Spine.Class</code>:</p>
+<pre><code>var Users = Spine.Class.sub();
+</code></pre><p>Calling <code>sub()</code> on a class will subclass it. You can either pass <code>sub()</code> a set of instance and class properties, or call <code>extend()</code> and <code>include()</code> directly on the class. </p>
+<pre><code>Users.extend({
+  find: function(id){
+    /* ... */         
+  }
+});
+
+Users.include({
+  destroy: function(){
+    /* ... */ 
+  }
+});
+</code></pre><p>To inherit from the <code>Users</code> class in the example above, simple call <code>sub()</code> on it:</p>
+<pre><code>var Owner = Users.sub();
+</code></pre><p>Rather than <code>constructor</code>, class initialization functions are called <code>init()</code></p>
+<pre><code>var User = Spine.Class.sub({
+  init: function(){
+    // Called on instantiation
+    console.log(arguments);
+  }
+});
+
+var user = new User({name: &quot;Spock&quot;});
+</code></pre><p>Calling parent (super) functions is slightly more convoluted than in CoffeeScript.</p>
+<pre><code>var User = Spine.Controller.sub({
+  init: function(){
+    this.constructor.__super__.init.apply(this, arguments)
+  }
+});
+</code></pre><p>As you can see in the example above, using Spine controllers and models from JavaScript is simply a matter of calling <code>sub()</code> on them.</p>
+<p>##API</p>
+<p>For more information about classes, please see the <a href="/docs/%=%20api_path(%22classes%22">full API</a> %&gt;).</p>
+</div>
+  </body>
+</html>

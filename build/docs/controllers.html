@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><p>Controllers are the last part to the trinity of Spine and are very simple, being more of a set of conventions than actual code. Controllers are the glue inside your application, tying the various components together. Generally, controllers deal with adding and responding to DOM events, rendering templates and keeping views and models in sync.</p>
+<p>##Implementation</p>
+<p>Controllers, like models, extend <code>Spine.Module</code> and so inherit all of its properties. This means you can use <code>extend()</code> and <code>include()</code> to add properties onto controllers, and can take advantage of all of Spine’s context management. To create a controller, inherit a class from <code>Spine.Controller</code>.</p>
+<pre><code>//= CoffeeScript
+class Tasks extends Spine.Controller
+  constructor: -&gt;
+    super
+    # Called on instantiation
+
+//= JavaScript
+var Tasks = Spine.Controller.sub({
+  init: function(){
+    // Called on instantiation
+  }
+});
+</code></pre><p>The convention inside Spine is to give the controller a plural camel cased name of the model it is most associated with, in this case the <code>Task</code> model. Usually, you’ll only be adding instance properties onto controllers, so you can add them inline just like any other class. Instantiating controllers is done by using the <code>new</code> keyword.</p>
+<pre><code>//= CoffeeScript
+tasks = new Tasks
+</code></pre><p>Every controller has an element associated with it, which you can access under the instance property <code>el</code>. This element is set automatically when creating a controller instance. The type of element created is specified by the <code>tag</code> property, which by default is <code>&quot;div&quot;</code>.</p>
+<pre><code>//= CoffeeScript
+class TaskItem extends Spine.Controller
+  tag: &quot;li&quot;
+
+# taskItem.el is a &lt;li&gt;&lt;/li&gt; element
+taskItem = new TaskItem 
+
+//= JavaScript
+var TaskItem = Spine.Controller.sub({
+  tag: &quot;li&quot;
+});
+
+var taskItem = new TaskItem;
+</code></pre><p>The <code>el</code> property can also be set manually by passing it through on instantiation.</p>
+<pre><code>//= CoffeeScript
+tasks = new Tasks(el: $(&quot;#tasks&quot;));
+</code></pre><p>In fact, anything you pass on instantiation will be set as properties on the newly created instance. For example, you could pass a record that a controller would be associated with.</p>
+<pre><code>//= CoffeeScript
+taskItem = new TaskItem(item: Task.first())
+</code></pre><p>Inside your controller’s <code>constructor()</code> function, you’ll generally add event listeners to models and views, referencing a function inside the controller. </p>
+<p>##Events</p>
+<p>Spine gives you a shortcut for adding event listeners onto DOM elements, with the <code>events</code> property. </p>
+<pre><code>//= CoffeeScript
+class Tasks extends Spine.Controller
+  events: 
+    &quot;click .item&quot;: &quot;click&quot;
+
+  click: (event) -&gt;
+    # Invoked when .item is clicked
+
+//= JavaScript
+var Tasks = Spine.Controller.sub({
+  events: {&quot;click .item&quot;: &quot;click&quot;},
+
+  click: function(event){
+    // Invoked when .item is clicked
+  }
+});
+</code></pre><p><code>events</code> is an object in the following format <code>{&quot;eventType selector&quot;, &quot;functionName&quot;}</code>. All the selectors are scoped to the controller’s associated element, <code>el</code>. If a selector isn’t provided, the event will be added directly on <code>el</code>, otherwise it’ll be delegated to any children matching the selector. </p>
+<p>Spine will take care of callback context for you, making sure it keeps to the current controller. Callbacks will be passed an event object, and you can access the original element the event was targeted on using <code>event.target</code>.</p>
+<pre><code>//= CoffeeScript
+class Tasks extends Spine.Controller
+  events: 
+    &quot;click .item&quot;: &quot;click&quot;
+
+  click: (event) -&gt;
+    item = jQuery(event.target);
+
+//= JavaScript
+var Tasks = Spine.Controller.sub({
+  events: {&quot;click .item&quot;: &quot;click&quot;},
+
+  click: function(event){
+    var item = jQuery(event.target);
+  }
+});
+</code></pre><p>Since Spine uses <a href="http://api.jquery.com/delegate">delegation</a> for events, it doesn’t matter if the contents of <code>el</code> change. The appropriate events will still be fired when necessary. </p>
+<p>As well as DOM events, <code>Spine.Controller</code> has been extended with <code>Spine.Events</code>, meaning that you can bind and trigger custom events. </p>
+<pre><code>//= CoffeeScript
+class ToggleView extends Spine.Controller
+  constructor: -&gt;
+    super
+    @items = @$(&quot;.items&quot;)
+    @items.click =&gt; @trigger(&quot;toggle&quot;)
+    @bind &quot;toggle&quot;, @toggle
+
+  toggle: -&gt;
+    # ...
+
+//= JavaScript
+var ToggleView = Spine.Controller.sub({
+  init: function(){
+    this.items = this.$(&quot;.items&quot;);
+    this.items.click(this.proxy(function(){
+      this.trigger(&quot;toggle&quot;);
+    }));
+    this.bind(&quot;toggle&quot;, this.toggle);
+  },
+
+  toggle: function(){
+    // ...
+  }
+});
+</code></pre><p>##Elements</p>
+<p>When you first instantiate a controller, it’s common to set a bunch of instance variables referencing various elements. For example, setting the <code>items</code> variable on the <code>Tasks</code> controller:</p>
+<pre><code>//= CoffeeScript
+class Tasks extends Spine.Controller
+  constructor: -&gt;
+    super
+    @items = @$(&quot;.items&quot;)
+
+//= JavaScript
+var Tasks = Spine.Controller.sub({
+  init: function(){
+    this.items = this.$(&quot;.items&quot;);
+  }
+});
+</code></pre><p>Since this is such a common scenario, Spine provides a helper, the <code>elements</code> property. This is in the format of <code>{&quot;selector&quot;: &quot;variableName&quot;}</code>. When the controller is instantiated, Spine will go through <code>elements</code>, setting the appropriate elements as properties on the instance. Like with <code>events</code>, all the selectors are scoped by the controller’s current element, <code>el</code>.</p>
+<pre><code>//= CoffeeScript
+class Tasks extends Spine.Controller
+  elements:
+    &quot;.items&quot;: &quot;items&quot;
+
+  constructor: -&gt;
+    super
+    @items.each -&gt; #...
+
+//= JavaScript
+var Tasks = Spine.Controller.sub({
+  elements: {&quot;.items&quot;, &quot;items&quot;},
+
+  init: function(){
+    this.items.each(function(){
+      // ...
+    });
+  }
+});
+</code></pre><p>##API documentation</p>
+<p>For more information about controllers, please see the <a href="/docs/%=%20api_path(%22controllers%22">full API documentation</a> %&gt;).</p>
+</div>
+  </body>
+</html>

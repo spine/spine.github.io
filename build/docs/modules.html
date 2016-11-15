@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><!-- TODO -decrep -->
+<p>Spine uses CoffeeScript for its class implementation</p>
+<pre><code>class Task
+</code></pre><p>Spine’s class implementation is one of its features that makes it stand out from the crowd. Rather than copying properties to emulate inheritance, as most libraries, Spine uses JavaScript’s native prototypal inheritance. This is how inheritance should be done, and means it’s dynamic, properties are resolved at runtime.</p>
+<p>Classes are created like so:</p>
+<pre><code>var Task = Spine.Class.create();
+</code></pre><p><code>create()</code> takes optional arguments of instance properties, and class properties.</p>
+<pre><code>Spine.Class.create([instanceProperties, classProperties]);
+
+var User = Spine.Class.create({
+  name: &quot;Carolin&quot;
+});
+</code></pre><p>Alternatively you can add instance properties using <code>include()</code>, and class properties with <code>extend()</code>.</p>
+<pre><code>var User = Spine.Class.create();
+
+User.extend({
+  find: function(){ /* ... */ }
+});
+
+User.include({
+  name: &quot;Tonje&quot;
+});
+</code></pre><p>Since Spine doesn’t use constructor functions, due to limitations with prototypal inheritance, classes are instantiated with <code>init()</code>.</p>
+<pre><code>var User = Spine.Class.create({
+  name: &quot;Tonje&quot;
+});
+
+var user = User.init();
+
+assertEqual( user.name, &quot;Tonje&quot; );
+user.name = &quot;Trish&quot;;
+assertEqual( user.name, &quot;Trish&quot; );
+</code></pre><p>Any arguments passed to <code>init()</code> will be forwarded to <code>init()</code>, the classes’ instantiation callback.</p>
+<pre><code>var User = Spine.Class.create({
+  init: function(name){
+    this.name = name;
+  }
+});
+
+User.init(&quot;Martina&quot;);
+assertEqual( user.name, &quot;Martina&quot; );
+</code></pre><p>Sub-classes are created the same way base classes are, with <code>create()</code>.</p>
+<pre><code>var Friend = User.create();
+</code></pre><p>All of the subclass’s parent properties are inherited.</p>
+<pre><code>var friend = Friend.init(&quot;Tim&quot;);
+
+assertEqual( friend.name, &quot;Tim&quot; );
+</code></pre><p>Because we’re using real prototypal inheritance, properties are resolved dynamically at runtime. This means that you can change the properties of a parent class, and all its sub-classes with reflect those changes immediately. </p>
+<pre><code>var User   = Spine.Class.create();
+var Friend = User.create();
+
+User.include({defaultName: &quot;(empty)&quot;});
+
+assertEqual( Friend.init().defaultName, &quot;(empty)&quot; );
+</code></pre><p>##Context</p>
+<p>Context changes constantly in JavaScript, and it’s very important your code is executing in the correct one. The most common cause of this is with event listeners, where callbacks will be invoked in the context of <code>window</code> or the element, rather than their original context. To resolve this, Spine’s classes provides a few helper functions for maintaing context.</p>
+<p>You can pass a function to <code>proxy()</code> to guarantee that it will be invoked in the current context.</p>
+<pre><code>var Tasks = Spine.Class.create({
+  init: function(){
+    $(&quot;#destroy&quot;).click(this.proxy(this.destroy));
+  },
+
+  destroy: function(){ /* ... */ }
+});
+</code></pre><p>Or pass multiple function names to <code>proxyAll()</code> in order to re-write them permanently, so they’re always called with the classes’ local content. </p>
+<pre><code>var Tasks = Spine.Class.create({
+  init: function(){
+    this.proxyAll(&quot;destroy&quot;)
+    $(&quot;#destroy&quot;).click(this.destroy);
+  },
+
+  destroy: function(){ /* ... */ }
+});
+</code></pre></div>
+  </body>
+</html>

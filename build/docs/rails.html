@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><p>Spine’s architecture complements Rails apps, and the two sit really well together. Rails makes a great backend API for data storage and authentication, whilst Spine provides your application with an awesome front-end and user experience. </p>
+<p>##Architecture</p>
+<p>You need to decide, based on the size and complexity of your Spine app, whether you’re going to base it inside your Rails project, or use something like <a href="/docs/%=%20docs_path(%22hem%22">Hem</a> %&gt;) to serve it. If the app’s anything more than a simple widget, I recommend the latter approach. Regardless, the integration between Spine and Rails should be limited to a JSON REST API. </p>
+<p>Ultimately, if you’re building a full featured Spine app, Rails should become no more than an API layer, abstracting the database, ensuring validation and providing authentication. Ideally your Spine app should exist totally independently from Rails, communicating through the API. The advantage to this approach is that you get a de-coupled application, and also an API for free, which you can then open up to other developers.</p>
+<p>I’ve provided an example Rails app demonstrating Spine integration here: <a href="https://github.com/maccman/spine.rails3">https://github.com/maccman/spine.rails3</a></p>
+<p><a href="https://github.com/maccman/spine.rails3"><img src="https://lh5.googleusercontent.com/-I3Cig6gg0_w/ToHHN7OQg-I/AAAAAAAABaQ/Di0r0pLvitw/s400/Screen%252520Shot%2525202011-09-27%252520at%25252013.52.19.png" alt="Spine &amp; Rails"></a></p>
+<p>There’s also a <a href="http://spine-rails3.herokuapp.com">live demo</a> of the application, go and give it <a href="http://spine-rails3.herokuapp.com">a whirl</a>. Notice that the UI is completely instant. There’s absolutely no places where it blocks, even after creating a record. Ajax requests are sent in the background to keep the server in sync.  </p>
+<p>If you do intend to serve up your Spine app through Rails, there are two approaches: Sprockets or Stitch. I’d recommend the former, as it’s much more compliant with the “Blessed Rails Way™”, and easier to setup.</p>
+<p>##Getting started with Sprockets</p>
+<p>Rails uses <a href="https://github.com/sstephenson/sprockets">Sprockets</a> internally to manage JavaScript and CSS assets. Spine includes support for Sprockets integration through the <a href="https://github.com/maccman/spine-rails">spine-rails</a> gem. First off, add the required dependencies to your <code>Gemfile</code>:</p>
+<pre><code>gem &#39;jquery-rails&#39;
+
+# Optional support for eco templates
+gem &#39;eco&#39; 
+# Or support for ejs templates (default without eco)
+gem &#39;ejs&#39; 
+
+# Embed Spine automatically
+gem &#39;spine-rails&#39;
+</code></pre><p>Now you can use the <code>spine-rails</code> generators to create a directory structure for your Spine app. Let’s do that first by running:</p>
+<pre><code>rails generate spine:new
+</code></pre><p>This will create the following structure for your Spine app under <code>app/assets/javascripts</code>:</p>
+<pre><code>app
+app/lib
+app/models
+app/controllers
+app/views
+app/index.coffee
+</code></pre><p>As you can see, your application is namespaced by <code>app</code>. You can specify a different namespace with the <code>--app</code> option. <code>spine-rails</code> has generated a initial <code>index.coffee</code> script that’ll bootstrap your application. It’s also add a require call to startup script to your <code>app/assets/javascripts/application.js</code>, so Spine will get loaded automatically.</p>
+<p>Let’s demonstrate how easily Spine integrates with Rails. First, generate a Rails scaffold:</p>
+<pre><code>rails generate scaffold Post title:string content:string
+</code></pre><p>And now let’s generate a Spine Model:</p>
+<pre><code>rails g spine:model Post title content
+</code></pre><p>Run the migrations, boot up the server, and navigate to <a href="http://localhost:3000/posts">http://localhost:3000/posts</a>. </p>
+<p>Right, let’s have a play around with the Spine console and create some new records:</p>
+<pre><code>var post = App.Post.create({
+  title: &#39;Hello World!&#39;, 
+  content: &#39;Spine &amp; Rails, sitting in a tree!&#39;
+});
+
+post.id; // Rails DB ID
+</code></pre><p>As we’re creating, updating and destroying records, so the appropriate Ajax requests are being sent to Rails, keeping the database in sync.</p>
+<p><img src="https://lh5.googleusercontent.com/-zL1pYFWsPyM/TqFrH_uY-qI/AAAAAAAABbk/rm72ewKZvvY/s600/Screen%252520Shot%2525202011-10-21%252520at%25252013.51.56.png" alt="JS Console"></p>
+<p>If you reload the page, you’ll see all the records you created were persisted. Now we can fetch the records using Spine, persisting them in memory:</p>
+<pre><code>App.Post.fetch(); // Fetch records
+
+App.Post.first().content;
+
+App.Post.first().destroy();
+</code></pre><p>Very simple indeed! As you can see, Spine works with Rails out the box. As well as models, <code>spine-rails</code> also lets you generate controllers and views.</p>
+<pre><code>rails g spine:controller posts      
+rails g spine:view posts/show
+</code></pre><p>##Scaffolding</p>
+<p>We can use the <code>spine-rails</code> scaffold generator to replace the Rails scaffold, moving state in our application from the server to the client side.</p>
+<pre><code>rails g spine:scaffold post title content
+</code></pre><p>This will generate a bunch of models, controllers and views with some basic scaffolding for CRUD actions on the <code>Post</code> model. You’ll notice under <code>app/assets/javascripts/app/controllers</code> there’s a new controller called <code>Posts</code>. In order for our scaffolding to work, we need to instantiate this controller, attaching it the page. </p>
+<p>The easiest way to do this, and a way that leaves scope for further controllers, is by appending it to the main controller, <code>App</code>. You can do this by opening up <code>app/assets/javascripts/app/index.coffee</code>, and adding some code to its constructor. </p>
+<pre><code>class App extends Spine.Controller      
+  constructor: -&gt;
+    super
+
+    # Instantiate &amp; append the Posts controller
+    @append(@posts = new App.Posts)
+
+    #...
+    Spine.Route.setup()
+</code></pre><p>As you can see in the example above, we’re instantiating the <code>App.Posts</code> controller, appending it to the <code>App</code> controller. This will ensure that whenever <code>App</code> is instantiated, our scaffold will also be instantiated and appended to <code>App</code>‘s element. </p>
+<p>Now we need to actually instantiate our App controller, giving it an element to render to. Replace <code>app/views/posts/index.html.erb</code> with the following:</p>
+<pre><code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+  jQuery(function(){
+    // onready, instantiate App
+    new App({el: $(&quot;#app&quot;)})
+  });
+&lt;/script&gt;
+</code></pre><p>When the page loads, the <code>App</code> controller will be instantiated, in turn setting up our scaffold. Notice we’re passing through a reference to a <code>&lt;div /&gt;</code> to <code>App</code>‘s constructor as the <code>el</code> property. This will ensure that our application will render on that element.</p>
+<p>There’s one last step before we’re done, a snippet of CSS. Spine’s scaffolding uses <a href="/docs/%=%20docs_path(%22manager%22">Stacks</a> %&gt;) to manage controllers, making sure only one controller (List, Edit, Create) is shown at any one time. It does this by adding or removing an <code>active</code> class on the controllers. We need to make sure that any controllers without this <code>active</code> class are hidden. Add the following CSS snippet to <code>app/assets/stylesheets/application.css</code>:</p>
+<pre><code>.stack &gt; *:not(.active) {
+  display: none;
+}
+</code></pre><p>That’s it! Refresh the page, and marvel in your handiwork!</p>
+<p>##Namespacing</p>
+<p>CoffeeScript automatically wraps scripts in anonymous modules, so it doesn’t pollute the global scope. However, sometimes you’ll need to create global variables. You can create these by explicitly setting them on the <code>window</code> object.</p>
+<pre><code>class Contacts extends Spine.Controller
+window.Contacts = Contacts
+</code></pre><p>By default, all of the models and controllers generated by <code>spine-rails</code> are namespaced under the <code>App</code> object.</p>
+<pre><code>posts = new App.Posts
+</code></pre><p>##Next steps</p>
+<p>So that’s the gist of Spine &amp; Rails integration, and all you need to know to get started. <a href="/docs/%=%20docs_path(%22rails_cont%22">Part 2</a> %&gt;) of this guide goes into specifics, but isn’t necessary for day to day development.</p>
+<p>Some of the additional topics covered are:</p>
+<ul>
+<li>JSON prefixing</li>
+<li>Ajax &amp; Rest</li>
+<li>ID changes</li>
+<li>Cross domain requests</li>
+</ul>
+<p>Please see the <a href="/docs/%=%20docs_path(%22rails_cont%22">Rails integration continued</a> %&gt;) guide.</p>
+</div>
+  </body>
+</html>

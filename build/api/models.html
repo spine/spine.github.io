@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <p><a href="classes.html">Classes</a><br>Spine's Class API for JavaScript compatibility.</p>
+      <p><a href="models.html">Models</a><br>Spine's Model API</p>
+      <p><a href="controllers.html">Controllers</a><br>Spine's Controller API</p>
+      <p><a href="events.html">Events</a><br>Spine's Event Module</p>
+      <p><a href="routing.html">Routing</a><br>Spine's Controller Routing API</p>
+    </div>
+    <div class="container col-sm-9"><p>##Class methods</p>
+<h3 id="-configure-modelname-attributes-"><code>@configure(modelName, attributes...)</code></h3>
+<p>Set up the model and its attributes. This is required for every model, and should be called before anything else is. </p>
+<pre><code>class User extends Spine.Model
+  @configure &quot;User&quot;, &quot;first_name&quot;, &quot;last_name&quot;
+</code></pre><h3 id="-include-module-"><code>@include(Module)</code></h3>
+<p>Add class methods; see <a href="/api/%=%20docs_path(%22modules%22">modules</a> %&gt;).</p>
+<h3 id="-extend-module-"><code>@extend(Module)</code></h3>
+<p>Add instance methods; see <a href="/api/%=%20docs_path(%22modules%22">modules</a> %&gt;)</p>
+<h3 id="-bind-eventname-function-"><code>@bind(eventName, function)</code></h3>
+<p>Bind event listeners to the model. These are executed in the context of the model.</p>
+<pre><code>User.bind(&quot;refresh change&quot;, (user) -&gt; alert(&quot;#{user.name} changed!&quot;))
+</code></pre><p>See <a href="/api/%=%20docs_path(%22events%22">events</a> %&gt;) for more information.</p>
+<h3 id="-trigger-eventname-data-"><code>@trigger(eventName, data...)</code></h3>
+<p>Trigger a custom event, see <a href="/api/%=%20docs_path(%22events%22">events</a> %&gt;) for more information.</p>
+<h3 id="-unbind-eventname-function-"><code>@unbind([eventName, function])</code></h3>
+<p>Unbind events, see the <a href="/api/%=%20docs_path(%22events%22">events guide</a> %&gt;) for more information.</p>
+<h3 id="-records-"><code>@records</code></h3>
+<p>An hash of the raw saved record instances. You shouldn’t need to access or alter this directly.</p>
+<h3 id="-attributes-"><code>@attributes</code></h3>
+<p>An array of model attributes, set using <code>@configure</code>. You shouldn’t need to access or alter this directly.</p>
+<h3 id="-tostring-"><code>@toString()</code></h3>
+<p>Convenience function for representing the model.</p>
+<h3 id="-find-id-notfound-"><code>@find(id, [notFound])</code></h3>
+<p>Find records by ID - returning the record instance. If the record doesn’t exist, <code>@notFound</code> will be run unless a custom callback was also passed in.</p>
+<pre><code>user = User.find(&quot;1&quot;)
+</code></pre><h3 id="-findall-ids-notfound-"><code>@findAll(ids, [notFound])</code></h3>
+<p>calls <code>@find(id, [notFound])</code> for each id in ids</p>
+<pre><code>users = User.findAll([1,2,3])
+</code></pre><h3 id="-notfound-id-"><code>@notFound(id)</code></h3>
+<p>runs if <code>@find</code> for a given id does not find a model instance. Default simply returns null. You shouldn’t need to invoke this directly, but defining custom notFound on a spine Model is something you may be interested in.’</p>
+<h3 id="-exists-id-"><code>@exists(id)</code></h3>
+<p>Returns a boolean indicating if the record with the specified ID exists or not.</p>
+<pre><code>user = User.exists(&quot;1&quot;)
+alert(user.name) if user
+</code></pre><h3 id="-refresh-recordsarray-options-"><code>@refresh(recordsArray, [options])</code></h3>
+<p>Appends to all the stored records, without calling any <em>create</em>, <em>update</em>, <em>save</em> or <em>destroy</em> events. The only event that will be triggered is the <em>refresh</em> event. You can pass the option <code>{clear: true}</code> to wipe all the existing records. Internally <code>@refresh</code> calls <code>fromJSON()</code>, so you can also pass it JSON instead of an array.</p>
+<pre><code>User.refresh([{id: 1, name: &quot;test&quot;}, {id: 2, name: &quot;test2&quot;}])
+</code></pre><h3 id="-select-function-"><code>@select(function)</code></h3>
+<p>Select all records that the callback function returns true to.</p>
+<pre><code>bobs = User.select (user) -&gt; user.name == &quot;bob&quot;
+</code></pre><h3 id="-findbyattribute-name-value-"><code>@findByAttribute(name, value)</code></h3>
+<p>Find the first record that has the given attribute &amp; value.</p>
+<pre><code>bob = User.findByAttribute(&quot;name&quot;, &quot;bob&quot;)
+</code></pre><h3 id="-findallbyattribute-name-value-"><code>@findAllByAttribute(name, value)</code></h3>
+<p>Find all records that have the given attribute &amp; value.</p>
+<pre><code>bobs = User.findAllByAttribute(&quot;name&quot;, &quot;bob&quot;)
+</code></pre><h3 id="-each-callback-"><code>@each(callback)</code></h3>
+<p>Iterate over every record, passing it to the callback function.</p>
+<pre><code>User.each (user) -&gt; alert(user.name)
+</code></pre><h3 id="-all-"><code>@all()</code></h3>
+<p>Returns a cloned copy of every instance.</p>
+<pre><code>users = User.all()
+</code></pre><h3 id="-slice-begin-end-"><code>@slice(begin[, end])</code></h3>
+<p>Returns a cloned copies of instances from begin up to but not including end.</p>
+<pre><code>allUsersExceptFirst3 = User.slice(3)
+users7through13 = User.slice(6,13)
+</code></pre><h3 id="-first-x-"><code>@first([x])</code></h3>
+<p>Returns a cloned copy of the first record. or an array of the first x records</p>
+<h3 id="-last-x-"><code>@last([x])</code></h3>
+<p>Returns a cloned copy of the last record, or an array of the last x records</p>
+<h3 id="-count-"><code>@count()</code></h3>
+<p>Returns the count of total records.</p>
+<h3 id="-deleteall-"><code>@deleteAll()</code></h3>
+<p>Deletes every record without triggering any events.</p>
+<h3 id="-destroyall-options-"><code>@destroyAll(options)</code></h3>
+<p>Destroys every record, triggering a <em>destroy</em> event on every record.</p>
+<h3 id="-update-id-attributes-"><code>@update(id, attributes)</code></h3>
+<p>Updates the record with the matching ID, with the given attributes.</p>
+<h3 id="-create-attributes-options-"><code>@create(attributes, [options])</code></h3>
+<p>Creates a new record with the given attributes. Returns <code>false</code> if the record’s validation fails, or returns the newly created record if successful. 
+Optionaly accepts a options object with an ‘idx’ to insert the new record at. </p>
+<pre><code>Asset.create({name: &quot;test.pdf&quot;}, {idx: 0});
+</code></pre><h3 id="-destroy-id-options-"><code>@destroy(id, options)</code></h3>
+<p>Destroys the record with the given ID.</p>
+<h3 id="-change-function-"><code>@change([function])</code></h3>
+<p>If passed a function, <code>@change()</code> adds that function as a listener to the <em>change</em> event. Otherwise, it triggers the <em>change</em> event.</p>
+<h3 id="-fetch-function-"><code>@fetch([function])</code></h3>
+<p>If passed a function, <code>@fetch()</code> adds that function as a listener to the <em>fetch</em> event. Otherwise, it triggers the <em>fetch</em> event.</p>
+<h3 id="-tojson-"><code>@toJSON()</code></h3>
+<p>Utility function so the model has a valid JSON representation (shows all records).</p>
+<h3 id="-beforefromjson-json-"><code>@beforeFromJSON(json)</code></h3>
+<p>If defined will pre-process the JSON before Spine tries to create model object(s) from it in <code>@fromJSON</code>.</p>
+<h3 id="-fromjson-json-"><code>@fromJSON(json)</code></h3>
+<p>Pass a JSON string, representing either an array or a singleton, to <code>@fromJSON()</code>. Returns an array or unsaved model instances.</p>
+<h3 id="-fromform-formelement-"><code>@fromForm(formElement)</code></h3>
+<p>Returns a new record, populated by the given HTML form’s inputs.</p>
+<h3 id="-proxy-function-"><code>@proxy(function)</code></h3>
+<p>Wrap a function in a proxy so it will always execute in the context of the model. This is a JavaScript compatibility feature, and shouldn’t be used in CoffeeScript.</p>
+<pre><code>create = Model.proxy(Model.create)
+</code></pre><h3 id="-setup-name-attributes-"><code>@setup(name, [attributes...])</code></h3>
+<p>Alternative method for creating a new model class. This is a JavaScript compatibility feature, and shouldn’t be used in CoffeeScript.</p>
+<pre><code>var User = Model.setup(&quot;User&quot;, [&quot;first_name&quot;, &quot;last_name&quot;])
+</code></pre><p>##Instance methods</p>
+<h3 id="-newrecord-"><code>newRecord</code></h3>
+<p>Boolean indicating if the record has been saved or not. Use <code>isNew()</code> instead.</p>
+<h3 id="-isnew-"><code>isNew()</code></h3>
+<p>Returns a boolean indicating if the record has been saved or not.</p>
+<h3 id="-isvalid-"><code>isValid()</code></h3>
+<p>Returns a boolean indicating if the record has passed validation.</p>
+<h3 id="-validate-"><code>validate()</code></h3>
+<p>By default a noop. Override this to provide custom validation. Return a string, containing the error message, if the record isn’t valid. For example:</p>
+<pre><code>class User extends Spine.Model
+  @configure &quot;User&quot;, &quot;name&quot;
+
+  validate: -&gt;
+    &quot;Name required&quot; unless @name
+</code></pre><h3 id="-load-attributes-"><code>load(attributes)</code></h3>
+<p>Load a set of properties in, setting attributes.</p>
+<pre><code>user = new User
+user.load(name: &quot;Sir Bob&quot;)
+</code></pre><h3 id="-attributes-"><code>attributes()</code></h3>
+<p>Returns a hash of attributes to values.</p>
+<h3 id="-eql-record-"><code>eql(record)</code></h3>
+<p>Returns a boolean indicating if the other record is equal (i.e. same class and ID) as the current instance.</p>
+<pre><code>if user.eql(anotherUser)
+  alert(&quot;Yah!&quot;)
+</code></pre><h3 id="-save-"><code>save()</code></h3>
+<p>Creates or updates the record, returning <code>false</code> if the record’s validation fails, or <code>self</code> if the record saves successfully. During a save, the <em>beforeSave</em>, <em>change</em> and <em>save</em> events are triggered. Also the <em>create</em> or <em>update</em> events will be fired depending on whether the record was created/updated.</p>
+<pre><code>user = new User(name: &quot;Sir Robin&quot;)
+user.save()
+
+alert(&quot;#{user.id} was saved&quot;)
+user = User.find(user.id)
+</code></pre><h3 id="-updateattribute-name-value-"><code>updateAttribute(name, value)</code></h3>
+<p>Sets a single attribute, saving the instance.</p>
+<pre><code>user = new User
+user.updateAttribute(&quot;name&quot;, &quot;Green Knight&quot;)
+</code></pre><h3 id="-updateattributes-attributes-"><code>updateAttributes(attributes)</code></h3>
+<p>Updates a record with the given attributes, saving the record.</p>
+<pre><code>user = User.create()
+user.updateAttributes(name: &quot;Sir Galahad the Pure&quot;)
+</code></pre><h3 id="-destroy-"><code>destroy()</code></h3>
+<p>Destroys the record, removing it from the record store and triggering the <em>destroy</em> event.</p>
+<pre><code>user = User.create()
+user.destroy()
+</code></pre><p>Destroy will also unbind event listeners for the model and objects it was listening to.</p>
+<h3 id="-dup-"><code>dup()</code></h3>
+<p>Returns a new unsaved record, with the same attributes as the current record, save the ID, which will be <code>null</code>.</p>
+<pre><code>user = User.create(name: &quot;Sir Bedevere&quot;)
+dup  = user.dup()
+assertEqual( dup.name, &quot;Sir Bedevere&quot; )
+</code></pre><h3 id="-clone-"><code>clone()</code></h3>
+<p>Returns a prototype clone of the record. This is used internally for <em>Dynamic Records</em>, and is probably not something you need to worry about.</p>
+<h3 id="-reload-"><code>reload()</code></h3>
+<p>Reloads a record’s attributes from its saved counterpart.</p>
+<h3 id="-tojson-"><code>toJSON()</code></h3>
+<p>Returns the record’s attributes. This is used for JSON serialization:</p>
+<pre><code>record = new User(name: &quot;Sir Lancelot the Brave&quot;)
+
+assertEqual( JSON.stringify(record), &#39;{&quot;id&quot;:&quot;foo&quot;,&quot;name&quot;:&quot;Sir Lancelot the Brave&quot;}&#39; )
+
+$.post(&quot;/record.json&quot;, JSON.stringify(record))
+</code></pre><h3 id="-tostring-"><code>toString()</code></h3>
+<p>Returns a string representation of the record. A utility function used to display the record in the console.</p>
+<h3 id="-exists-"><code>exists()</code></h3>
+<p>Returns a boolean indicating whether the record has saved. Similar to <code>isNew()</code>, but it actually checks the models record store.</p>
+<h3 id="-fromform-formelement-"><code>fromForm(formElement)</code></h3>
+<p>Populates the record’s attributes with inputs from the given HTML form.</p>
+<h3 id="-bind-name-function-"><code>bind(name, function)</code></h3>
+<p>Bind to an event specifically on this record. <code>on</code> is an available alias.</p>
+<h3 id="-trigger-name-data-"><code>trigger(name, [data...])</code></h3>
+<p>Trigger an event specifically on this record. This will propagate up to the model too.</p>
+<h3 id="-unbind-events-callback-"><code>unbind([events, callback])</code></h3>
+<p>Unbind all events, or just certain events (as a comma seperated list), or a specific callback for given events. <code>off</code> is an available alias</p>
+<h3 id="-proxy-function-"><code>proxy(function)</code></h3>
+<p>A JavaScript compatibility function, that will wrap the given function so that it’s always executed in the context of the record.</p>
+</div>
+  </body>
+</html>

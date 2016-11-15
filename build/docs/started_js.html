@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><p>Although Spine is written in CoffeeScript, it’s fully compatible with applications written in pure JavaScript. You can use whichever technology you prefer. The API largely remains the same, except for a few key differences which are documented below. </p>
+<p>##Prerequisites</p>
+<p>Spine requires either <a href="http://jquery.com">jQuery</a> or <a href="http://zeptojs.com">Zepto</a>. Most of the library will function without these, such as the <a href="/docs/%=%20docs_path(%22classes%22">Class abstraction</a> %&gt;), but Spine’s <a href="/docs/%=%20docs_path(%22controllers%22">Controller</a> %&gt;) class requires them. Just be sure to include either of those two libraries before Spine.</p>
+<p>##Downloading</p>
+<p>Grab the <a href="/docs/%=%20pages_path(%22download%22">latest version of Spine</a> %&gt;), and unpack it. The compiled CoffeeScript scripts you need are all in the <code>lib</code> folder. Include them in your application as with any other JavaScript library, making sure you include <code>spine.js</code> before any of the other libraries:</p>
+<pre><code>&lt;script src=&quot;lib/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/spine.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Optional Spine extensions --&gt;
+&lt;script src=&quot;lib/local.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/routes.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>##Next steps</p>
+<p>To take your next steps with Spine, read through the <a href="/docs/%=%20docs_path(%22introduction%22">introduction</a> %&gt;), the <a href="/docs/%=%20docs_path(%22models%22">main</a> %&gt;) <a href="/docs/%=%20docs_path(%22controllers%22">classes</a> %&gt;) and the source from some of the <a href="/docs/%=%20pages_path(%22examples%22">example applications</a> %&gt;).</p>
+<p>##Key differences</p>
+<p>The key difference between Spine programs written in JavaScript, and ones in CoffeeScript, is the lack of CoffeeScript classes. Classes and inheritance are emulated by CoffeeScript behind the scenes when you use the <code>class</code> keyword, since they’re not natively available in JavaScript. However, Spine provides an alternative API to use Classes in JavaScript, so the same functionality is still available to you.</p>
+<pre><code>var SomeClass = Spine.Class.sub();
+</code></pre><p>To create a new Class, call <code>sub()</code> on the <code>Spine.Class</code> object. This subclasses <code>Spine.Class</code>, returning a new class ready for you to customize. Adding instance and class (static) methods is easy as calling <code>include()</code> and <code>extend()</code> respectively.</p>
+<pre><code>var SomeClass = Spine.Class.sub();
+
+SomeClass.extend({
+  property: false,
+
+  find: function(){
+
+  }
+});
+
+SomeClass.include({
+  attributes: {}
+});
+</code></pre><p>Or, as a shortcut, you pass properties when calling <code>sub([instanceProperties, classProperties])</code>.</p>
+<p>Inheriting from a class is as simple as calling <code>sub()</code> on it:</p>
+<pre><code>var SomeClass = Spine.Class.sub({
+  attributes: {},
+  save: function(){ /* ... */ }
+});
+
+var DifferentClass = SomeClass.sub({
+  destroy: function(){ /* ... */ },
+
+  // Override property: 
+  save: function(){ /* ... */ }
+});
+</code></pre><p>Behind the scenes, classes are constructor functions, and can be instantiated using the <code>new</code> keyword.</p>
+<pre><code>var User = Spine.Class.sub({
+  init: function(name){
+    this.name = name;
+  }
+});
+
+var user = new User(&#39;Flynn&#39;);
+alert(user.name + &#39; lives!&#39;);
+</code></pre><p>Spine’s <a href="/docs/%=%20docs_path(%22models%22">Models</a> %&gt;) and <a href="/docs/%=%20docs_path(%22controllers%22">Controllers</a> %&gt;) are just Classes, and can be sub-classed just the same:</p>
+<pre><code>var User = Spine.Model.sub();
+User.configure(&#39;User&#39;, &#39;name&#39;, &#39;email&#39;);
+
+var Users = Spine.Controller.sub({
+  init: function(){
+    User.bind(&#39;change refresh&#39;, this.proxy(this.render))
+  },
+
+  render: function(){ /* ... */ }
+});
+</code></pre><p>##Module pattern</p>
+<p>Since JavaScript has a global namespace, you should get used to encapsulating your code in modules, ensuring against namespace pollution and conflicts. </p>
+<p>The easiest way to do this it to surround your JavaScript in an anonymous function, like so:</p>
+<pre><code>(function(Spine, $, exports){
+  // Your code goes here...
+})(Spine, Spine.$, window);
+</code></pre><p>The variable <code>Spine.$</code> refers to jQuery, or Zepto, whichever library you’re using. If you need to create a global variable, you can do so by setting it as a property on the <code>exports</code> object (which refers to the <code>window</code>). This makes it obvious to the casual observer what global variables a script is creating.</p>
+<pre><code>(function(Spine, $, exports){
+  var Contacts = Spine.Controller.sub({
+    init: function(){
+      // ...
+    }
+  });
+
+  exports.Contacts = Contacts;
+})(Spine, Spine.$, window);
+
+(function(Spine, $, exports){
+ var contacts = new Contacts({el: $(&#39;body&#39;)});
+})(Spine, Spine.$, window);
+</code></pre><p>Each of your classes should be in separate files, and it’s recommended to concatenate them together using a library like <a href="/docs/%=%20docs_path(%22hem%22">Hem</a> %&gt;), <a href="https://github.com/sstephenson/stitch">Stitch</a> or <a href="https://github.com/sstephenson/sprockets">Sprockets</a>. </p>
+<script>
+  jQuery(function($){
+    // Select JavaScript docs by default
+    $('select#preview').val('JavaScript').change()
+  });
+</script>
+</div>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><p>As templating libraries go, you can’t go far wrong with <a href="http://jade-lang.com/">Jade</a>. It’s easily installable via npm <code>npm install jade</code>, and is a common templating solution used with the node.js MVC framework Express. The format is very similar to Haml and is <a href="https://github.com/visionmedia/jade#readme">well documented</a>. </p>
+<p>As well being able to use coffeescript and stylus within jade templates jade has a very consice way of expressing html content. There are parts of jade that are most usefull on the server side, but plenty of stuff that is still useful on the client side like mixins and includes. If your spine app is complimenting a node.js app that uses jade it can be pretty awesome to only have to handle one type of view template!</p>
+<p>##Usage</p>
+<p>The simplest way of using jade is via hem which will automatically compile your jade views for you. simply include your <code>.jade</code> files in the view directory of your spine app and require them from your controllers. </p>
+<pre><code>class Contacts extends Spine.Controller
+  constructor: -&gt;
+    super
+    @render()
+
+  render: -&gt;
+    @html require(&#39;views/contacts&#39;)
+</code></pre><p>##Jade Syntax</p>
+<p>The syntax is fairly straightforward, if you are familiar with Haml or Zen-coding you’ll pick it right up:</p>
+<pre><code>-var klass = (type == null ? null : &#39;changeBox&#39;)
+div(class=klass)
+if type == null
+  input(type=&quot;text&quot;, name=&quot;searchField&quot;, placeholder=&quot;find by name..&quot;, title=&quot;find by name&quot;)
+  a.add.createOriginTrigger(href=&quot;#&quot;, title=&quot;Create New Contact&quot;) +
+else
+  div.changeControls
+    a(href=&quot;#&quot;, class=&quot;change contactChange&quot;) switch
+    a(href=&quot;#&quot;, class=&quot;edit contactEdit&quot;) edit
+p
+  span.subLabel Name
+  span.val #{name}
+p
+  span.subLabel Phone
+  span.val #{phone1}
+input.contactId(type=&quot;hidden&quot;, value=id)
+</code></pre><p>##Data association</p>
+<p>Data association is up to you to handle, if needed, in you controller logic. There are numerous ways to do this, for example:</p>
+<pre><code>//= CoffeeScript
+elements:
+  &#39;table&#39; : &#39;contactsTable&#39;
+
+events:
+  &#39;.itemRef&#39;: &#39;edit&#39;
+  &#39;.delete&#39; : &#39;deleteItem&#39;
+
+list: -&gt;
+  items = Contact.all()
+  listContent = &#39;&#39;
+  for item in items
+    listContent += require(&#39;views/contact/item&#39;)(item)
+  @contactsTable.html listContent
+
+edit: (e) -&gt;
+  e.preventDefault()
+  itemId = $(e.target).parent(&#39;tr&#39;).data(&#39;itemid&#39;)
+  # or
+  itemId = $(e.target).attr(&#39;href&#39;)
+  ...
+
+delete: (e) -&gt;
+  e.preventDefault
+  itemId = $(e.target).parent(&#39;tr&#39;).data(&#39;itemid&#39;)
+  ...
+</code></pre><p>the the <code>views/contact/item</code> might look like this</p>
+<pre><code>tr.item(data-itemid=id)
+  td
+    a.edit(href=id)= name
+  td= locals.phone
+  td= locals.email
+  td
+    a.delete(alt=&#39;delete&#39;): span.icon-erase
+</code></pre><p>##Binding</p>
+<p>Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let’s take a simple example, a list of contacts. The controller will bind to the <code>Contact</code> model’s <em>refresh</em> and <em>change</em> events, which are triggered whenever the model’s data changes. When the event is triggered, the controller re-renders the view.</p>
+<pre><code>//= CoffeeScript
+class ContactsList extends Spine.Controller
+  constructor: -&gt;
+    Contact.bind(&#39;refresh change&#39;, @render)
+
+  render: =&gt;
+    items = Contact.all()
+    @html = &#39;&#39;
+    for item in items
+      @append require(&#39;views/contacts&#39;)(items)
+</code></pre><p>There are several common binding patterns, see the <a href="/docs/%=%20docs_path(%22controller_patterns%22">controller patterns guide</a> %&gt;) for more information.</p>
+<p>##Other Considerations</p>
+<p>To use precompiled jade templates in the browser you must include jade’s <a href="https://raw.github.com/visionmedia/jade/master/runtime.js">runtime.js</a>. In Hem you can add this a as a lib in your spine projects slug.json.</p>
+</div>
+  </body>
+</html>

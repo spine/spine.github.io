@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <p><a href="classes.html">Classes</a><br>Spine's Class API for JavaScript compatibility.</p>
+      <p><a href="models.html">Models</a><br>Spine's Model API</p>
+      <p><a href="controllers.html">Controllers</a><br>Spine's Controller API</p>
+      <p><a href="events.html">Events</a><br>Spine's Event Module</p>
+      <p><a href="routing.html">Routing</a><br>Spine's Controller Routing API</p>
+    </div>
+    <div class="container col-sm-9"><p>##Class methods</p>
+<h3 id="-extend-properties-"><code>@extend(properties)</code></h3>
+<p>Add the specified properties as class properties.</p>
+<h3 id="-include-properties-"><code>@include(properties)</code></h3>
+<p>Add the specified properties as instance properties.</p>
+<h3 id="-proxy-function-"><code>@proxy(function)</code></h3>
+<p>Wraps a function, so it’s always executed in this class’s context.</p>
+<h3 id="-init-"><code>@init()</code></h3>
+<p>A JavaScript Compatibility method. <code>@init()</code> is a noop, but can be overridden. It’ll be called when the class is instantiated, with the arguments passed to the constructor function. </p>
+<p>##Instance methods</p>
+<h3 id="-proxy-function-"><code>proxy(function)</code></h3>
+<p>Wraps a function, so it’s always executed in this class’s instance context.</p>
+</div>
+  </body>
+</html>

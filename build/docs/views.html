@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container col-sm-3">
+      <h2>Documentation</h2>
+      <article>
+        <div>
+          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
+        </div>
+        <div>
+          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
+        </div>
+        <div>
+          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
+        </div>
+        <div>
+          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
+        </div>
+        <div>
+          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
+        </div>
+        <div>
+          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
+        </div>
+        <div>
+          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
+        </div>
+        <div>
+          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
+        </div>
+        <div>
+          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
+        </div>
+      </article>
+      <h2>Guides</h2>
+      <article>
+        <div>
+          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
+        </div>
+        <div>
+          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
+        </div>
+        <div>
+          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
+        </div>
+        <div>
+          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
+        </div>
+        <div>
+          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
+        </div>
+        <div>
+          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
+        </div>
+        <div>
+          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
+        </div>
+        <div>
+          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
+        </div>
+      </article>
+    </div>
+    <div class="container col-sm-9"><p>In Spine’s terminology, views are simple fragments of HTML that make up the interface to your application. Spine doesn’t have any complex UI widgets or dictate the structure of your views, they’re completely up to you. </p>
+<p>To ensure your application’s interface is completely asynchronous and responsive, you should be doing <strong>all</strong> the view rendering client-side. This means instead of server-side templates, like Ruby’s ERB or Python’s string formatting, we’re going to need client-side JavaScript templates.</p>
+<p>There are a number of good candidates, such as <a href="http://mustache.github.com">Mustache</a> and <a href="http://jade-lang.com/">Jade</a>. We’re going to demonstrate a library called <a href="https://github.com/sstephenson/eco">Eco</a> here.</p>
+<p>Besides Eco, Jade is the other template solution that is built into Hem. For info on using jade with a spine app see the <a href="/docs/%=%20docs_path(%22views_jade%22">Jade guide</a> %&gt;).</p>
+<p>##Eco templates</p>
+<p>JavaScript templates are very similar to server side ones. You have template tags interoperated with HTML, and during rendering those tags get evaluated and replaced. The great thing about <a href="https://github.com/sstephenson/eco">Eco</a> templates, is they’re actually written in CoffeeScript, a language you should be familiar with if you’ve been developing Spine applications. </p>
+<p>Here’s an example:</p>
+<pre><code>&lt;%% if @projects.length: %&gt;
+  &lt;%% for project in @projects: %&gt;
+    &lt;a href=&quot;&lt;%%= project.url %&gt;&quot;&gt;&lt;%%= project.name %&gt;&lt;/a&gt;
+    &lt;p&gt;&lt;%%= project.description %&gt;&lt;/p&gt;
+  &lt;%% end %&gt;
+&lt;%% else: %&gt;
+  No projects
+&lt;%% end %&gt;
+</code></pre><p>As you can see, the syntax is remarkably straightforward. Just use <code>&lt;%%</code> tags for evaluating expressions, and <code>&lt;%=</code> tags for printing them. The full list of template tags is as follows:</p>
+<ul>
+<li><p><code>&lt;% expression %&gt;</code><br>Evaluate a CoffeeScript expression without printing its return value.</p>
+</li>
+<li><p><code>&lt;%%= expression %&gt;</code><br>Evaluate a CoffeeScript expression, escape its return value, and print it.</p>
+</li>
+<li><p><code>&lt;%%- expression %&gt;</code><br>Evaluate a CoffeeScript expression and print its return value without escaping it.</p>
+</li>
+<li><p><code>&lt;%%= @property %&gt;</code><br>Print the escaped value of the property property from the context object passed to render.</p>
+</li>
+<li><p><code>&lt;%%= @helper() %&gt;</code><br>Call the helper method helper from the context object passed to render, then print its escaped return value.</p>
+</li>
+<li><p><code>&lt;%% @helper -&gt; %&gt;...&lt;%% end %&gt;</code><br>Call the helper method helper with a function as its first argument. When invoked, the function will capture and return the content … inside the tag.</p>
+</li>
+</ul>
+<p>Templates are evaluated with a context, such as a model instance. CoffeeScript’s <code>@</code> symbol, i.e. <code>this</code>, points to the context. </p>
+<p>##Compiling templates</p>
+<p>Eco lets you compile templates dynamically in the browser, or pre-compile them using Node. I advise the latter, as pre-processing is a one-off process that saves your clients some processing time. </p>
+<p><a href="/docs/%=%20docs_path(%22hem%22">Hem</a> %&gt;) actually comes with built in support for pre-compiling eco templates, it’s simply a case of naming views with a <code>.eco</code> extension. They’re wrapped up automatically with the rest of your application as functions, and can be used by just calling them:</p>
+<pre><code>render: -&gt;
+  @html require(&quot;app/views/contact&quot;)(@contact)
+</code></pre><p>As you can see in the example above, we’re just requiring the view, then calling it immediately, passing in the relevant context (in this case, a model record). </p>
+<p>Calling the view returns the rendered template as a string, which we’re passing straight to the <code>@html()</code> function, updating the controller’s <code>@el</code> element.</p>
+<p>##Data association</p>
+<p>Eco templates deal entirely with strings, so it isn’t possible to associate a template HTML element, with an object. For example, it isn’t possible to render a list of records with Eco templates, listen to click events on them, and then associate those click events with the original records. Unfortunately, this is a fairly common scenario in web applications. </p>
+<p>Luckily Hem comes to the rescue with <code>.jeco</code> templates. If you give view templates a <code>.jeco</code> extension, instead of <code>.eco</code>, they’ll be wrapped in a jQuery selector which associates the element with the data. </p>
+<pre><code># app/views/contacts.jeco
+&lt;div class=&quot;item&quot;&gt;&lt;%= @name %&gt;&lt;/div&gt;
+
+# app/controllers/contacts.coffee
+class Contacts extends Spine.Controller
+  events: &#39;click .item&#39;: &#39;clicked&#39;
+
+  render: -&gt;
+    items = Contact.all()
+    @html @require(&#39;views/contacts&#39;)(items)
+
+  clicked: (e) -&gt;
+    element = $(e.target)
+    item = element.data(&#39;item&#39;)
+    @log &quot;Contact #{item.name} was clicked&quot;
+</code></pre><p>As you can see in the <code>clicked()</code> callback, we’re taking the event object <code>e</code>, finding the <code>element</code> it’s associated with, and then finding the record associated  with that element, <code>item</code>. Spine provides a shortcut for this, in <code>spine/lib/tmpl</code>:</p>
+<pre><code># app/controllers/contacts.coffee
+require(&#39;spine/lib/tmpl&#39;)
+class Contacts extends Spine.Controller
+  clicked: (e) -&gt;
+    item = $(e.target).item()
+    @log &quot;Contact #{item.name} was clicked&quot;
+</code></pre><p>The <code>tmpl.coffee</code> utility gives jQuery objects the <code>$.fn.item()</code> function, which will return the element’s associated data. </p>
+<p><code>.jeco</code> templates also have the advantage that you can give them an array to render, and they’ll automatically iterate over it. </p>
+<p>##Template helpers</p>
+<p>Template helpers are extremely useful for view specific logic, without violating MVC by putting lots of code in the view. Template helpers should exist as properties on the controller. Helpers can then be called by passing an instance of the controller to the template when rendering it. </p>
+<p>For example, let’s take the Currencies controller from the <a href="https://github.com/maccman/spine.mobile.currency">sample Currency app</a>. We need to format the <code>@output</code> and <code>@input</code> numbers a comma every three digits for legibility. This is the perfect scenario for a helper:</p>
+<pre><code>class Currencies extends Spine.Controller
+  render: -&gt;
+    @output = @input and (@input * @rate()).toFixed(2) or 0
+    @html require(&#39;views/currency&#39;)(@)
+
+    helper:
+      format: (num) -&gt;
+        num.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, &quot;,&quot;)
+</code></pre><p>Inside the template we can call the helper, passing in the appropriate variables:</p>
+<pre><code>&lt;section class=&quot;input&quot;&gt;
+  &lt;h1&gt;&lt;%%= @helper.format(@input) %&gt;&lt;/h1&gt;
+  &lt;h1&gt;&lt;%%= @helper.format(@output) %&gt;&lt;/h1&gt;
+&lt;/section&gt;
+</code></pre><p>Simple and clean!</p>
+<p>##Binding</p>
+<p>Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let’s take a simple example, a list of contacts. The controller will bind to the <code>Contact</code> model’s <em>refresh</em> and <em>change</em> events, which are triggered whenever the model’s data changes. When the event is triggered, the controller re-renders the view.</p>
+<pre><code>class ContactsList extends Spine.Controller
+  constructor: -&gt;
+    Contact.bind(&#39;refresh change&#39;, @render)
+
+  render: =&gt;
+    items = Contact.all()
+    @html require(&#39;views/contacts&#39;)(items)
+</code></pre><p>Notice we’re using a ‘fat arrow’ for the <code>render()</code> function. This ensures that <code>render()</code> is invoked in the correct context of <code>ContactsList</code>, rather than <code>Contact</code>. For more information on function binding, see the <a href="/docs/%=%20docs_path(%22classes%22">classes guide</a> %&gt;).</p>
+<p>There are several common binding patterns, see the <a href="/docs/%=%20docs_path(%22controller_patterns%22">controller patterns guide</a> %&gt;) for more information.</p>
+</div>
+  </body>
+</html>
