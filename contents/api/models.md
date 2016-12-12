@@ -7,18 +7,18 @@ template: api.jade
 
 ### `@configure(modelName, attributes...)`
 
-Set up the model and its attributes. This is required for every model, and should be called before anything else is. 
+Set up the model and its attributes. This is required for every model, and should be called before anything else is.
 
     class User extends Spine.Model
       @configure "User", "first_name", "last_name"
 
 ### `@include(Module)`
 
-Add class methods; see [modules](<%= docs_path("modules") %>).
+Add class methods; see [modules](modules.html).
 
 ### `@extend(Module)`
 
-Add instance methods; see [modules](<%= docs_path("modules") %>)
+Add instance methods; see [modules](modules.html)
 
 ### `@bind(eventName, function)`
 
@@ -26,15 +26,15 @@ Bind event listeners to the model. These are executed in the context of the mode
 
     User.bind("refresh change", (user) -> alert("#{user.name} changed!"))
 
-See [events](<%= docs_path("events") %>) for more information.
+See [events](events.html) for more information.
 
 ### `@trigger(eventName, data...)`
 
-Trigger a custom event, see [events](<%= docs_path("events") %>) for more information.
+Trigger a custom event, see [events](events.html) for more information.
 
 ### `@unbind([eventName, function])`
 
-Unbind events, see the [events guide](<%= docs_path("events") %>) for more information.
+Unbind events, see the [events guide](events.html) for more information.
 
 ### `@records`
 
@@ -141,8 +141,8 @@ Updates the record with the matching ID, with the given attributes.
 
 ### `@create(attributes, [options])`
 
-Creates a new record with the given attributes. Returns `false` if the record's validation fails, or returns the newly created record if successful. 
-Optionaly accepts a options object with an 'idx' to insert the new record at. 
+Creates a new record with the given attributes. Returns `false` if the record's validation fails, or returns the newly created record if successful.
+Optionaly accepts a options object with an 'idx' to insert the new record at.
 
     Asset.create({name: "test.pdf"}, {idx: 0});
 
@@ -206,7 +206,7 @@ By default a noop. Override this to provide custom validation. Return a string, 
 
     class User extends Spine.Model
       @configure "User", "name"
-      
+
       validate: ->
         "Name required" unless @name
 
@@ -234,7 +234,7 @@ Creates or updates the record, returning `false` if the record's validation fail
 
     user = new User(name: "Sir Robin")
     user.save()
-    
+
     alert("#{user.id} was saved")
     user = User.find(user.id)
 
@@ -282,9 +282,9 @@ Reloads a record's attributes from its saved counterpart.
 Returns the record's attributes. This is used for JSON serialization:
 
     record = new User(name: "Sir Lancelot the Brave")
-    
+
     assertEqual( JSON.stringify(record), '{"id":"foo","name":"Sir Lancelot the Brave"}' )
-    
+
     $.post("/record.json", JSON.stringify(record))
 
 ### `toString()`

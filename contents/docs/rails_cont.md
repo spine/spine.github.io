@@ -3,11 +3,11 @@ title: Rails integration continued
 template: docs.jade
 ---
 
-This guide continues on from the [Rails guide](<%= docs_path("rails") %>), and probably isn't applicable to day to day development, but will help you with some of the more complicated aspects down the line.
+This guide continues on from the [Rails guide](rails.html), and probably isn't applicable to day to day development, but will help you with some of the more complicated aspects down the line.
 
 ##Stitch
 
-An alternative to using Sprockets for Spine integration is [Stitch](https://github.com/maccman/stitch-rb). Stitch has the advantage that it outputs [CommonJS modules](<%= docs_path("commonjs") %>), rather than use just simple concatenation. Using Stitch is beyond the scope of this guide, please see its [README](https://github.com/maccman/stitch-rb) for more information. 
+An alternative to using Sprockets for Spine integration is [Stitch](https://github.com/maccman/stitch-rb). Stitch has the advantage that it outputs [CommonJS modules](commonjs.html), rather than use just simple concatenation. Using Stitch is beyond the scope of this guide, please see its [README](https://github.com/maccman/stitch-rb) for more information. 
 
 ##JSON Prefixing
 
@@ -19,7 +19,7 @@ Instead of something most Rails programmers are familiar with, prefixed data:
 
     {"user": {name: "Sam Seaborn"}}
 
-The reason for this design decision is that the prefix is often redundant data; the application already knows the format and indented destination of the data by the context of the HTTP request. 
+The reason for this design decision is that the prefix is often redundant data; the application already knows the format and indented destination of the data by the context of the HTTP request.
 
 Fortunately Rails 3.1 has added default support for un-prefixed parameters, via a feature called *wrap parameters*. You should find a file under `config/initializers/wrap_parameters.rb` that looks like this:
 
@@ -45,7 +45,7 @@ Spine's [Ajax module](<%= docs_url("ajax") %>) is fully REST compatible, and wil
       if @page.save
         respond_with(@page, status: :created, location: @page)
       else
-        respond_with(@page.errors, status: :unprocessable_entity) 
+        respond_with(@page.errors, status: :unprocessable_entity)
       end
     end
 
@@ -57,9 +57,9 @@ Spine's [Ajax module](<%= docs_url("ajax") %>) is fully REST compatible, and wil
         respond_with(@page.errors, status: :unprocessable_entity)
       end
     end
-    
+
 For a demonstration of Spine communicating with a Rails controller, see the [example application](https://github.com/maccman/spine.rails3/blob/master/app/controllers/pages_controller.rb).
-    
+
 To find out more information about Ajax & Spine, please see [its guide](<%= docs_url("ajax") %>).
 
 ##ID changes
@@ -68,16 +68,16 @@ Although Spine generates a ID for records client-side, most Rails apps will use 
 
     # POST /pages returns:
     {"id": 1, "name": "POTUS"}
-    
+
 Spine will use the server generated ID from then on, and does some clever stuff to merge its internal ID so old ID references (such as in routes) still work.
 
 ##Cross Domain Requests
 
-A limitation of Ajax is the same-origin policy which restricts Ajax requests to the same domain and port as the page was loaded from. This is for security reasons, and prevents [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery). 
+A limitation of Ajax is the same-origin policy which restricts Ajax requests to the same domain and port as the page was loaded from. This is for security reasons, and prevents [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery).
 
-However, while the same origin policy is integral to the security of the Web, it’s also somewhat inconvenient for developers trying to access legitimate remote resources. [Cross Origin Requests](https://developer.mozilla.org/En/HTTP_access_control), or CORS, lets you break out of the same origin policy, giving you access to authorized remote servers. 
+However, while the same origin policy is integral to the security of the Web, it’s also somewhat inconvenient for developers trying to access legitimate remote resources. [Cross Origin Requests](https://developer.mozilla.org/En/HTTP_access_control), or CORS, lets you break out of the same origin policy, giving you access to authorized remote servers.
 
-Using CORS is trivially easy, and is just the matter of adding a few authorization headers to request responses. The specification is well supported by the major browsers, although IE ignored the spec and created it's own object, [XDomainRequest](http://msdn.microsoft.com/en-us/library/cc288060%28VS.85%29.aspx), which has a number of arbitrary [restrictions and limitations](http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx). Luckily, it's [easily shimed](https://github.com/jaubourg/ajaxHooks/blob/master/src/ajax/xdr.js). 
+Using CORS is trivially easy, and is just the matter of adding a few authorization headers to request responses. The specification is well supported by the major browsers, although IE ignored the spec and created it's own object, [XDomainRequest](http://msdn.microsoft.com/en-us/library/cc288060%28VS.85%29.aspx), which has a number of arbitrary [restrictions and limitations](http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx). Luckily, it's [easily shimed](https://github.com/jaubourg/ajaxHooks/blob/master/src/ajax/xdr.js).
 
 CORS support by browser:
 
@@ -92,36 +92,36 @@ CORS support by browser:
 You can specify an external host for Spine to use by setting the `Spine.Model.host` option, like so:
 
     Spine.Model.host = "http://api.myservice.com"
-    
+
 Once set, all of Spine's subsequent Ajax requests will be made on that endpoint.
-    
+
 ###CORs Rails integration
-    
-Let's create a `cor` method, which will add some of the request access control headers to the request's response. 
+
+Let's create a `cor` method, which will add some of the request access control headers to the request's response.
 
 Add the following to `app/application_controller.rb`:
-    
+
     before_filter :cor
-  
+
     def cor
       headers["Access-Control-Allow-Origin"]  = "js-app-origin.com"
       headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
       headers["Access-Control-Allow-Headers"] = %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
       head(:ok) if request.request_method == "OPTIONS"
     end
-    
-Although `Access-Control-Allow-Origin` takes a wildcard, I highly recommend not using it as it opens up your app to all sorts of CSRF attacks. Using a whitelist is much better and more secure.
-    
-The `Access-Control-Allow-Headers` section is important, especially the `X-Requested-With` header. Rails doesn't like it if you send Ajax requests to it without this header, and ignores the request's `Accept` header, returning HTML when it should in fact return JSON. 
 
-It's worth noting that jQuery doesn't add this header to cross domain requests by default. This is an issue that Spine solves internally, but if you're using plain jQuery for CORs, you'll need to specify the header manually. 
+Although `Access-Control-Allow-Origin` takes a wildcard, I highly recommend not using it as it opens up your app to all sorts of CSRF attacks. Using a whitelist is much better and more secure.
+
+The `Access-Control-Allow-Headers` section is important, especially the `X-Requested-With` header. Rails doesn't like it if you send Ajax requests to it without this header, and ignores the request's `Accept` header, returning HTML when it should in fact return JSON.
+
+It's worth noting that jQuery doesn't add this header to cross domain requests by default. This is an issue that Spine solves internally, but if you're using plain jQuery for CORs, you'll need to specify the header manually.
 
     jQuery.ajaxSetup({
       headers: {"X-Requested-With": "XMLHttpRequest"}
     });
-    
+
 Some browsers send an options request to the server first, to make sure the correct access headers are set. You'll need to catch this in Rails, returning a `200` status with the correct headers. To do this, add the following to your application's `config/routes.rb` file:
-    
+
     match '*all' => 'application#cor', :constraints => {:method => 'OPTIONS'}
 
 That's it, you're all set up for Cross Origin Requests with Spine!

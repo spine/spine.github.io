@@ -7,11 +7,11 @@ template: api.jade
 
 ### `@extend(Module)`
 
-Add class methods; see [modules](<%= docs_path("modules") %>).
+Add class methods; see [modules](modules.html).
 
 ### `@include(Module)`
 
-Add instance methods; see [modules](<%= docs_path("modules") %>)
+Add instance methods; see [modules](modules.html)
 
 ### `sub()`
 
@@ -141,15 +141,15 @@ The `constructor()` function is called when the controller is instantiated and p
 
 ### `bind(name, function)`
 
-Bind custom events. See [events](<%= docs_path("events") %>) for more information.
+Bind custom events. See [events](events.html) for more information.
 
 ### `trigger(name, data...)`
 
-Trigger custom events. See [events](<%= docs_path("events") %>) for more information.
+Trigger custom events. See [events](events.html) for more information.
 
 ### `unbind(name, [function])`
 
-Unbind custom events. See [events](<%= docs_path("events") %>) for more information.
+Unbind custom events. See [events](events.html) for more information.
 
 ### `log(message)`
 
