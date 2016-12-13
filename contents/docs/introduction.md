@@ -34,19 +34,19 @@ JavaScript frameworks are a dime a dozen, and more are appearing everyday. So wh
 * Very Approachable Source Code
 * Great documentation
 
-But don't take our word for it. Take a look at the source of the [example applications](<%= pages_path("examples") %>), and decide for yourself.
+But don't take our word for it. Take a look at the source of the [example applications](examples.html), and decide for yourself.
 
 ##Components
 
 * *Spine* - The main library, containing the core classes, such as `Model` and `Controller`.
 
-* *Extension Modules* - two way binding, routing, model relationship management etc. 
+* *Extension Modules* - two way binding, routing, model relationship management etc.
 
-* *Spine Mobile* - Spine's mobile extension, letting you easily build [mobile and PhoneGap applications](<%= mobile_path %>) currently looking for a maintainer.
+* *Spine Mobile* - Spine's mobile extension, letting you easily build [mobile and PhoneGap applications]( mobile_path .html) currently looking for a maintainer.
 
-* *Spine.app* - The simple way of [generating Spine applications](<%= docs_path("app") %>).
+* *Spine.app* - The simple way of [generating Spine applications](app.html).
 
-* *Hem* - Spine's (optional but awesome) [dependency manager and development server](<%= docs_path("hem") %>).
+* *Hem* - Spine's (optional but awesome) [dependency manager and development server](hem.html).
 
 ##CoffeeScript
 
@@ -68,12 +68,12 @@ It's for this reason, that Spine's docs read more like guides than raw API docum
 
 If you're new to Spine, you should first check out the four main guides:
 
-1. [Classes](<%= docs_path("classes") %>)
-1. [Models](<%= docs_path("models") %>)
-1. [Controllers](<%= docs_path("controllers") %>)
-1. [Views](<%= docs_path("views") %>)
+1. [Classes](classes.html)
+1. [Models](models.html)
+1. [Controllers](controllers.html)
+1. [Views](views.html)
 
-Then you should experiment with the [getting started guide](<%= docs_path("started") %>), learning about [generating Spine apps](<%= docs_path("app") %>), and using [Hem](<%= docs_path("hem") %>).
+Then you should experiment with the [getting started guide](started.html), learning about [generating Spine apps](app.html), and using [Hem](hem.html).
 
 Finally it is definitely recommended to browse [the source of spine itself](http://github.com/spine/spine) as well as the source of some example applications, such as the [Todos](http://github.com/maccman/spine.todos) and [Contacts](http://github.com/maccman/spine.contacts) apps.
 

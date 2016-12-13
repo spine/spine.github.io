@@ -9,11 +9,12 @@ html(lang='en')
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel="stylesheet", href="#{locals.url}/docs.css")
 		title= locals.title
 		block head
 	body
 		block header
-			div.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+			nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
 				div.container
 					div.navbar-header
 						button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target=".navbar-collapse")

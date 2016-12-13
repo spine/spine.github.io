@@ -5,7 +5,7 @@ template: docs.jade
 
 Stacks are a way of grouping controllers, ensuring that only one controller is activated and displayed at any one time. They're useful in all sorts of common scenarios, such as implementing tabs or displaying independent controllers.
 
-Behind the scenes, Stacks are just Spine Controllers, with an internal [Manager](<%= docs_path("manager") %>) and some API sugar. Stacks are actually defined in the `manager.coffee` lib, so you'll need to require it before using them.
+Behind the scenes, Stacks are just Spine Controllers, with an internal [Manager](manager.html) and some API sugar. Stacks are actually defined in the `manager.coffee` lib, so you'll need to require it before using them.
 
     Stack = require('spine/lib/manager').Stack;
 
@@ -47,7 +47,7 @@ A basic stack looks like this, a class extending from `Spine.Stack`:
     posts.show.isActive(); // true
     posts.edit.isActive(); // false
 
-As you can see, we've got a `controllers` property in the format of `{controllerName: controllerClass}`. These controllers will be instantiated automatically when the Stack is instantiated, appended to the stack and an internal [manager](<%= docs_path("manager") %>).
+As you can see, we've got a `controllers` property in the format of `{controllerName: controllerClass}`. These controllers will be instantiated automatically when the Stack is instantiated, appended to the stack and an internal [manager](manager.html).
 
 Notice we can access the Stack's controllers when it's instantiated, as in `posts.show`. We can activate individual controllers by calling `active()` on them, deactivating all the other controllers in the stack.
 
@@ -81,7 +81,7 @@ A Stack doesn't alter the display CSS property of its controllers, but rather si
 
 ##Routes
 
-Stacks have a shorthand for adding [routes](<%= docs_path("routing") %>) via the `routes` property:
+Stacks have a shorthand for adding [routes](routing.html) via the `routes` property:
 
     //= CoffeeScript
     class PostsShow extends Spine.Controller
@@ -150,5 +150,4 @@ The only other support property in Stacks, is the `default` option. Set this as 
 
 ##Advanced options
 
-If you need lower-level control, then you should use Spine's Managers directly. See the [Manager's guide](<%= docs_path("manager") %>) for more information.
-
+If you need lower-level control, then you should use Spine's Managers directly. See the [Manager's guide](manager.html) for more information.

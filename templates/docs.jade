@@ -1,78 +1,31 @@
 extends layout
+mixin listItem(label, hrefVal, titleText)
+	li(class=page.html==hrefVal ? 'active' : '')
+		a(href!=hrefVal, title!=titleText)!= label
 
 block content
 	.container.col-sm-3
-		h2 Documentation
-		article
-			div
-				h3
-					a(href='introduction.html') Introduction
-				span Overview of Spine
-			div
-				h3
-					a(href='started.html') Getting started
-				span Getting started with Spine
-			div
-				h3
-					a(href='controllers.html') Controllers
-				span Intro to Spine's Controllers
-			div
-				h3
-					a(href='models.html') Models
-				span Data storage and manipulation
-			div
-				h3
-					a(href='events.html') Events
-				span Custom and controller events
-			div
-				h3
-					a(href='routing.html') Routing
-				span HTML5 history and hash support
-			div
-				h3
-					a(href='views.html') Views
-				span JS Template rendering
-			div
-				h3
-					a(href='example.html') Examples
-				span TodoList example
-			div
-				h3
-					a(href='bindings.html') Two-Way Bindings
-				span Expiremental Two-Way binding module
-		h2 Guides
-		article
-			div
-				h3
-					a(href='controller_patterns.html') Controller patterns
-				span Common controller abstractions
-			div
-				h3
-					a(href='manager.html') Manager
-				span Controller state machine
-			div
-				h3
-					a(href='forms.html') Forms & Validation
-				span Process forms and validate models
-			div
-				h3
-					a(href='ajax.html') Ajax
-				span Custom Ajax integration with models
-			div
-				h3
-					a(href='hem.html') Hem
-				span Dependency management with Hem
-			div
-				h3
-					a(href='app.html') Spine.app
-				span Generating Spine Apps
-			div
-				h3
-					a(href='rails.html') Rails integration
-				span Integrate Spine with Rails using REST
-			div
-				h3
-					a(href='realtime.html') Realtime apps
-				span Make your Spine app realtime!
+		nav.bs-docs-sidebar.affix
+			h2 Documentation
+			ul.nav.bs-docs-sidenav
+				+listItem('Introduction', 'introduction.html', 'Overview of Spine')
+				+listItem('Getting started', 'started.html', 'Getting started with Spine')
+				+listItem('Controllers', 'controllers.html', 'Intro to Spines Controllers')
+				+listItem('Models', 'models.html', 'Data storage and manipulation')
+				+listItem('Events', 'events.html', 'Custom and controller events')
+				+listItem('Routing', 'routing.html', 'HTML5 history and hash support')
+				+listItem('Views', 'views.html', 'Template rendering')
+				+listItem('Examples', 'example.html', 'TodoList example')
+			
+			h2 Guides
+			ul.nav.bs-docs-sidenav
+				+listItem('Controller patterns', 'controller_patterns.html', 'Common controller abstractions')
+				+listItem('Manager', 'manager.html', 'Controller state machine')
+				+listItem('Forms & Validation', 'forms.html', 'Process forms and validate models')
+				+listItem('Ajax', 'ajax.html', 'Custom Ajax integration with models')
+				+listItem('Hem', 'hem.html', 'Dependency management with Hem')
+				+listItem('Spine.app', 'app.html', 'Generating Spine Apps')
+				+listItem('Rails integration', 'rails.html', 'Integrate Spine with Rails using REST')
+				+listItem('Realtime apps', 'realtime.html', 'Make your Spine app realtime!')
 
-	.container.col-sm-9!= page.html
+	.container.col-sm-9.content!= page.html
