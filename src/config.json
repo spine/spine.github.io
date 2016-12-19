@@ -1,0 +1,17 @@
+{
+  "locals": {
+    "url": "http://localhost:8000",
+    "title": "Spine JS",
+    "description": "documentation for Spine JS and associated projects",
+    "versionNum": "1.6.2"
+  },
+  "jade": {
+    "pretty": true
+  },
+  "markdown": {
+    "smartLists": true,
+    "smartypants": true
+  },
+  "port": 8000,
+  "output": "../"
+}

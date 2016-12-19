@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-sm-3">
+      <p><a href="classes.html">Classes</a><br>Spine's Class API for JavaScript compatibility.</p>
+      <p><a href="models.html">Models</a><br>Spine's Model API</p>
+      <p><a href="controllers.html">Controllers</a><br>Spine's Controller API</p>
+      <p><a href="events.html">Events</a><br>Spine's Event Module</p>
+      <p><a href="routing.html">Routing</a><br>Spine's Controller Routing API</p>
+    </div>
+    <div class="container col-sm-9"><p>##Class methods</p>
+<h3 id="-extend-module-"><code>@extend(Module)</code></h3>
+<p>Add class methods; see <a href="/api/modules.html">modules</a>.</p>
+<h3 id="-include-module-"><code>@include(Module)</code></h3>
+<p>Add instance methods; see <a href="/api/modules.html">modules</a></p>
+<h3 id="-sub-"><code>sub()</code></h3>
+<p>JavaScript compatibility function for creating a new controller.</p>
+<pre><code>var Users = Spine.Controller.sub({
+  init: function(){
+    // ...
+  }
+});
+</code></pre><p>##Instance Variables</p>
+<h3 id="-el-"><code>el</code></h3>
+<p><code>@el</code> A jQuery or Zepto object that represents the controller’s HTML element, and is instantiated when the controller is first created. Most of the controller’s operations, such as <code>@html()</code> and <code>@append()</code> involve <code>@el</code>. You can think of it as the view the controller is associated with.</p>
+<p>You also set a custom element when instantiating controllers.</p>
+<pre><code>//= CoffeeScript
+new Users(el: $(&quot;.users&quot;))
+</code></pre><h3 id="-tag-"><code>tag</code></h3>
+<p><code>@el</code>‘s tag name. i.e. the type of element <code>@el</code> is.</p>
+<p>By default <code>tag</code> is set to <code>&quot;div&quot;</code>.</p>
+<pre><code>//= CoffeeScript
+class Users extends Spine.Controller
+  tag: &quot;li&quot;
+
+//= JavaScript
+var Users = Spine.Controller.sub({
+  tag: &quot;li&quot;
+});
+</code></pre><h3 id="-classname-"><code>className</code></h3>
+<p>Classes to be set on <code>@el</code> when the controller is instantiated.</p>
+<pre><code>//= CoffeeScript
+class Users extends Spine.Controller
+  className: &quot;users list&quot;
+
+//= JavaScript
+var Users = Spine.Controller.sub({
+  className: &quot;users list&quot;
+});
+</code></pre><h3 id="-events-"><code>events</code></h3>
+<p>You can use the <code>events</code> property instead of manually setting up event delegation. Set the <code>events</code> property to an array of object literals, in the following format: <code>{&quot;eventType selector&quot;: &quot;functionName&quot;}</code>. If no selector is provided, then the event will be set directly on <code>@el</code>. Otherwise the events will be delegated to any of <code>@el</code>‘s children matching the selector.</p>
+<pre><code>//= CoffeeScript
+class Users extend Spine.Controller
+  events:
+    &quot;click div&quot;: &quot;click&quot;
+
+  click: -&gt;
+    @log(&quot;A div was clicked&quot;)
+
+//= JavaScript
+var Users = Spine.Controller.sub({
+  events: {
+    &quot;click div&quot;: &quot;click&quot;
+  },
+
+  click: function(){
+    this.log(&quot;a div was clicked&quot;);
+  }
+});
+</code></pre><h3 id="-elements-"><code>elements</code></h3>
+<p>Set <code>elements</code> to a hash of selectors to names. Spine will setup instances variables pointing to those elements upon the controller’s instantiation. The element selectors are all scoped by <code>@el</code>. Spine will update these for you when content changes as with jQuery’s .html(), .append() or .replace()</p>
+<pre><code>//= CoffeeScript
+class Users extend Spine.Controller
+  elements:
+    &quot;.main&quot;: &quot;mainElement&quot;
+
+  render: -&gt;
+    // mainElement is set to a jQuery element
+    @mainElement.empty()
+
+//= JavaScript
+var Users = Spine.Controller.sub({
+  elements: {
+    &quot;.main&quot;: &quot;mainElement&quot;
+  },
+
+  render: function(){
+    this.mainElement.empty();
+  }
+});
+</code></pre><h3 id="-"><code>$</code></h3>
+<p>A jQuery/Zepto selector, scoped to <code>el</code>.</p>
+<pre><code>//= CoffeeScript
+class Users extend Spine.Controller
+  render: -&gt;
+    @$(&quot;.count&quot;).html(User.count())
+
+//= JavaScript
+var Users = Spine.Controller.sub({
+  render: function(){
+    this.$(&quot;.count&quot;).html(User.count())
+  }
+});
+</code></pre><p>##Instance methods</p>
+<h3 id="-constructor-options-"><code>constructor(options = {})</code></h3>
+<p>The <code>constructor()</code> function is called when the controller is instantiated and passed the controller options. You can override this, but be sure to call <code>super</code>. If you’re using JavaScript, you should use the <code>init()</code> function instead; see <a href="/api/%=%20api_path(%22classes%22">classes</a> %&gt;)</p>
+<pre><code>class Users extend Spine.Controller
+  constructor: -&gt;
+    super
+    // My other stuff
+</code></pre><h3 id="-bind-name-function-"><code>bind(name, function)</code></h3>
+<p>Bind custom events. See <a href="/api/events.html">events</a> for more information.</p>
+<h3 id="-trigger-name-data-"><code>trigger(name, data...)</code></h3>
+<p>Trigger custom events. See <a href="/api/events.html">events</a> for more information.</p>
+<h3 id="-unbind-name-function-"><code>unbind(name, [function])</code></h3>
+<p>Unbind custom events. See <a href="/api/events.html">events</a> for more information.</p>
+<h3 id="-log-message-"><code>log(message)</code></h3>
+<p>Append a message to the console.</p>
+<pre><code>//= CoffeeScript
+class Users extend Spine.Controller
+  constructor: -&gt;
+    super
+    @log(&quot;Instantiated!&quot;)
+
+//= JavaScript
+var Users = Spine.Controller.sub({
+  init: function(){
+    this.log(&quot;Instantiated!&quot;);
+  }
+});
+</code></pre><h3 id="-release-function-"><code>release([function])</code></h3>
+<p>If passed a function, then <code>release()</code> binds the function to the <em>release</em> events. Otherwise it fires the <em>release</em> event.</p>
+<p>The <em>release</em> event removes <code>el</code> from the page, and unbinds all the controller’s event listeners as well as removing binders for items it was listening to.</p>
+<h3 id="-delay-function-delay-0-"><code>delay(function, delay = 0)</code></h3>
+<p>Executes the given function, in the context of the controller instance, after the given delay. This is sometimes useful when dealing with browser re-drawing issues.</p>
+<h3 id="-html-html-"><code>html(html)</code></h3>
+<p>Replaces <code>@el</code>‘s html by passing in either a piece of HTML, a jQuery element, or another controller instance. The function also ensures that <code>@elements</code> has is up to date.</p>
+<h3 id="-append-elementorcontroller-"><code>append(elementOrController)</code></h3>
+<p>Appends the given element, or controller instance, to <code>@el</code>. The function also ensures that <code>@elements</code> is up to date.</p>
+<h3 id="-appendto-elementorcontroller-"><code>appendTo(elementOrController)</code></h3>
+<p>Appends <code>@el</code> to the given element or controller instance.</p>
+<h3 id="-prepend-elementorcontroller-"><code>prepend(elementOrController)</code></h3>
+<p>Prepends <code>@el</code> to the given element or controller instance.</p>
+<h3 id="-replace-element-"><code>replace(element)</code></h3>
+<p>Replaces <code>@el</code> with the given element, updating <code>@elements</code> and setting up the event delegation in the process.</p>
+<h3 id="-proxy-function-"><code>proxy(function)</code></h3>
+<p>A JavaScript compatibility function, which ensures that the function is always called in the context of the Controller’s instance.</p>
+</div>
+  </body>
+</html>

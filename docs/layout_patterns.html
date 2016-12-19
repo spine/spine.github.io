@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-sm-3">
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container col-sm-9 content"><p>Aside from the simplest of applications, the vast majority have need of multiple views and layouts. Unfortunately, in our JavaScript web applications, we don’t have the luxury of putting views on separate pages, since there’s no page reloading. Instead, we need to place all the views inside the page, showing or hiding them as appropriate. </p>
+<p><a href="http://spine.github.com/spine">Spine</a> has a couple of utilities to help you do this, <em>spine.manager.js</em>, and <em>spine.list.js</em>.</p>
+<p>##List</p>
+<p>The <code>Spine.List</code> class is basically for a dynamic set of tabs populated by model data. For example, the <a href="https://github.com/maccman/spine.contacts">Spine.Contacts</a> application uses <code>Spine.List</code> to render the list of contacts in the sidebar and changing the currently selected contact when clicked.</p>
+<p><img src="https://lh5.googleusercontent.com/_IH1OempnqUc/TZpgYfnlUBI/AAAAAAAABKg/UYLhdmoc15o/s500/contacts.png" alt="Spine Contacts"></p>
+<p>As always, the first step is is to include the required libraries. We’re going to need templating for rendering our list, and in this example we’ll be using <a href="https://github.com/jquery/jquery-tmpl">jQuery.tmpl</a>. We also need to include <a href="https://github.com/spine/spine/raw/master/lib/spine.tmpl.js">spine.tmpl.js</a> which includes some templating utilities. Lastly we obviously need to include <a href="https://github.com/spine/spine/raw/master/lib/spine.list.js">spine.list.js</a>,</p>
+<pre><code>&lt;script src=&quot;jquery.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;jquery.tmpl.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;spine.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;spine.tmpl.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;spine.list.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+</code></pre><p>As with the Spine.Contacts application, we’re going to have a list of contact names in a sidebar. When users select a contact, its full information will be displayed in the main section. <code>Spine.List</code> will make that remarkably simple. It’ll render the contacts list, control the currently selected contact, and trigger a <em>change</em> event when a new one is selected.</p>
+<p>When instantiating a <code>Spine.List</code>, you need to pass in a <code>el</code> and <code>template</code> options, to indicate the element the list is associated with, and the template it should use for rendering records.</p>
+<pre><code>list = new Spine.List
+  el: $(&quot;#sidebar ul&quot;)
+  template: (items) -&gt;
+    $(&quot;#items-template&quot;).tmpl(items)
+</code></pre><p>The <code>template</code> option should be a function that takes records and returns DOM elements. In this example, we’re calling <code>.tmpl()</code> on a inline script template. For more information on how this works, please see <a href="http://api.jquery.com/jquery.tmpl">jQuery.tmpl’s docs</a>. </p>
+<p>We now need to render our list with records. Typically this is done whenever any records in the list are created, updated or destroyed. We can do this by passing a list of records to the list’s <code>render()</code> function</p>
+<pre><code>list.render(Contact.all())
+</code></pre><p>Lastly we need to listen to <em>change</em> events, which will be invoked whenever users click on the list, changing the currently selected item.</p>
+<pre><code>list.bind(&quot;change&quot;, (item) -&gt;
+  // list was changed to item!
+</code></pre><p>That’s all there is to <code>Spine.List</code>. Now let’s show a full example to give you a bit of context. Firstly we’re going to need two simple template, <code>#contacts-template</code> for the list and <code>#contact-template</code> for the main view. Then, as demonstrated above, we’re going to render the list and listen to <em>change</em> events. When the currently selected item in the list changes, we’ll re-render the main view with the newly selected record.</p>
+<pre><code>&lt;script type=&quot;text/x-template&quot; charset=&quot;utf-8&quot; id=&quot;contacts-template&quot;&gt;
+  &lt;li class=&quot;item&quot;&gt;${name}&lt;/li&gt;
+&lt;/script&gt;
+
+&lt;script type=&quot;text/x-template&quot; charset=&quot;utf-8&quot; id=&quot;contact-template&quot;&gt;
+  &lt;p&gt;${name}&lt;/p&gt;
+  &lt;!-- ... --&gt;
+&lt;/script&gt;
+
+&lt;div id=&quot;layout2&quot;&gt;
+  &lt;div class=&quot;sidebar&quot;&gt;
+    &lt;ul&gt;&lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;main&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+  $ = Spine.$
+
+  // Create model
+  class Contact extends Spine.Model
+    @configure &quot;Contact&quot;, &quot;name&quot;
+
+  // Create List, override default template
+  SideBar = new Spine.List
+    template: (items) -&gt;
+      $(&quot;#contacts-template&quot;).tmpl(items)
+
+  // Create controller
+  class Contacts extends Spine.Controller
+    elements: {&quot;.sidebar ul&quot;: &quot;listEl&quot;, &quot;.main&quot;: &quot;main&quot;}
+
+    constructor: -&gt;
+      @list = new SideBar(el: @listEl)
+      @list.bind(&quot;change&quot;, @change)
+      Contact.bind(&quot;refresh change&quot;, @render)
+
+    render: -&gt;
+      @list.render(Contact.all())
+      @main.html($(&quot;#contact-template&quot;).tmpl(this.current))
+
+    change: (item) -&gt;
+      @current = item
+      @render()
+
+  new Contacts(el: $(&quot;#layout2&quot;))
+  Contact.fetch()
+&lt;/script&gt;
+</code></pre><p>That may look like a lot of code, but in reality it’s fairly straightforward. Whenever the currently selected item in the list changes, then <code>Contacts.prototype.render()</code> function will be called, re-rendering the main view. When the application first loads, if no list items are selected then <code>Spine.List</code> will select the first item in its list. </p>
+<p>Like <code>Spine.Tabs</code>, <code>Spine.List</code> will add a class of <em>active</em> to the currently selected list item, which you can style with CSS to give the user a visual indication of what is currently selected.</p>
+</div>
+  </body>
+</html>

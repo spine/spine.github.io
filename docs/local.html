@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-sm-3">
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container col-sm-9 content"><p>Spine has support for <a href="http://diveintohtml5.org/storage.html">HTML5 Local Storage</a> to persist model data between page reloads. Local Storage is a quick and simple way of storing data, and the vast majority of modern browsers support it (Chrome, Firefox 3.5+, IE 8+, and mobile browsers). It’s great for offline applications too. </p>
+<p><em>Note: The stock browser of Android 2.3 or earlier has a bug related to parsing JSON which means you should make sure you are using a <a href="https://github.com/douglascrockford/JSON-js">shim</a> if you are targeting that browser.</em></p>
+<p>Browsers give each ‘origin’ or domain at least 5mb of data by default. If you exceed this storage quota than the <code>QUOTA_EXCEEDED_ERR</code> exception will be thrown. </p>
+<p>##Usage</p>
+<p>To persist a model using HTML5 Local Storage, simply extend it with <code>Spine.Model.Local</code>.</p>
+<pre><code>//= CoffeeScript
+class Contact extend Spine.Model
+  @configure &quot;Contact&quot;, &quot;name&quot;
+  @extend Spine.Model.Local
+
+//= JavaScript
+var Contact = Spine.Model.sub();
+Contact.configure(&quot;Contact&quot;, &quot;name&quot;);
+Contact.extend(Spine.Model.Local);
+</code></pre><p>When a record is changed, the Local Storage database will be updated to reflect that. In order to fetch the records from Local Storage in the first place, you need to use <code>fetch()</code>.</p>
+<pre><code>//= CoffeeScript
+Contact.fetch()
+</code></pre><p>When the data has been successfully fetched from local storage, the <em>refresh</em> event will be triggered. You should bind to this event in your controllers, re-rendering the views as appropriate. </p>
+<pre><code>//= CoffeeScript
+Contact.bind &#39;refresh&#39;, @render
+
+//= JavaScript
+Contact.bind(&#39;refresh&#39;, this.proxy(this.render))
+</code></pre></div>
+  </body>
+</html>

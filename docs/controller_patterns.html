@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-sm-3">
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container col-sm-9 content"><p>We’ve covered most of Spine’s Controller API in the <a href="/docs/controllers.html">controller guide</a>, so let’s have a look at some typical use cases.</p>
+<p>##The Render Pattern</p>
+<p>The <em>render pattern</em> is a really useful way of binding models and views together. When the controller is instantiated, it adds an event listener to the relevant model, invoking a callback when the model is refreshed or changed. The callback will invoke the <code>render()</code> function, updating the controller’s element (<code>el</code>) by replacing its contents with a rendered template.</p>
+<pre><code>//= CoffeeScript
+class Contacts extends Spine.Controller
+  constructor: -&gt;
+    super
+    Contact.bind(&quot;refresh change&quot;, @render)
+
+  template: (items) -&gt;
+    require(&#39;views/contacts&#39;)(items)
+
+  render: =&gt;
+    @html(@template(Contact.all()))
+
+//= JavaScript
+var Contacts = Spine.Controller.sub({
+  init: function(){
+    Contact.bind(&quot;refresh change&quot;, this.proxy(this.render));
+  },
+
+  template: function(items){
+    return $(&#39;#contactTemplate&#39;).tmpl(items);
+  },
+
+  render: function(){
+    this.html(this.template(Contact.all()));
+  }
+})
+</code></pre><p>This is a simple but blunt method for data binding, updating every element whenever a single record is changed. This is fine for uncomplicated and small lists, but you may find you need more control over individual elements, such as adding event handlers to items. This is where the <em>element pattern</em> comes in.</p>
+<p>##The Element Pattern {#element-pattern}</p>
+<p>The element pattern essentially gives you the same functionality as the render pattern, but a lot more control. It consists of two controllers, one that controls a collection of items, and the other deals with each individual item. Let’s dive right into the code to give you a good indication of how it works.</p>
+<pre><code>//= CoffeeScript
+class ContactItem extends Spine.Controller
+  # Delegate the click event to a local handler
+  events:
+    &quot;click&quot;: &quot;click&quot;
+
+  # Bind events to the record
+  constructor: -&gt;
+    super
+    throw &quot;@item required&quot; unless @item
+    @item.bind(&quot;update&quot;, @render)
+    @item.bind(&quot;destroy&quot;, @remove)
+
+  # Render an element
+  render: (item) =&gt;
+    @item = item if item
+
+    @html(@template(@item))
+    @
+
+  # Use a template, in this case via Eco
+  template: (items) -&gt;
+    require(&#39;views/contacts&#39;)(items)
+
+  # Called after an element is destroyed
+  remove: -&gt;
+    @el.remove()
+
+  # We have fine control over events, and
+  # easy access to the record too
+  click: -&gt;
+
+class Contacts extends Spine.Controller
+  constructor: -&gt;
+    Contact.bind(&quot;refresh&quot;, @addAll)
+    Contact.bind(&quot;create&quot;,  @addOne)
+
+  addOne: (item) =&gt;
+    contact = new ContactItem(item: item)
+    @append(contact.render())
+
+  addAll: =&gt;
+    Contact.each(@addOne)
+
+//= JavaScript
+var ContactItem = Spine.Controller.sub({
+
+  // Delegate the click event to a local handler
+  events: {
+    &quot;click&quot;: &quot;click&quot;
+  },
+
+  // Bind events to the record
+  init: function()
+    if ( !this.item ) throw &quot;@item required&quot;;
+    this.item.bind(&quot;update&quot;, this.proxy(this.render));
+    this.item.bind(&quot;destroy&quot;, this.proxy(remove));
+  },
+
+  render: function(item){
+    if (item) this.item = item;
+
+    this.html(this.template(this.item));
+    return this;
+  },
+
+  // Use a template, in this case via jQuery.tmpl.js
+  template: function(items){
+    return $(&#39;#contactTemplate&#39;).tmpl(items);
+  },
+
+  // Called after an element is destroyed
+  remove: function(){
+    this.el.remove();
+  },
+
+  click: function(){
+    // We have fine control over events, and
+    // easy access to the record too
+  }
+});
+
+var Contacts = Spine.Controller.sub({
+  init: function(){
+    Contact.bind(&quot;refresh&quot;, this.proxy(this.addAll));
+    Contact.bind(&quot;create&quot;,  this.proxy(this.addOne));
+  },
+
+  addOne: function(item){
+    var contact = new ContactItem({item: item});
+    this.append(contact.render());
+  },
+
+  addAll: function(){
+    Contact.each(this.proxy(this.addOne));
+  }
+});        
+</code></pre><p>In the example above, <code>Contacts</code> has responsibility for adding records when they’re initially created, and <code>ContactItem</code> has responsibility for the record’s update and destroy events, re-rendering the record when necessary. Albeit more complicated, this gives us some advantages over the previous render pattern.</p>
+<p>For one thing, it’s more performant; the list doesn’t need to be re-drawn whenever a single element changes. Furthermore, we now have a lot more control over individual items. We can place event handlers, as demonstrated with the <code>click</code> callback, and manage rendering on an item by item basis.</p>
+<p>##Next Steps</p>
+<p>A great example of the <em>element pattern</em> is Spine’s TodoList example application, which is covered in depth in the <a href="/docs/example.html">TodoList guide</a>.</p>
+</div>
+  </body>
+</html>

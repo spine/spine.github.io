@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-sm-3">
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container col-sm-9 content"><p>Stacks are a way of grouping controllers, ensuring that only one controller is activated and displayed at any one time. They’re useful in all sorts of common scenarios, such as implementing tabs or displaying independent controllers.</p>
+<p>Behind the scenes, Stacks are just Spine Controllers, with an internal <a href="/docs/manager.html">Manager</a> and some API sugar. Stacks are actually defined in the <code>manager.coffee</code> lib, so you’ll need to require it before using them.</p>
+<pre><code>Stack = require(&#39;spine/lib/manager&#39;).Stack;
+</code></pre><p>##Usage</p>
+<p>A basic stack looks like this, a class extending from <code>Spine.Stack</code>:</p>
+<pre><code>//= CoffeeScript
+class PostsShow extends Spine.Controller
+class PostsEdit extends Spine.Controller
+
+class Posts extends Spine.Stack
+  controllers:
+    show: PostsShow
+    edit: PostsEdit
+
+posts = new Posts
+posts.show # &lt;PostsShow&gt;
+
+posts.show.active()
+posts.show.isActive() # true
+posts.edit.isActive() # false
+
+//= JavaScript
+var PostsShow = Spine.Controller.sub();
+var PostsEdit = Spine.Controller.sub();
+
+var Posts = Spine.Stack.sub({
+  controllers: {
+    show: PostsShow,
+    edit: PostsEdit
+  }
+});
+
+var posts = new Posts
+posts.show // &lt;PostsShow&gt;
+
+posts.show.active();
+posts.show.isActive(); // true
+posts.edit.isActive(); // false
+</code></pre><p>As you can see, we’ve got a <code>controllers</code> property in the format of <code>{controllerName: controllerClass}</code>. These controllers will be instantiated automatically when the Stack is instantiated, appended to the stack and an internal <a href="/docs/manager.html">manager</a>.</p>
+<p>Notice we can access the Stack’s controllers when it’s instantiated, as in <code>posts.show</code>. We can activate individual controllers by calling <code>active()</code> on them, deactivating all the other controllers in the stack.</p>
+<pre><code>//= CoffeeScript
+posts = new Posts
+
+assertEqual( posts.show.isActive(), false )
+posts.show.active()
+assertEqual( posts.show.isActive(), true )
+
+assert( posts.show.el.hasClass(&#39;active&#39;) )
+assertEqual( posts.edit.el.hasClass(&#39;active&#39;), false )
+
+//= JavaScript
+var posts = new Posts;
+
+assertEqual(posts.show.isActive(), false);
+posts.show.active();
+assertEqual(posts.show.isActive(), true);
+
+assert(posts.show.el.hasClass(&#39;active&#39;));
+assertEqual(posts.edit.el.hasClass(&#39;active&#39;), false);
+</code></pre><p>###CSS</p>
+<p>A Stack doesn’t alter the display CSS property of its controllers, but rather simply adds and removes an <em>active</em> class. You should add the following snippet to your page’s CSS, ensuring that only controller’s with an active class are displayed.</p>
+<pre><code>.stack &gt; *:not(.active) {
+  display: none
+}
+</code></pre><p>##Routes</p>
+<p>Stacks have a shorthand for adding <a href="/docs/routing.html">routes</a> via the <code>routes</code> property:</p>
+<pre><code>//= CoffeeScript
+class PostsShow extends Spine.Controller
+class PostsEdit extends Spine.Controller
+
+class Posts extends Spine.Stack
+  controllers:
+    show: PostsShow
+    edit: PostsEdit
+
+  routes:
+    &#39;/posts/:id/edit&#39;: &#39;edit&#39;
+    &#39;/posts/:id&#39;:      &#39;show&#39;
+
+//= JavaScript
+var PostsShow = Spine.Controller.sub();
+var PostsEdit = Spine.Controller.sub();
+
+var Posts = Spine.Stack.sub({
+  controllers: {
+    show: PostsShow,
+    edit: PostsEdit
+  },
+
+  routes: {
+    &#39;/posts/:id/edit&#39;: &#39;edit&#39;,
+    &#39;/posts/:id&#39;:      &#39;show&#39;
+  }
+});
+</code></pre><p>The <code>routes</code> property is in the format of <code>{route: controllerName}</code>. In this case, we’re passing just passing in the controller name as a string. When the route is navigated to, the controller will be activated. We can also use a callback function instead of a controller name.</p>
+<p>##Other options</p>
+<p>The only other support property in Stacks, is the <code>default</code> option. Set this as a controller name, indicating to Spine you want a specific controller to be activated when the Stack is instantiated.</p>
+<pre><code>//= CoffeeScript
+class PostsShow extends Spine.Controller
+class PostsEdit extends Spine.Controller
+
+class Posts extends Spine.Stack
+  controllers:
+    show: PostsShow
+    edit: PostsEdit
+
+  default: &#39;show&#39;
+
+posts = new Posts
+assert( posts.show.isActive() )
+
+//= JavaScript
+var PostsShow = Spine.Controller.sub();
+var PostsEdit = Spine.Controller.sub();
+
+var Posts = Spine.Stack.sub({
+  controllers: {
+    show: PostsShow,
+    edit: PostsEdit
+  },
+
+  default: &#39;show&#39;
+});
+
+var posts = new Posts;
+assert( posts.show.isActive() );
+</code></pre><p>##Advanced options</p>
+<p>If you need lower-level control, then you should use Spine’s Managers directly. See the <a href="/docs/manager.html">Manager’s guide</a> for more information.</p>
+</div>
+  </body>
+</html>

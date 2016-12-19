@@ -33,7 +33,46 @@
       <p><a href="events.html">Events</a><br>Spine's Event Module</p>
       <p><a href="routing.html">Routing</a><br>Spine's Controller Routing API</p>
     </div>
-    <div class="container col-sm-9"><h1 id="use-the-source-luke">Use the source, Luke</h1>
+    <div class="container col-sm-9"><p>Spine provides classes as part of its JavaScript compatibility layer, as internally, Spine uses CoffeeScript classes. </p>
+<p>##Class methods</p>
+<h3 id="-sub-includeproperties-extendproperties-"><code>@sub([includeProperties, extendProperties])</code></h3>
+<p>Used to create new classes, or inherit from existing ones. For example, creating a new class would look like this:</p>
+<pre><code>var User = Spine.Class.sub();
+</code></pre><p>Or inheriting from an existing class would look like this:</p>
+<pre><code>var Teacher = User.sub();
+</code></pre><p>You can pass in an optional set of include or extend properties that will be added to the class.</p>
+<pre><code>var User = Spine.Class.sub({
+  instanceFunction: function(){
+    // Blah
+  }
+});
+</code></pre><h3 id="-new-"><code>new</code></h3>
+<p>Classes are constructor functions, so they can be instantiated using the <code>new</code> keyword:</p>
+<pre><code>var User = Spine.Class.sub();
+var user = new User;
+</code></pre><h3 id="-extend-module-"><code>@extend(Module)</code></h3>
+<p><code>@extend()</code> adds class methods.</p>
+<pre><code>var User = Spine.Class.sub();
+User.extend({
+  find: function(){
+    /* ... */ 
+  }
+});
+
+User.find();
+</code></pre><h3 id="-include-module-"><code>@include(Module)</code></h3>
+<p><code>@include()</code> adds instance methods.</p>
+<pre><code>var User = Spine.Class.sub();
+User.include({
+  name: &quot;Default Name&quot;
+});
+
+assertEqual( (new User).name, &quot;Default Name&quot; );
+</code></pre><h3 id="-proxy-function-"><code>@proxy(function)</code></h3>
+<p>Wraps a function in a proxy, so it’s always invoked in the class’ context.</p>
+<p>##Instance methods</p>
+<h3 id="-proxy-"><code>proxy()</code></h3>
+<p>Wraps a function in a proxy, so it’s always invoked in the instance’s context.</p>
 </div>
   </body>
 </html>

@@ -33,7 +33,18 @@
       <p><a href="events.html">Events</a><br>Spine's Event Module</p>
       <p><a href="routing.html">Routing</a><br>Spine's Controller Routing API</p>
     </div>
-    <div class="container col-sm-9"><h1 id="use-the-source-luke">Use the source, Luke</h1>
+    <div class="container col-sm-9"><p>##Class methods</p>
+<h3 id="-extend-properties-"><code>@extend(properties)</code></h3>
+<p>Add the specified properties as class properties.</p>
+<h3 id="-include-properties-"><code>@include(properties)</code></h3>
+<p>Add the specified properties as instance properties.</p>
+<h3 id="-proxy-function-"><code>@proxy(function)</code></h3>
+<p>Wraps a function, so it’s always executed in this class’s context.</p>
+<h3 id="-init-"><code>@init()</code></h3>
+<p>A JavaScript Compatibility method. <code>@init()</code> is a noop, but can be overridden. It’ll be called when the class is instantiated, with the arguments passed to the constructor function. </p>
+<p>##Instance methods</p>
+<h3 id="-proxy-function-"><code>proxy(function)</code></h3>
+<p>Wraps a function, so it’s always executed in this class’s instance context.</p>
 </div>
   </body>
 </html>

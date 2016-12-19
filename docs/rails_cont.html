@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <title>Spine JS</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
+          <p id="docVersion" class="navbar-text">v1.6.2</p>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="https://github.com/spine/spine">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-sm-3">
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container col-sm-9 content"><p>This guide continues on from the <a href="/docs/rails.html">Rails guide</a>, and probably isn’t applicable to day to day development, but will help you with some of the more complicated aspects down the line.</p>
+<p>##Stitch</p>
+<p>An alternative to using Sprockets for Spine integration is <a href="https://github.com/maccman/stitch-rb">Stitch</a>. Stitch has the advantage that it outputs <a href="/docs/commonjs.html">CommonJS modules</a>, rather than use just simple concatenation. Using Stitch is beyond the scope of this guide, please see its <a href="https://github.com/maccman/stitch-rb">README</a> for more information. </p>
+<p>##JSON Prefixing</p>
+<p>When sending JSON Ajax requests, Spine doesn’t prefix any of it’s data with the model name. For example, once a record has been created, Spine will will send a POST request with a payload looking like this:</p>
+<pre><code>{&quot;name&quot;: &quot;Sam Seaborn&quot;}
+</code></pre><p>Instead of something most Rails programmers are familiar with, prefixed data:</p>
+<pre><code>{&quot;user&quot;: {name: &quot;Sam Seaborn&quot;}}
+</code></pre><p>The reason for this design decision is that the prefix is often redundant data; the application already knows the format and indented destination of the data by the context of the HTTP request.</p>
+<p>Fortunately Rails 3.1 has added default support for un-prefixed parameters, via a feature called <em>wrap parameters</em>. You should find a file under <code>config/initializers/wrap_parameters.rb</code> that looks like this:</p>
+<pre><code>ActionController::Base.wrap_parameters format: [:json]
+
+# Disable root element in JSON by default.
+if defined?(ActiveRecord)
+  ActiveRecord::Base.include_root_in_json = false
+end
+</code></pre><p>Spine also requires responses from the server to be un-prefixed. As in the example above, <code>ActiveRecord::Base.include_root_in_json</code> should be <code>false</code>.</p>
+<p>Both these settings are the <strong>default</strong> in Rails 3.1, and you shouldn’t need to alter them.</p>
+<p>##Ajax &amp; REST</p>
+<p>Spine’s <a href="/docs/%=%20docs_url(%22ajax%22">Ajax module</a> %&gt;) is fully REST compatible, and will work with Rails out of the box. One thing to look out for, is that Spine expects <code>create</code> and <code>update</code> actions to return the record object.</p>
+<pre><code>respond_to :html, :json
+
+def create
+  @page = Page.new(params[:page])
+  if @page.save
+    respond_with(@page, status: :created, location: @page)
+  else
+    respond_with(@page.errors, status: :unprocessable_entity)
+  end
+end
+
+def update
+  @page = Page.find(params[:id])
+  if @page.update_attributes(params[:page])
+    respond_with(@page)
+  else
+    respond_with(@page.errors, status: :unprocessable_entity)
+  end
+end
+</code></pre><p>For a demonstration of Spine communicating with a Rails controller, see the <a href="https://github.com/maccman/spine.rails3/blob/master/app/controllers/pages_controller.rb">example application</a>.</p>
+<p>To find out more information about Ajax &amp; Spine, please see <a href="/docs/%=%20docs_url(%22ajax%22">its guide</a> %&gt;).</p>
+<p>##ID changes</p>
+<p>Although Spine generates a ID for records client-side, most Rails apps will use server-side generated IDs. The latter approach has a few advantages, as server-side generated IDs are guaranteed to be unique, and usually automatically generated by the database. If you want to use a server-side generated ID, simply return it as part of the record response to the <code>create</code> action:</p>
+<pre><code># POST /pages returns:
+{&quot;id&quot;: 1, &quot;name&quot;: &quot;POTUS&quot;}
+</code></pre><p>Spine will use the server generated ID from then on, and does some clever stuff to merge its internal ID so old ID references (such as in routes) still work.</p>
+<p>##Cross Domain Requests</p>
+<p>A limitation of Ajax is the same-origin policy which restricts Ajax requests to the same domain and port as the page was loaded from. This is for security reasons, and prevents <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">CSRF attacks</a>.</p>
+<p>However, while the same origin policy is integral to the security of the Web, it’s also somewhat inconvenient for developers trying to access legitimate remote resources. <a href="https://developer.mozilla.org/En/HTTP_access_control">Cross Origin Requests</a>, or CORS, lets you break out of the same origin policy, giving you access to authorized remote servers.</p>
+<p>Using CORS is trivially easy, and is just the matter of adding a few authorization headers to request responses. The specification is well supported by the major browsers, although IE ignored the spec and created it’s own object, <a href="http://msdn.microsoft.com/en-us/library/cc288060%28VS.85%29.aspx">XDomainRequest</a>, which has a number of arbitrary <a href="http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx">restrictions and limitations</a>. Luckily, it’s <a href="https://github.com/jaubourg/ajaxHooks/blob/master/src/ajax/xdr.js">easily shimed</a>.</p>
+<p>CORS support by browser:</p>
+<ul>
+<li>IE &gt;= 8 (with caveats)</li>
+<li>Firefox &gt;= 3</li>
+<li>Safari: full support</li>
+<li>Chrome: full support</li>
+<li>Opera: no support</li>
+</ul>
+<p>###External hosts in Spine</p>
+<p>You can specify an external host for Spine to use by setting the <code>Spine.Model.host</code> option, like so:</p>
+<pre><code>Spine.Model.host = &quot;http://api.myservice.com&quot;
+</code></pre><p>Once set, all of Spine’s subsequent Ajax requests will be made on that endpoint.</p>
+<p>###CORs Rails integration</p>
+<p>Let’s create a <code>cor</code> method, which will add some of the request access control headers to the request’s response.</p>
+<p>Add the following to <code>app/application_controller.rb</code>:</p>
+<pre><code>before_filter :cor
+
+def cor
+  headers[&quot;Access-Control-Allow-Origin&quot;]  = &quot;js-app-origin.com&quot;
+  headers[&quot;Access-Control-Allow-Methods&quot;] = %w{GET POST PUT DELETE}.join(&quot;,&quot;)
+  headers[&quot;Access-Control-Allow-Headers&quot;] = %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(&quot;,&quot;)
+  head(:ok) if request.request_method == &quot;OPTIONS&quot;
+end
+</code></pre><p>Although <code>Access-Control-Allow-Origin</code> takes a wildcard, I highly recommend not using it as it opens up your app to all sorts of CSRF attacks. Using a whitelist is much better and more secure.</p>
+<p>The <code>Access-Control-Allow-Headers</code> section is important, especially the <code>X-Requested-With</code> header. Rails doesn’t like it if you send Ajax requests to it without this header, and ignores the request’s <code>Accept</code> header, returning HTML when it should in fact return JSON.</p>
+<p>It’s worth noting that jQuery doesn’t add this header to cross domain requests by default. This is an issue that Spine solves internally, but if you’re using plain jQuery for CORs, you’ll need to specify the header manually.</p>
+<pre><code>jQuery.ajaxSetup({
+  headers: {&quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+});
+</code></pre><p>Some browsers send an options request to the server first, to make sure the correct access headers are set. You’ll need to catch this in Rails, returning a <code>200</code> status with the correct headers. To do this, add the following to your application’s <code>config/routes.rb</code> file:</p>
+<pre><code>match &#39;*all&#39; =&gt; &#39;application#cor&#39;, :constraints =&gt; {:method =&gt; &#39;OPTIONS&#39;}
+</code></pre><p>That’s it, you’re all set up for Cross Origin Requests with Spine!</p>
+</div>
+  </body>
+</html>
