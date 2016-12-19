@@ -7,7 +7,7 @@ Spine includes a Ajax module to easily allow model data persistence via Ajax. Th
 
 If you are integrating with Rails, you should also check out the [Rails guide](rails.html) and [example application](https://github.com/maccman/spine.rails3).
 
-##Usage
+## Usage
 
 To use Ajax to persistence model data, extend models with `Spine.Model.Ajax`.
 
@@ -68,7 +68,7 @@ Likewise destroying a record will trigger a DELETE request to the server, and up
 
     {"id":"c-1", "name":"Peter"}
 
-##Server responses
+## Server responses
 
 Spine expects a JSON representation of the record as a server response to `create` and `update` requests.
 
@@ -97,13 +97,13 @@ Notice the ID change; the server has substituted the client-side generated ID wi
 
 Since Spine version 1.6 If the server response of a POST or DELETE fails the ajax module automatically brings the Spine model collection back in sync with the server. That is, for a failed POST the model will be marked as new so that a subsequent `.save()` triggers another POST instead of a PUT, and for a failed DELETE the record is restored locally, so that a DELETE could be called again if desired.
 
-##A note on API design
+## A note on API design
 
 Ideally, when presenting an Ajax API to Spine apps, you should abstract out as much of the model data and application logic as possible. Make the API as simple as possible. When you're building APIs, it's good to get into the mindset of an API client. Approach it as if you knew nothing about the database schema or backend. What are the fundaments that you, as a client, need from the service? What's the simplest abstraction? Then you'll have a good API.
 
 One good example is the `user_id` and `User` model relationship. A common pattern present in applications is scoping by a user. In other words, a logged in user owns a particular resource, and can only perform actions on his or her own resources. Every resource has a `user_id`, which scopes it by a particular user. This is a classic example of a relationship you don't need to expose in your API. Every request to the API already has the current logged in user specified in the session cookies - you don't need to specify it again in the API schema.
 
-##Setting the Host
+## Setting the Host
 
 By default, Ajax requests are relative to the current domain. If your Ajax endpoint is remote, you'll need to set the `host` property:
 
@@ -112,7 +112,7 @@ By default, Ajax requests are relative to the current domain. If your Ajax endpo
 
 This sets the `host` property globally, for all models.
 
-##Fetching initial records
+## Fetching initial records
 
 When your application first loads, you need to make an Ajax call, pre-populating its data. You can do this with the `fetch()` function.
 
@@ -138,7 +138,7 @@ Usually this is done after the rest of your application has been setup, such as 
 
 Calling fetch will send of an Ajax GET request to your server, and expect a response containing an array of records. Once the request has finished, the *refresh* event will be triggered.
 
-##Asynchronous UI
+## Asynchronous UI
 
 One of Spine's core values is asynchronous UIs. In a nutshell, this means that UIs should ideally never block. You shouldn't present the user with any 'loading' or 'pending' messages, everything should be pre-loaded in the backend. This is in stark contrast to other older JavaScript frameworks, which block the UI whenever the user performs an action, like updating a record.
 
@@ -148,11 +148,11 @@ Users don't care that requests are still pending in the background, they just wa
 
 The second advantage is that a de-coupled server greatly simplifies your code. You don't need to cater for the scenario that the record may be displayed in your interface, but isn't editable until a server response returns. Lastly, if you ever decided to add offline support to your application, having a de-coupled server makes this a doddle.
 
-###Validation
+## #Validation
 
 Obviously there are caveats for those advantages, but I think those are easily addressed. Server-side model validation is a contentious issue, for example - what if that fails? However, this is solved by client-side validation. Validation should fail before a record ever gets sent to the server. If validation does fail server-side, it's an error in your client-side validation logic rather than with user input.
 
-###Callbacks
+## #Callbacks
 
 When the server does return an unsuccessful response, an *ajaxError* event will be fired on the model, including the record, XMLHttpRequest object, Ajax settings and the thrown error.
 
@@ -184,7 +184,7 @@ There's no difference between a record being saved on the client side, and being
 
 If you need more control over Ajax event callbacks, you should use custom requests, as detailed in the next section.
 
-##Custom requests
+## Custom requests
 
 Sometimes it's necessary to do custom Ajax requests. The easiest way of doing this is by using jQuery directly inside your models:
 
@@ -242,7 +242,7 @@ Scope can also be defined on a per instance basis, and both scope and url can be
 
 These customizations allow for lots of options when extending Model classes or defining relationships in Spine's MVC structure.
 
-##Ajax queue
+## Ajax queue
 
 By default ajax requests that are not 'GET' requests are sent out serially, i.e. a request is only sent after the previous request has finished. This is to ensure data consistency without blocking up the UI.
 
@@ -263,7 +263,7 @@ The exception in the queue is that GET requests are sent in parallel by defualt,
 
 Similarly you can force GET requests to be serial by passing `parallel:false`
 
-##Custom serialization
+## Custom serialization
 
 You may not have control over the format your servers return data in, or want to use a slightly different JSON format. That's ok, you can just override the `fromJSON()` and `toJSON()` functions.
 
@@ -321,7 +321,7 @@ You may not have control over the format your servers return data in, or want to
 
 Ensure that `toJSON()` returns an object (not a JSON string), and that `fromJSON()` returns a record instance.
 
-##Before unload
+## Before unload
 
 When the user closes the page, it's possible that there are still pending requests to the server yet to be completed. Closing the page means those requests will be lost, which could lose changes the user's made.
 
@@ -333,7 +333,7 @@ You can warn users of this issue by setting a *onbeforeunload* event message if 
         '''Data is still being sent to the server;
            you may lose unsaved changes if you close the page.'''
 
-##Pagination
+## Pagination
 
 Sometimes your database will be so large that it's impossible to pre-load it all client-side. The solution is to pre-load a segment of the database, and then use pagination to load more data as required.
 
@@ -376,7 +376,7 @@ On the client-side, you trigger calls to `fetch()` whenever page scrolls to a ce
       offset: '90%'
     )
 
-##Disabling Ajax
+## Disabling Ajax
 
 Ajax requests are sent automatically whenever any model records are created, updated or deleted. You can prevent this behavior (i.e. stopping a DELETE request going out when a record is destroyed) by using `Ajax.disable(function)`
 
@@ -401,10 +401,10 @@ If you just want the Ajax methods, without any of the automatic create/update/de
     Photo.configure('Photo', 'index');
     Photo.extend(Spine.Model.Ajax.Methods);
 
-##Cross domain requests
+## Cross domain requests
 
 The [Rails guide](rails_cont.html) has a good introduction to using Spine's Ajax module with remote servers via the [CORs](https://developer.mozilla.org/En/HTTP_access_control) spec. The examples are all in Ruby, but the general concepts will apply to any language.
 
-##Zepto Disclaimer
+## Zepto Disclaimer
 
 *Spines ajax module is not functional with zepto.js because of the reliance on jQuery's Promise model and its queue. Zepto does have a Deffered addon that may work, and there have been attempts to port queue as well. It's probably not to tricky to get working so let us know if you have any success*

@@ -9,7 +9,7 @@ Behind the scenes, Stacks are just Spine Controllers, with an internal [Manager]
 
     Stack = require('spine/lib/manager').Stack;
 
-##Usage
+## Usage
 
 A basic stack looks like this, a class extending from `Spine.Stack`:
 
@@ -71,7 +71,7 @@ Notice we can access the Stack's controllers when it's instantiated, as in `post
     assert(posts.show.el.hasClass('active'));
     assertEqual(posts.edit.el.hasClass('active'), false);
 
-###CSS
+## #CSS
 
 A Stack doesn't alter the display CSS property of its controllers, but rather simply adds and removes an *active* class. You should add the following snippet to your page's CSS, ensuring that only controller's with an active class are displayed.
 
@@ -79,7 +79,7 @@ A Stack doesn't alter the display CSS property of its controllers, but rather si
       display: none
     }
 
-##Routes
+## Routes
 
 Stacks have a shorthand for adding [routes](routing.html) via the `routes` property:
 
@@ -114,7 +114,7 @@ Stacks have a shorthand for adding [routes](routing.html) via the `routes` prope
 
 The `routes` property is in the format of `{route: controllerName}`. In this case, we're passing just passing in the controller name as a string. When the route is navigated to, the controller will be activated. We can also use a callback function instead of a controller name.
 
-##Other options
+## Other options
 
 The only other support property in Stacks, is the `default` option. Set this as a controller name, indicating to Spine you want a specific controller to be activated when the Stack is instantiated.
 
@@ -148,6 +148,6 @@ The only other support property in Stacks, is the `default` option. Set this as 
     var posts = new Posts;
     assert( posts.show.isActive() );
 
-##Advanced options
+## Advanced options
 
 If you need lower-level control, then you should use Spine's Managers directly. See the [Manager's guide](manager.html) for more information.

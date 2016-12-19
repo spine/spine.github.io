@@ -9,7 +9,7 @@ Although JavaScript doesn't have native class support, it can be emulated fairly
 
 If you're using pure JavaScript to build your applications, rather than CoffeeScript, you should check out the penultimate section in this guide, *JavaScript Classes*. 
 
-##Implementation
+## Implementation
 
 For classes, Spine uses CoffeeScript's [native class implementation](http://arcturo.github.com/library/coffeescript/03_classes.html), for example:
 
@@ -42,7 +42,7 @@ To inherit one class for another in CoffeeScript, use `extends`.
 
 If you're extending another class, and overriding the `constructor` function, make sure you call `super` - especially when it comes to Spine models and controllers.
 
-##Context
+## Context
 
 JavaScript programs often involve a lot of context changes, especially when it comes to event callbacks. Rather than manually proxying callbacks, so they're executed in the correct scope, CoffeeScript's function syntax provides a useful alternative, fat arrow functions (`=>`). 
 
@@ -64,7 +64,7 @@ In the example above, `addOne()` and `addAll()` are both using the fat arrow fun
     
 For more information about classes, see [The Little Book on CoffeeScript](http://arcturo.github.com/library/coffeescript/03_classes.html).
 
-##Modules
+## Modules
 
 Spine extends CoffeeScript's classes with support for modules, using `Spine.Module`. This gives you `@extend()` and `@include()` support, for easily adding class and instance properties respectively. To use modules, just inherit a class from `Spine.Module`.
     
@@ -91,7 +91,7 @@ Modules can also contain callback functions, `extended()` and `included()`:
       extended: -> 
         console.log("module extended: ", @)
 
-##JavaScript classes
+## JavaScript classes
 
 If you're writing your CoffeeScript languages in plain JavaScript, you obviously don't have access to CoffeeScript's class syntax. Spine solves this problem for you, by exposing `Spine.Class`:
 
@@ -136,6 +136,6 @@ Calling parent (super) functions is slightly more convoluted than in CoffeeScrip
     
 As you can see in the example above, using Spine controllers and models from JavaScript is simply a matter of calling `sub()` on them.
 
-##API
+## API
 
 For more information about classes, please see the [full API](<%= api_path("classes") %>).

@@ -7,11 +7,11 @@ Spine provides a number of ways of handling relationships between models, such a
 
 However, ideally you should try and abstract relationships out of your models on the client-side if they're not absolutely necessary. Checkout *A note on API design* in the [Ajax guide](ajax.html) for more information. Anyway, if relationships are necessary, here's how to use them.
 
-##Usage
+## Usage
 
 Spine's relationship logic is available in a separate module to the rest of the library, [relation.js](https://raw.github.com/spine/spine/master/lib/relation.js). You'll need to include that in your application before continuing.
 
-##Has many associations
+## Has many associations
 
 You can set up *has many* associations by using `hasMany(name, path)`. For example:
 
@@ -54,7 +54,7 @@ Usage is fairly straightforward. The association gives you a few functions, such
 
     album.photos().find( Photo.first().id )
 
-##Belongs to associations
+## Belongs to associations
 
 A *belongs to* association is very similar, using the `belongsTo(name, path)` function.
 

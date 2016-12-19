@@ -7,7 +7,7 @@ template: docs.jade
 
 Managers are great for having a set of views, and ensuring that only one of those views is displayed at any one time.
 
-##Stacks
+## Stacks
 
 You may find it easier to use [Spine's Stacks](stacks.html), as they abstract Managers providing a more high level API.
 
@@ -47,7 +47,7 @@ You may find it easier to use [Spine's Stacks](stacks.html), as they abstract Ma
 
 See the [Stacks guide](stacks.html) for more information.
 
-##Usage
+## Usage
 
 To use the `Manager` class, we first need to include the *manager.js* script, which you can find in [Spine's repository](https://github.com/spine/spine/raw/master/lib/manager.js). Let's demonstrate this by creating a couple of controllers, adding them to a `Manager` instance, and change their state.
 
@@ -113,6 +113,6 @@ The simplest way of achieving this is by adding them both to a `Manager`, which 
 
 When the two controllers are activated by the sidebar menu, the *active* class switches and the relevant view is shown.
 
-##Spine Mobile
+## Spine Mobile
 
 Managers are behind all the [view transitions](transitions.html) in Spine Mobile. Checkout the [Spine Mobile source](https://github.com/maccman/spine.mobile), especially the [Stage controller](https://github.com/maccman/spine.mobile/blob/master/src/stage.coffee), for a good example of overriding the `activate()` and `deactivate()` functions in order to display custom transitions.

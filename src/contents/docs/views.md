@@ -11,7 +11,7 @@ There are a number of good candidates, such as [Mustache](http://mustache.github
 
 Besides Eco, Jade is the other template solution that is built into Hem. For info on using jade with a spine app see the [Jade guide](views_jade.html).
 
-##Eco templates
+## Eco templates
 
 JavaScript templates are very similar to server side ones. You have template tags interoperated with HTML, and during rendering those tags get evaluated and replaced. The great thing about [Eco](https://github.com/sstephenson/eco) templates, is they're actually written in CoffeeScript, a language you should be familiar with if you've been developing Spine applications.
 
@@ -48,7 +48,7 @@ As you can see, the syntax is remarkably straightforward. Just use `<%%` tags fo
 
 Templates are evaluated with a context, such as a model instance. CoffeeScript's `@` symbol, i.e. `this`, points to the context.
 
-##Compiling templates
+## Compiling templates
 
 Eco lets you compile templates dynamically in the browser, or pre-compile them using Node. I advise the latter, as pre-processing is a one-off process that saves your clients some processing time.
 
@@ -61,7 +61,7 @@ As you can see in the example above, we're just requiring the view, then calling
 
 Calling the view returns the rendered template as a string, which we're passing straight to the `@html()` function, updating the controller's `@el` element.
 
-##Data association
+## Data association
 
 Eco templates deal entirely with strings, so it isn't possible to associate a template HTML element, with an object. For example, it isn't possible to render a list of records with Eco templates, listen to click events on them, and then associate those click events with the original records. Unfortunately, this is a fairly common scenario in web applications.
 
@@ -96,7 +96,7 @@ The `tmpl.coffee` utility gives jQuery objects the `$.fn.item()` function, which
 
 `.jeco` templates also have the advantage that you can give them an array to render, and they'll automatically iterate over it.
 
-##Template helpers
+## Template helpers
 
 Template helpers are extremely useful for view specific logic, without violating MVC by putting lots of code in the view. Template helpers should exist as properties on the controller. Helpers can then be called by passing an instance of the controller to the template when rendering it.
 
@@ -120,7 +120,7 @@ Inside the template we can call the helper, passing in the appropriate variables
 
 Simple and clean!
 
-##Binding
+## Binding
 
 Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let's take a simple example, a list of contacts. The controller will bind to the `Contact` model's *refresh* and *change* events, which are triggered whenever the model's data changes. When the event is triggered, the controller re-renders the view.
 

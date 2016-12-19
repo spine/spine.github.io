@@ -5,7 +5,7 @@ template: docs.jade
 
 Getting started with any new framework or library can be daunting, but I'm going to do my best to ensure your first introduction to Spine is as straightforward as possible.
 
-##Three ways
+## Three ways
 
 There are three main ways of using Spine:
 
@@ -17,7 +17,7 @@ There are three main ways of using Spine:
 
 This guide will cover the last approach, using Spine & Hem. However as mentioned previously, if you're not into CoffeeScript, or you're using Rails, you may want to look at the other two approaches.
 
-##Spine.app & Hem
+## Spine.app & Hem
 
 Firstly, to make life easier, we're going to install [Spine.app](app.html) and [Hem](hem.html). Spine.app is a Spine application generator. It's not required to use Spine, but very useful all the same. Hem is bit like Bundler for JavaScript apps, see their respective guides for more information.
 
@@ -38,7 +38,7 @@ Finally we can use the `hem` executable to run a Hem server, which will temporar
 
     hem server
 
-##Extending our application
+## Extending our application
 
 Have an explore around the files Spine.app has generated. If you open up [http://localhost:9294](http://localhost:9294) you'll just see a blank page. Let's change our default controller so that it actually does something.
 
@@ -55,7 +55,7 @@ Let's add a `@log()` statement, as demonstrated below:
 
 Awesome. Now if you reload the application, you should see that log statement in the console.
 
-##Next steps
+## Next steps
 
 Now, we've only just scratched the surface here; JavaScript Web applications are a huge area, and constantly evolving. To take your next steps with Spine, read through the [introduction](introduction.html), the [main](models.html) [classes](controllers.html) and the source from some of the [example applications](examples.html).  
 

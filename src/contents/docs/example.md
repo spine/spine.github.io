@@ -5,13 +5,13 @@ template: docs.jade
 
 Spine has a number of guides that take you step by step building example applications, as well as examples of real-world applications.
 
-##Tutorials
+## Tutorials
 
 1. If you're using the building your Spine applications in [pure JavaScript](started_js.html), without using Node or Hem, then the [TodoList guide](example_tasks.html) is the one for you. It takes you through building a basic CRUD application, including model persistence using HTML5 Local Storage.
 
 1. Otherwise, if you're using [CoffeeScript and Hem](started.html), you should checkout the [Contacts guide](example_contacts.html), which will take you through all the steps necessary for building a fully fledged contacts manager, including CRUD, Stacks and search.
 
-##Example applications
+## Example applications
 
 Once you're familiar with guides, you may want to browse some source code and see Spine in action. I find this is one of the best ways of learning a new language or framework, especially when it comes to best practices.
 
@@ -19,7 +19,7 @@ Spine has a number of these [example applications](examples.html), such as a tod
 
 [![Examples](https://lh4.googleusercontent.com/_IH1OempnqUc/TZF1gMnidmI/AAAAAAAABKE/b9rp9RdtA3o/s300/Screen%20shot%202011-03-29%20at%2018.58.12.png)](<%= pages_path("examples") %>)
 
-##Screencasts
+## Screencasts
 
 Another great way of learning is through screencasts. So far, Spine has [four screencasts](screencasts.html) on subjects ranging from Rails integration, realtime sync and infinite scroll. If you've got any suggestions on further additional subjects for screencasts, please [get in contact](community.html).
 

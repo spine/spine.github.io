@@ -7,7 +7,7 @@ As templating libraries go, you can't go far wrong with [Jade](http://jade-lang.
 
 As well being able to use coffeescript and stylus within jade templates jade has a very consice way of expressing html content. There are parts of jade that are most usefull on the server side, but plenty of stuff that is still useful on the client side like mixins and includes. If your spine app is complimenting a node.js app that uses jade it can be pretty awesome to only have to handle one type of view template!
 
-##Usage
+## Usage
 
 The simplest way of using jade is via hem which will automatically compile your jade views for you. simply include your `.jade` files in the view directory of your spine app and require them from your controllers.
 
@@ -19,7 +19,7 @@ The simplest way of using jade is via hem which will automatically compile your 
       render: ->
         @html require('views/contacts')
 
-##Jade Syntax
+## Jade Syntax
 
 The syntax is fairly straightforward, if you are familiar with Haml or Zen-coding you'll pick it right up:
 
@@ -40,7 +40,7 @@ The syntax is fairly straightforward, if you are familiar with Haml or Zen-codin
       span.val #{phone1}
     input.contactId(type="hidden", value=id)
 
-##Data association
+## Data association
 
 Data association is up to you to handle, if needed, in you controller logic. There are numerous ways to do this, for example:
 
@@ -82,7 +82,7 @@ the the `views/contact/item` might look like this
         a.delete(alt='delete'): span.icon-erase
 
 
-##Binding
+## Binding
 
 Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let's take a simple example, a list of contacts. The controller will bind to the `Contact` model's *refresh* and *change* events, which are triggered whenever the model's data changes. When the event is triggered, the controller re-renders the view.
 
@@ -100,6 +100,6 @@ Data binding is a very powerful technique for ensuring model data stays in sync 
 
 There are several common binding patterns, see the [controller patterns guide](controller_patterns.html) for more information.
 
-##Other Considerations
+## Other Considerations
 
 To use precompiled jade templates in the browser you must include jade's [runtime.js](https://raw.github.com/visionmedia/jade/master/runtime.js). In Hem you can add this a as a lib in your spine projects slug.json.

@@ -9,7 +9,7 @@ Spine has support for [HTML5 Local Storage](http://diveintohtml5.org/storage.htm
 
 Browsers give each 'origin' or domain at least 5mb of data by default. If you exceed this storage quota than the `QUOTA_EXCEEDED_ERR` exception will be thrown. 
 
-##Usage
+## Usage
 
 To persist a model using HTML5 Local Storage, simply extend it with `Spine.Model.Local`.
     

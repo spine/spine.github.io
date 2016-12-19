@@ -7,7 +7,7 @@ Aside from the simplest of applications, the vast majority have need of multiple
 [Spine](http://spine.github.com/spine) has a couple of utilities to help you do this, *spine.manager.js*, and *spine.list.js*.
 
 
-##List
+## List
 
 The `Spine.List` class is basically for a dynamic set of tabs populated by model data. For example, the [Spine.Contacts](https://github.com/maccman/spine.contacts) application uses `Spine.List` to render the list of contacts in the sidebar and changing the currently selected contact when clicked.
 

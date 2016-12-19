@@ -7,7 +7,7 @@ Spine.app is a Spine application generator. It'll create the basic application s
 
 Spine.app is an excellent way of getting started with Spine applications, and a highly recommended workflow.
 
-##Installation
+## Installation
 
 First, if you haven't got them installed already, you'll need [Node](http://nodejs.org) and [npm](http://npmjs.org). Then, to install Spine.app:
 
@@ -15,7 +15,7 @@ First, if you haven't got them installed already, you'll need [Node](http://node
 
 Spine.app will now be available globally under the `spine` executable.
 
-##Generating your application
+## Generating your application
 
 To generate your application, use the `app` generator like so:
 
@@ -68,7 +68,7 @@ These dependencies will be stored locally in the `my_app/npm_modules` folder. Sp
 
 Now you can generate some controllers, models and get to building your app!
 
-##Generating controllers
+## Generating controllers
 
 Simple enough, just use the `controller` generator, specifying the name of the controller.
 
@@ -88,7 +88,7 @@ And a jasmine spec under `./test/specs/controllers/users.coffee`
 
 By convention, your controllers should be plural and your models singular. Spine.app does nothing to enforce this, it's up to you.
 
-##Generating models
+## Generating models
 
 Use the `models` generator, specifying the name of the model.
 
@@ -103,7 +103,7 @@ In the example above, Spine will generate a model under `./app/models/user.coffe
 
 And a jasmine spec under `./test/specs/models/user.coffee`
 
-##Serving your application
+## Serving your application
 
 As soon as it's generated and its dependencies are installed your application will be ready to be served using [Hem](hem.html). Firstly, you'll need to install Hem, and your application's dependencies:
 
@@ -116,7 +116,7 @@ And now we can use Hem to serve up the application:
 
 For more information regarding Hem, please see the [Hem Guide](hem.html).
 
-##Building your application
+## Building your application
 
 You can also use Hem to test and build your application. This will serialize all your JavaScript/CoffeeScript to one file (`./public/application.js`), all your CSS/Stylus to (`./public/application.css`). You'll need to do this before pushing your site to a remote server, so it can be served statically.
 
@@ -132,7 +132,7 @@ If you're feeling lucky or if you ran your tests in the browser while `hem serve
 
     hem build
 
-##Heroku
+## Heroku
 
 Now that your application has been serialized to disk using `hem build`, you can deploy it. [Heroku](http://heroku.com) is a great option for serving Node.js and Rails applications.  
 

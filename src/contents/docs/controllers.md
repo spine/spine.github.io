@@ -5,7 +5,7 @@ template: docs.jade
 
 Controllers are the last part to the trinity of Spine and are very simple, being more of a set of conventions than actual code. Controllers are the glue inside your application, tying the various components together. Generally, controllers deal with adding and responding to DOM events, rendering templates and keeping views and models in sync.
 
-##Implementation
+## Implementation
 
 Controllers, like models, extend `Spine.Module` and so inherit all of its properties. This means you can use `extend()` and `include()` to add properties onto controllers, and can take advantage of all of Spine's context management. To create a controller, inherit a class from `Spine.Controller`.
 
@@ -55,7 +55,7 @@ In fact, anything you pass on instantiation will be set as properties on the new
 
 Inside your controller's `constructor()` function, you'll generally add event listeners to models and views, referencing a function inside the controller.
 
-##Events
+## Events
 
 Spine gives you a shortcut for adding event listeners onto DOM elements, with the `events` property.
 
@@ -127,7 +127,7 @@ As well as DOM events, `Spine.Controller` has been extended with `Spine.Events`,
       }
     });
 
-##Elements
+## Elements
 
 When you first instantiate a controller, it's common to set a bunch of instance variables referencing various elements. For example, setting the `items` variable on the `Tasks` controller:
 
@@ -166,6 +166,6 @@ Since this is such a common scenario, Spine provides a helper, the `elements` pr
       }
     });
 
-##API documentation
+## API documentation
 
 For more information about controllers, please see the [full API documentation](controllers.html).

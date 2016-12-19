@@ -5,11 +5,11 @@ template: docs.jade
 
 Although Spine is written in CoffeeScript, it's fully compatible with applications written in pure JavaScript. You can use whichever technology you prefer. The API largely remains the same, except for a few key differences which are documented below.
 
-##Prerequisites
+## Prerequisites
 
 Spine requires either [jQuery](http://jquery.com) or [Zepto](http://zeptojs.com). Most of the library will function without these, such as the [Class abstraction](classes.html), but Spine's [Controller](controllers.html) class requires them. Just be sure to include either of those two libraries before Spine.
 
-##Downloading
+## Downloading
 
 Grab the [latest version of Spine](download.html), and unpack it. The compiled CoffeeScript scripts you need are all in the `lib` folder. Include them in your application as with any other JavaScript library, making sure you include `spine.js` before any of the other libraries:
 
@@ -20,11 +20,11 @@ Grab the [latest version of Spine](download.html), and unpack it. The compiled C
     <script src="lib/local.js"></script>
     <script src="lib/routes.js"></script>
 
-##Next steps
+## Next steps
 
 To take your next steps with Spine, read through the [introduction](introduction.html), the [main](models.html) [classes](controllers.html) and the source from some of the [example applications](examples.html).
 
-##Key differences
+## Key differences
 
 The key difference between Spine programs written in JavaScript, and ones in CoffeeScript, is the lack of CoffeeScript classes. Classes and inheritance are emulated by CoffeeScript behind the scenes when you use the `class` keyword, since they're not natively available in JavaScript. However, Spine provides an alternative API to use Classes in JavaScript, so the same functionality is still available to you.
 
@@ -86,7 +86,7 @@ Spine's [Models](models.html) and [Controllers](controllers.html) are just Class
       render: function(){ /* ... */ }
     });
 
-##Module pattern
+## Module pattern
 
 Since JavaScript has a global namespace, you should get used to encapsulating your code in modules, ensuring against namespace pollution and conflicts.
 

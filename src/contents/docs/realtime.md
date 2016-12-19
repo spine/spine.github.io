@@ -11,7 +11,7 @@ I've built an [application demonstrating this](https://github.com/maccman/spine.
 
 There's also a [short screencast](screencasts.html) explaining how to integrate Spine with [Pusher](http://pusher.com), a hosted WebSocket server.
 
-##Usage
+## Usage
 
 Let's implement a Juggernaut handler. It'll subscribe to the `/observer` channel, and then process observer events. During processing, it tries to find the model the message is associated with, then creates, updates or destroys records as necessary.
 
@@ -125,6 +125,6 @@ We can create this server-side, broadcasting it to Juggernaut whenever a record 
 
 Once the record has changed, the `publish` method is called. This method publishes a message to the `/observer` channel, pushing it out to all the connected clients.
 
-##Next steps
+## Next steps
 
 For more information on Juggernaut, and its installation, please see the [project's README](https://github.com/maccman/juggernaut). I also recommend checking out the source of the [example Rails & Spine integration application](https://github.com/maccman/spine.rails3/tree/fowa), as this uses Juggernaut for its realtime models.

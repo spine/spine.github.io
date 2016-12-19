@@ -11,9 +11,9 @@ In this guide, we're going to use the [Jasmine](http://pivotal.github.com/jasmin
 
 Avoiding side effects of tested function should be done by stubbing any code that isn't relevant to a specific test. To enable this, we're going to use Jasmine spying mechanism, as can be seen in later examples.
 
-##Testing Models
+## Testing Models
 
-###Persistence
+## #Persistence
 
 It's often useful to disable Model persistence during testing, as it's often not relevant. You can do this by stubbing out Spine's persistence adapters:
 
@@ -26,13 +26,13 @@ It's often useful to disable Model persistence during testing, as it's often not
 		
 ----------
 
-###Events
+## #Events
 
 Testing for event handling should be done by unit testing the callback functions that are provided to the Model bind function. This will allow for some separation of the application logic from the framework and will make the code easier to test (including	testing error handling and edge cases). Executing the callback functions as if the event they are binded to has been fired and then testing that they fulfill their expectations is the proper way to test event handling with Models.
 
 Since most of the event binding on Models is done in the Controller, an example of testing Model event handlers it will be covered in the Controllers section.
 
-###Iterating
+## #Iterating
 
 We really want to test the callback evaluator function - 
 
@@ -66,7 +66,7 @@ The former way is preferable and concise over trying to test the entire iteratin
 
 Now you can use the `is_friend` function safely with the select function. If you want to be really through, test your controller code so that it calls the Model's select method appropriately, supplying the is_friend method as the callback argument.
 
-###Selecting
+## #Selecting
 
 Same as with iterating - 
 
@@ -78,7 +78,7 @@ Same as with iterating -
 		expect(is_friend(contact)).toBeTruthy();	
 
 
-###Validation
+## #Validation
 
 Validating that certain model fields exist or given in a certain form is done by providing a custom validation function.
 The same logic from before applies here and to test validation we can unit test the validation function alone or rather instantiate the Model under test and provide values that should and should not pass validation. 
@@ -103,9 +103,9 @@ Or stub the validation function using a Jasmine Spy -
 
 This will trigger the error handling branch in your Controller code.
 
-##Testing Controllers
+## Testing Controllers
 
-###Initialization
+## #Initialization
 
 The init method is called on instantiation and is the suitable place for binding any custom event handlers using the bind method. The binding of DOM events on the root element or it's children is done by specifying events and handlers in the events 	property. As such, testing a Controller's  initialization phase will include instantiating the controller and then checking that both custom and DOM events 	were binded to handlers properly.
 
@@ -127,7 +127,7 @@ In most cases you will want to test an existing Controller, and in that case you
 		var view = ToggleView.init();
 		expect(view.bind).toHaveBeenCalledWith("toggle");
 
-###Events
+## #Events
 
 Continuing with our approach, testing should be done by simulating the event by executing the handler function with appropriate arguments. Since Spine automatically sets the context of DOM event handlers, by default it is possible to use a controller instance properties 	from within the handlers.
 		
@@ -171,7 +171,7 @@ Testing Model handlers is done in the same way -
 
 If the handler relies on any instance property for it's operation, testing the handlers might require us to change/add properties to the controller instance that we setup during testing.
 
-###Rendering
+## #Rendering
 
 Rendering a view is a job best done using the [Render Pattern](http://maccman.github.com/spine/#s-patterns-the-render-pattern).
 
@@ -223,7 +223,7 @@ And then testing that the template generates the correct HTML -
 		var content = view.template(contacts); 
 		expect(content).toEqual( "<li> <span> John </span> </li> <li> <span> Alex </span> </li>" );
 
-###Template Helpers
+## #Template Helpers
 
 Helpers are simple functions to be used mostly by the template code in order to generate. This moves the logic into the controller or to helper code modules and doesn't couple it with the actual template.
 

@@ -7,7 +7,7 @@ Forms are a staple part of almost every web application, so it's important to kn
 
 This guide will explain about the whole of this process, such as how to handle form information, update records, and validate models.
 
-##Capturing form events
+## Capturing form events
 
 The first step is actually to capture the form's *submit* event, so we know when a user wants to submit a form. The easiest way of doing this, is with Spine's controllers `events` option, for example:
 
@@ -57,7 +57,7 @@ To ensure the form doesn't reload the page, we're going to need to cancel the 'd
 
 Calling `preventDefault()` on the event prevents the default action, and is preferable to the alternative of returning `false` from the function. The latter approach cancels event propagation (something we could need later), and makes debugging extremely difficult if any code inside the event callback throws errors.
 
-##Retrieving form data
+## Retrieving form data
 
 So, now we know when forms are being submitted, but how about actually retrieving the data contained inside the form. We could manually go through every input element in the form, reading their value, but we're lazy so let's automate it!
 
@@ -82,7 +82,7 @@ Spine's models have a `fromForm(form)` function, which takes a form and returns 
       }
     });
 
-##Updating a record
+## Updating a record
 
 Updating a record is now trivial, we have the data, all we need is the record. If you're using the [*element pattern*](controller_patterns.html, anchor:element-pattern.html), then you've already got a local reference to the record. All you need to do now is load in the record's new values from the form, and save it:
 
@@ -137,7 +137,7 @@ And our controller like this:
       }
     });
 
-##Adding validation
+## Adding validation
 
 Validation is dirt simple, and leaves you a lot of flexibility in how you display error messages to users. Firstly, to add validation to your models, you need to override the model's instance function called `validate()`. Essentially, if `validate()` returns anything, validation fails. Let's see how we'd validate the presence of a `first_name` attribute on a model:
 
@@ -170,7 +170,7 @@ In your controllers, you can cater for failing validation by checking to see if 
 
 `save()` and `updateAttributes()` both return `false` if validation fails. `validate()` returns the actual error message. In the example above we're doing the simplest possible thing, opening an alert box containing the validation failure message. You may want to display more information to users, such as highlight the relevant inputs. This you can do by returning an object from `validate()`, specifying which attributes are at fault and their associated error messages.
 
-##Form validation
+## Form validation
 
 Validation for form inputs in HTML5 is fairly straightforward. If a field is required, simply set `required` on the `<input />` element. Likewise, modern browsers, such as Chrome and Firefox, validate the format of email addresses given to email inputs.
 
@@ -191,7 +191,7 @@ You can specify your own validation messages using the `:invalid` css pseudo sel
 
 For older browsers that don't support HTML5 validation, you'll need to use a shim. I can recommend the [jQuery.HTML5FORM](http://www.matiasmancini.com.ar/jquery-plugin-ajax-form-validation-html5.html) plugin.
 
-##Server-side validation
+## Server-side validation
 
 If possible, all validation should be done on the client-side. However sometimes this isn't possible, especially with validating the uniqueness of a value. It's a tricky problem, and Spine doesn't have a good solution for this scenario yet.
 

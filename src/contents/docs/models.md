@@ -9,7 +9,7 @@ After the initial page load, remote data is stored locally in class structures c
 
 Models should be de-coupled from the rest of your application, and completely independent. Model data can be persisted with [HTML5 Local Storage](local.html) or [Ajax](ajax.html).
 
-##Implementation
+## Implementation
 
 Models are created by extending `Spine.Model`:
 
@@ -87,7 +87,7 @@ Models can be also be easily subclassed:
     var User = Contact.sub();
     User.configure("User");
 
-##Saving/Retrieving Records
+## Saving/Retrieving Records
 
 Once an instance is created it can be saved in memory by calling `save()`.
 
@@ -170,7 +170,7 @@ Or select a subset of records with `select()`.
     //= CoffeeScript
     Contact.select (contact) -> contact.first_name
 
-##Validation
+## Validation
 
 Validating models is dirt simple, simply override the `validate()` function with your own custom one.
 
@@ -198,7 +198,7 @@ If `validate()` returns anything, the validation will fail and an *error* event 
 
 In addition, `save()`, `create()` and `updateAttributes()` will all return false if validation fails. For more information about validation, see the [validation guide](forms.html).
 
-##Serialization
+## Serialization
 
 Spine's models include special support for JSON serialization. To serialize a record, call `JSON.stringify()` passing the record, or to serialize every record, pass the model.
 
@@ -217,7 +217,7 @@ Alternatively, you can retrieve an instance's attributes and implement your own 
 
 If you're using an older browser which doesn't have native JSON support (i.e. IE 7), you'll need to include [json2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js) which adds legacy support.
 
-##Persistence
+## Persistence
 
 While storing records in memory is useful for quick retrieval, persisting them in one way or another is often required. Spine includes a number of pre-existing storage modules, such as Ajax and HTML5 Local Storage, which you can use for persistence. Please check out the [Ajax](ajax.html) and [Local Storage guides](local.html) for more information.
 
@@ -225,7 +225,7 @@ If you want to pull from one of these sources to populate your model collection 
 
     Contact.fetch()
 
-##Events
+## Events
 
 You've already seen that models have some events associated with them, such as *error* and *ajaxError*, but what about callbacks to create/update/destroy operations? Well, conveniently Spine includes those too, allowing you to bind to the following events:
 
@@ -255,7 +255,7 @@ The callback's context will be the record that the event listener was placed on.
 
 If you want to remove events, you can unbind specific events by calling `unbind()` on the Model. See the [event documentation](events.html) for more information on how you should use `unbind()`. Model instances also have an `unbind()` function, but it can only be used to remove every event listener associated with that instance.
 
-##Dynamic records
+## Dynamic records
 
 One rather neat addition to Spine's models is dynamic records, which use prototypal inheritance to stay updated. Any calls to `find()`, `all()`, `first()`, `last()` etc, and model event callbacks return a *clone* of the saved record. This means that whenever a record is updated, all of its clones will immediately reflect that update.
 
@@ -275,10 +275,10 @@ Let's give you a code example; we're going to create an asset, and a clone of th
 
 This means that you never have to bother calling some sort of `reload()` functions on instances. You can be sure that all instances are constantly in sync with their saved versions.
 
-##Relationships
+## Relationships
 
 Spine's relationship module (spine.relation) adds has support for *has-many*, *has-one* and *belongs-to* model relationships. For more information, see the [relationships guide](relations.html).
 
-##API documentation
+## API documentation
 
 For more information about models, please see the [full API documentation](models.html).

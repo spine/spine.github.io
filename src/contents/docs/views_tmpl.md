@@ -7,14 +7,14 @@ As JavaScript templating libraries go, you can't go far wrong with [jQuery.tmpl]
 
 As well as having a straightforward syntax, the major advantage to jQuery.tmpl, above some of it's contemporaries, such as [Mustache](https://github.com/janl/mustache.js), is that you can retrieve the associated data from an element. In other words, if a click event is fired on a HTML element, you can retrieve the original record used to render the element. This is a really common scenario, which most of the templating libraries don't cater for.
 
-##Usage
+## Usage
 
 The simplest way of using jQuery.tmpl is by [downloading the project](https://github.com/jquery/jquery-tmpl/zipball/master), and including `jquery.js` and `jquery.tmpl.js` as `<script>` tags in your application's head.
 
     <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
 
-##jQuery.tmpl syntax
+## jQuery.tmpl syntax
 
 The syntax is fairly straightforward, only consisting of a couple of templating tags, `{{}}` and `${}`. For example:
 
@@ -47,7 +47,7 @@ The full list of template tags is as follows:
 
 Templates are evaluated within a context, such as a model instance. This context is passed to the template renderer.
 
-##Rendering templates
+## Rendering templates
 
 jQuery.tmpl templates can be stored as inline custom script tags inside your application's HTML.
 
@@ -81,7 +81,7 @@ If you pass an array to `$.fn.tmpl()`, as in the above example, the library will
 
 The first time you call `$.fn.tmpl()`, the template is compiled and then rendered. For subsequent calls, the compiled template will be cached, speeding up the whole process.
 
-##Data association
+## Data association
 
 As I mentioned in this guide's introduction, rendered template elements are associated with the original data used to render them. We can fetch the associated data using `$.fn.tmplItem()`, like so:
 
@@ -123,7 +123,7 @@ You can see the real power of data association when it comes to controllers. For
 
 When an `.item` is clicked, the `click()` callback is invoked, and through data association we can find out which record the click was referring to.
 
-##Binding
+## Binding
 
 Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let's take a simple example, a list of contacts. The controller will bind to the `Contact` model's *refresh* and *change* events, which are triggered whenever the model's data changes. When the event is triggered, the controller re-renders the view.
 
@@ -150,7 +150,7 @@ Data binding is a very powerful technique for ensuring model data stays in sync 
 
 There are several common binding patterns, see the [controller patterns guide](controller_patterns.html) for more information.
 
-##Bundling templates
+## Bundling templates
 
 Often it's useful to use some sort of dependency management system to bundle templates with your application, rather than fill up your app's HTML with endless custom script tags. Luckily, there a few server options that will automatically bundle up templates for you.
 

@@ -24,7 +24,7 @@ So let's think about what we need from a high level architectural standpoint.
 
 Basically your classic [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) methods. Let's get started!
 
-##Index
+## Index
 
 The first step is to setup the basic application dependencies, which in this case will be: [JSON2](https://github.com/douglascrockford/JSON-js), [jQuery](http://jquery.com), [jQuery.tmpl](https://github.com/maccman/spine.todos/blob/master/lib/jquery.tmpl.js) and Spine. These will be loaded in our main (and only) HTML file, `index.html`:
 
@@ -49,7 +49,7 @@ The first step is to setup the basic application dependencies, which in this cas
 
 Our application is going to be located in `application.js`. Since it's going to be very small (only two controllers), we could probably get away with just putting it in one file.
 
-##Application HTML
+## Application HTML
 
 Now let's take a look at our application's static HTML. We're going to need a `<form>` for creating new tasks, a `<div class="items" />` for listing the actual tasks, and a footer containing some operations, such as clearing completed tasks, and showing some stats:
 
@@ -72,7 +72,7 @@ Now let's take a look at our application's static HTML. We're going to need a `<
 
 So far so good. Now in order to tie this into our Spine app, we're going to have to go back to the fundamentals, the `Task` model.
 
-##Task model
+## Task model
 
 So the `Task` model is remarkably straightforward. Firstly a task has two attributes, a `name` and a `done` status that indicates whether it's been completed. These attributes are passed to `configure()`, as you can see in the example below:
 
@@ -126,7 +126,7 @@ We've then got some static methods, `active()` and `done()`, which return an arr
 
 Finally we have a static `destroyDone()` function, that iterates over all the tasks with a `true` `done` attribute, destroying them. This will be the function called when the 'Clear completed' link in the HTML is clicked.
 
-##Application controller
+## Application controller
 
 So let's look at the core of the application's logic, the controllers. Since each task has a fair bit of logic associated with it, such as edit in place, we're going to use the [element controller pattern](controller_patterns.html).
 
@@ -188,7 +188,7 @@ Now let's take a look at the constructor function. It's binding to several event
 
 For more in-depth explanations of controllers, see the [controllers guide](controllers.html).
 
-##Task item controller
+## Task item controller
 
 Ok, let's look at the last bit, the `Tasks` controller. This will be in charge of individual `Task` records, making sure the view updates then the task does. It's super simple, only about a dozen lines long:
 
@@ -230,7 +230,7 @@ You'll notice that the `this.item` variable is never defined. It's actually pass
 
 In the `render()` function we're rendering a [jQuery.tmpl](https://github.com/jquery/jquery-tmpl) JavaScript template, called `#taskTemplate`. This returns a piece of HTML that we're using to replace the controller's current element. In other words, the rendered template is now present under `this.el`, and can be appended to the tasks list.
 
-##Template
+## Template
 
 The `#taskTemplate` used in the `Tasks` controller needs defining, so let's do that. One way of including templates in the page is by using custom script tags. These don't get evaluated by the browser, which just interprets them as plain text. jQuery.tmpl can then access the templates, rendering pieces of HTML.
 
@@ -247,7 +247,7 @@ The template tags demonstrated above, such as `{{if done}}`, are specific to jQu
 
 Now when `$("#taskTemplate").tmpl(this.item)` is called in the `Tasks` controller our template will render correctly.
 
-##Setup
+## Setup
 
 So now we have two controllers: `TaskApp` and `Tasks`. The former needs to get instantiated when the page loads, so some code actually gets run. You can do this simply enough, by using jQuery's [`ready()`](http://api.jquery.com/ready/) utility, which will execute a function when the DOM's loaded.
 
@@ -257,7 +257,7 @@ So now we have two controllers: `TaskApp` and `Tasks`. The former needs to get i
 
 Then we're instantiating `TaskApp`, setting it's internal element (`el`) to the main `#tasks` div.
 
-##In action
+## In action
 
 Now we've gone far enough without checking that things work as they should. Open up `index.html` and, if everything's going to plan, you shouldn't see any errors in the console. The task list will be blank (we haven't created any tasks yet), and the form won't work, as we haven't yet hooked it up. However, we can create a `Task` from the console.
 
@@ -265,7 +265,7 @@ Now we've gone far enough without checking that things work as they should. Open
 
 Once you've run the above in the console, we should be looking at a brand new task in the list of tasks. Notice that if you refresh the page, the task still persists using Local Storage.
 
-##Creating new tasks
+## Creating new tasks
 
 It's all very good creating tasks from the console, but we can hardly expect our users to do that. Let's hook up the task creation form to provide a better interface. All the HTML is already there (in `index.html`); all we have to do is add some event listeners to that form, creating some tasks.
 
@@ -350,7 +350,7 @@ In the `create()` function, we're creating a new task with a name set to the tex
 
 We're also listening for a *click* event on the `<a class="clear" />` element, which will call `clear()`, deleting all the tasks that have been completed.
 
-##In action
+## In action
 
 Now refresh `index.html` to see the fruits of our labour. We should be able to type a task name, and press return to submit the form, creating a new task.
 
@@ -358,7 +358,7 @@ Now refresh `index.html` to see the fruits of our labour. We should be able to t
 
 Excellent, we're making great progress, but how about completing and deleting tasks?
 
-##Completing & deleting tasks
+## Completing & deleting tasks
 
 So the last part of our tutorial is going to cover completing and deleting tasks. These two actions are specific to each Task item, so we need to add this functionality to the `Tasks` controller.
 
@@ -421,6 +421,6 @@ That's all there is to it. Since we're binding to the *update* function, wheneve
 
 This tutorial is long enough as is, so we won't go into in-place editing or updating. If you want an example of that, see the [full source](https://github.com/maccman/spine.todos).
 
-##Next steps
+## Next steps
 
 So this tutorial should have given you a good overview of Spine, and basic architecture techniques. Next you may want to brush up on some of Spine's API, by viewing the [controllers](controllers.html) or [models](models.html) guides, or perhaps look at the next example, how to build a [contacts manager](example_contacts.html).

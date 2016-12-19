@@ -7,7 +7,7 @@ Spine provides application routing based on the URL's hash fragment, for example
 
 Internally Spine uses the *hashchange* event to detect changes in the URLs hash. This event has only been developed recently, and is only available in newer browsers. To support antiquated browsers, you can use the excellent [jQuery hashchange plugin](http://benalman.com/projects/jquery-hashchange-plugin/), which emulates the event using iframes and other clever trickery. 
 
-##Adding routes
+## Adding routes
 
 So, how to use the API? It's very simple. First you need to include [route.coffee](https://raw.github.com/spine/spine/master/src/route.coffee), which contains the module `Spine.Route`. Then you can start adding routes inside your controller. `Spine.Route` gives you a `routes()` function inside controllers, which you can call passing a hash of routes and callbacks.
 
@@ -51,7 +51,7 @@ One alternative is to skip out controllers, and add routes directly using `Spine
     
 Like you can see in the example above, routes can also be raw regexes, giving you full control over matching.
 
-##Initial Setup
+## Initial Setup
 
 When the page loads initially, even if the URL has a hash fragment, the `hashchange` event won't be called. It'll only be called for subsequent changes. This means, after our application has been setup, we need to manually tell Spine that we want to run the routes & check the URL's hash. This can be done by invoking `Spine.Route.setup()`.
     
@@ -70,7 +70,7 @@ or
       alert "#{path}, and #{options}"
     Spine.Route.setup({redirect: callback})
     
-##Navigate
+## Navigate
     
 Lastly, Spine gives controllers a `navigate()` function, which can be passed a fragment to change the URL's hash. You can also pass `navigate()` multiple arguments, which will be joined by a forward slash (`/`) to create the fragment. 
 
@@ -97,7 +97,7 @@ Using `navigate()` ensures that the URL's fragment is kept in sync with the rele
     # Don't trigger routes by passing false
     Spine.Route.navigate("/users", false)
 
-##HTML5 History
+## HTML5 History
 
 Spine also gives you the option of using HTML5's History API, which has the advantage of being able to alter the url without a page refresh or using hash fragments. This means cleaner URLs in a format your users are accustomed to. 
 
@@ -114,13 +114,13 @@ When browsers request a URL (expecting a HTML response) you first make sure on s
 
 The caveat to this approach is that it doesn't give search engine crawlers any real content. If you want your application to be crawl-able, you'll have to detect crawler bot requests, and serve them a 'parallel universe of content'. That is beyond the scope of this documentation though. 
 
-##Shimming
+## Shimming
 
 Sometimes it's convenient to use routes, without any changes to the page's URL or hash fragment. This is an especially common scenario in full-screen mobile or PhoneGap applications, where the page's address isn't even displayed. To cater for this, `Route.setup()` takes a `shim` option; for example:
     
     //= CoffeeScript
     Spine.Route.setup(shim: true)
 
-##Zepto Disclaimer
+## Zepto Disclaimer
 
 *our current tests for Spine v1.1 do not show routing as fully functional with zepto.js*

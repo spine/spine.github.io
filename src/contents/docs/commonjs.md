@@ -33,7 +33,7 @@ If you've ever used Node or Python, you've used CommonJS modules, whether you re
 
 Although their syntax is simple, I can't emphasize enough how useful CommonJS modules are. They go a long way to solve conflicts and variable pollution problems in JavaScript - two absolutely critical pieces to JavaScript dependency management.
 
-##Usage
+## Usage
 
 Properties are exported by either setting them on the `exports` object, or by setting the `module.exports` variable.
 
@@ -50,7 +50,7 @@ External modules are then imported in using the `require()` function, setting th
       //= CoffeeScript
       MyClass = require('models/my_class')
 
-##Tools
+## Tools
 
 If you're building Spine applications with [Hem](hem.html), then all this has been taken care of for you. Your CoffeeScript and JavaScript scripts will automatically be wrapped up in the CommonJS format.
 
@@ -58,7 +58,7 @@ If you're not using Hem, but you are using [Node.js](http://nodejs.org), you sho
 
 I've also ported Stitch to Ruby, with the [stitch-rb](https://github.com/maccman/stitch-rb) project. This lets you use CommonJS modules right inside your Rails applications. Usage is simple, checkout the [README](https://github.com/maccman/stitch-rb) for more information.
 
-##Alternatives
+## Alternatives
 
 There are lots of alternative solutions to the problem of JavaScript dependency management, and you should definitely check them out if CommonJS modules aren't the right fit for you. [RequireJS](http://requirejs.org/) is a JavaScript file and modules loader, and has the advantage that it is browser-based, and doesn't require any server side support.
 

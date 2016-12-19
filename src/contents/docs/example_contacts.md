@@ -25,7 +25,7 @@ Now you've got all that under your belt, let's think about what we need in this 
 
 Basically your classic CRUD methods. Let's get started!
 
-##Setup
+## Setup
 
 Firstly, to make life easier, we're going to install [Spine.app](app.html) and [Hem](hem.html). Spine.app is a Spine application generator. It's not required to use Spine, but very useful all the same. Hem is bit like Bundler for JavaScript apps, see their respective guides for more information.
 
@@ -57,7 +57,7 @@ You'll see Spine's default welcome screen introducing you to the framework. Let'
 
 Refresh the page, and it should be blank.
 
-##Generate
+## Generate
 
 Let's generate the basic models and controller's our applications going to need. Firstly, a `Contact` model:
 
@@ -71,7 +71,7 @@ This will generate a model under `app/models/contact.coffee` which will come in 
 
 These controller's will be created under `app/controllers.` We could put all the controllers inside one file, but by splitting them up we're de-coupling them, ensuring our code is clear and doesn't descend into Spaghetti hell.
 
-##Contact model
+## Contact model
 
 So earlier we generated a `Contact` model. Let's flesh that out, and add some functionality. Replace `app/models/contact.coffee` with the following:
 
@@ -101,7 +101,7 @@ The last part of the model is a class (static) function called `filter()`. This 
 
 Lastly the model is exported, so it's available to be required from other modules.
 
-##ContactsMain
+## ContactsMain
 
 Right, now our model is setup we can move onto the controllers. Let's tackle the `Main` controller first. Replace the contents of `app/controllers/contacts_main.coffee` with the following:
 
@@ -162,7 +162,7 @@ Notice in the `render()` function we're requiring a template under `views/show`,
 
 This is an [eco](views.html) template, and the syntax inside the template tags (`<%%= %>`) is CoffeeScript. We're pulling out the `name` and `email` properties from the contact, displaying them in the page. We've also got that edit link we talked about earlier, ready to be clicked.
 
-###Edit controller
+## #Edit controller
 
 Now we've defined our `Show` controller which will show us information about the selected contacts, we can go ahead and define an `Edit` controller for updating contacts. Append the following to `app/controllers/contacts_main.coffee`.
 
@@ -223,7 +223,7 @@ Again, we're requiring a template under `views/form`, rendering it with the curr
 
 It's pretty self explanatory; again we're just pulling out properties from the current context using the `<%%= %>` syntax.
 
-###Main Stack
+## #Main Stack
 
 The last step for our `Main` controller, is to define a stack that will manage our other two controllers, `Show` and `Edit`. Both controllers, `Show` and `Edit`, need to be shown independently one at a time. Adding both controllers to a [Spine Stack](stacks.html) will ensures this happens automatically.
 
@@ -236,7 +236,7 @@ The last step for our `Main` controller, is to define a stack that will manage o
 
 The last line exports the controller, so it's available to other modules (see the [CommonJS guide](common_js.html) for more information). The full source for this controller is [available on GitHub](https://github.com/maccman/spine.contacts/blob/master/app/controllers/contacts.main.coffee).
 
-##Contacts Sidebar
+## Contacts Sidebar
 
 The `Sidebar` controller is going to list contacts and let users filter them by name and email. Additionally users's can select a contact, which is then displayed in the main view.
 
@@ -325,7 +325,7 @@ Notice we're using the `.jeco` extension for this template, rather then `.eco`. 
 
 The full source for this controller, and all its templates, is [available on GitHub](https://github.com/maccman/spine.contacts/blob/master/app/controllers/contacts.sidebar.coffee).
 
-##Contacts controller
+## Contacts controller
 
 So we've got a `Sidebar` controller for listing contacts, and a `Main` controller for showing/editing them. The last step is to tie these two together by using Spine's routes. This we'll do in the `Contacts` controller; replace `app/controllers/contacts.coffee` with the following:
 
@@ -365,7 +365,7 @@ We're also setting up some routes, `/contacts/:id` and `/contacts/:id/edit`. Spi
 
 Lastly we're calling `Contact.fetch()`, which fetches all the contacts out of local storage, populating the `Contact` model.
 
-##App controller
+## App controller
 
 So our contacts app is now finished, and has all the functionality we need for listing, creating and updating contacts. So how do we actually go about instantiating it, adding it to the page? Well this is where the `App` controller comes in, Spine's main controller. This is automatically instantiated and appended to the document's body when the page loads.
 
@@ -388,6 +388,6 @@ All we need to do is instantiate `Contacts` controller, appending it to `App`. R
 
 Awesome! Refresh the page, and you should see your working contacts application (albeit unstyled). Remember, you can clone the [complete source from GitHub](https://github.com/maccman/spine.contacts) if you run into any difficulties, as well as copy some [attractive CSS](https://github.com/maccman/spine.contacts/tree/master/css).
 
-##Next steps
+## Next steps
 
 Congratulations if you've got this far. We've explored a lot of Spine, and you should have a good handle on the framework now. You're all set to go off and create your own applications.
