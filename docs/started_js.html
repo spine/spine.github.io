@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -53,9 +53,9 @@
       </nav>
     </div>
     <div class="container col-sm-9 content"><p>Although Spine is written in CoffeeScript, it’s fully compatible with applications written in pure JavaScript. You can use whichever technology you prefer. The API largely remains the same, except for a few key differences which are documented below.</p>
-<p>##Prerequisites</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>Spine requires either <a href="http://jquery.com">jQuery</a> or <a href="http://zeptojs.com">Zepto</a>. Most of the library will function without these, such as the <a href="/docs/classes.html">Class abstraction</a>, but Spine’s <a href="/docs/controllers.html">Controller</a> class requires them. Just be sure to include either of those two libraries before Spine.</p>
-<p>##Downloading</p>
+<h2 id="downloading">Downloading</h2>
 <p>Grab the <a href="/docs/download.html">latest version of Spine</a>, and unpack it. The compiled CoffeeScript scripts you need are all in the <code>lib</code> folder. Include them in your application as with any other JavaScript library, making sure you include <code>spine.js</code> before any of the other libraries:</p>
 <pre><code>&lt;script src=&quot;lib/jquery.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;lib/spine.js&quot;&gt;&lt;/script&gt;
@@ -63,9 +63,9 @@
 &lt;!-- Optional Spine extensions --&gt;
 &lt;script src=&quot;lib/local.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;lib/routes.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>##Next steps</p>
+</code></pre><h2 id="next-steps">Next steps</h2>
 <p>To take your next steps with Spine, read through the <a href="/docs/introduction.html">introduction</a>, the <a href="/docs/models.html">main</a> <a href="/docs/controllers.html">classes</a> and the source from some of the <a href="/docs/examples.html">example applications</a>.</p>
-<p>##Key differences</p>
+<h2 id="key-differences">Key differences</h2>
 <p>The key difference between Spine programs written in JavaScript, and ones in CoffeeScript, is the lack of CoffeeScript classes. Classes and inheritance are emulated by CoffeeScript behind the scenes when you use the <code>class</code> keyword, since they’re not natively available in JavaScript. However, Spine provides an alternative API to use Classes in JavaScript, so the same functionality is still available to you.</p>
 <pre><code>var SomeClass = Spine.Class.sub();
 </code></pre><p>To create a new Class, call <code>sub()</code> on the <code>Spine.Class</code> object. This subclasses <code>Spine.Class</code>, returning a new class ready for you to customize. Adding instance and class (static) methods is easy as calling <code>include()</code> and <code>extend()</code> respectively.</p>
@@ -115,7 +115,7 @@ var Users = Spine.Controller.sub({
 
   render: function(){ /* ... */ }
 });
-</code></pre><p>##Module pattern</p>
+</code></pre><h2 id="module-pattern">Module pattern</h2>
 <p>Since JavaScript has a global namespace, you should get used to encapsulating your code in modules, ensuring against namespace pollution and conflicts.</p>
 <p>The easiest way to do this it to surround your JavaScript in an anonymous function, like so:</p>
 <pre><code>(function(Spine, $, exports){

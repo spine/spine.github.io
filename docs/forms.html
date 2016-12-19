@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="container col-sm-9 content"><p>Forms are a staple part of almost every web application, so it’s important to know how to manipulate them, fetch data and update models. Likewise, validation is just as important, and it’s likely you’ll need some sort of validation for every model.</p>
 <p>This guide will explain about the whole of this process, such as how to handle form information, update records, and validate models.</p>
-<p>##Capturing form events</p>
+<h2 id="capturing-form-events">Capturing form events</h2>
 <p>The first step is actually to capture the form’s <em>submit</em> event, so we know when a user wants to submit a form. The easiest way of doing this, is with Spine’s controllers <code>events</code> option, for example:</p>
 <pre><code>//= CoffeeScript
 class Contacts extends Spine.Controller
@@ -97,7 +97,7 @@ var Contacts = Spine.Controller.sub({
   }
 });
 </code></pre><p>Calling <code>preventDefault()</code> on the event prevents the default action, and is preferable to the alternative of returning <code>false</code> from the function. The latter approach cancels event propagation (something we could need later), and makes debugging extremely difficult if any code inside the event callback throws errors.</p>
-<p>##Retrieving form data</p>
+<h2 id="retrieving-form-data">Retrieving form data</h2>
 <p>So, now we know when forms are being submitted, but how about actually retrieving the data contained inside the form. We could manually go through every input element in the form, reading their value, but we’re lazy so let’s automate it!</p>
 <p>Spine’s models have a <code>fromForm(form)</code> function, which takes a form and returns a new record ready to be saved. Just give your form inputs the correct <code>name</code> attribute (matching the model’s attributes), and everything will work correctly.</p>
 <pre><code>//= CoffeeScript
@@ -118,7 +118,7 @@ var Contacts = Spine.Controller.sub({
     contact.save();
   }
 });
-</code></pre><p>##Updating a record</p>
+</code></pre><h2 id="updating-a-record">Updating a record</h2>
 <p>Updating a record is now trivial, we have the data, all we need is the record. If you’re using the <a href="/docs/controller_patterns.html,%20anchor:element-pattern.html"><em>element pattern</em></a>, then you’ve already got a local reference to the record. All you need to do now is load in the record’s new values from the form, and save it:</p>
 <pre><code>//= CoffeeScript
 class ContactItem extends Spine.Controller
@@ -165,7 +165,7 @@ var Contacts = Spine.Controller.sub({
     item.fromForm(e.target).save();
   }
 });
-</code></pre><p>##Adding validation</p>
+</code></pre><h2 id="adding-validation">Adding validation</h2>
 <p>Validation is dirt simple, and leaves you a lot of flexibility in how you display error messages to users. Firstly, to add validation to your models, you need to override the model’s instance function called <code>validate()</code>. Essentially, if <code>validate()</code> returns anything, validation fails. Let’s see how we’d validate the presence of a <code>first_name</code> attribute on a model:</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
@@ -191,7 +191,7 @@ unless item.save()
   msg = item.validate()
   return alert(msg)
 </code></pre><p><code>save()</code> and <code>updateAttributes()</code> both return <code>false</code> if validation fails. <code>validate()</code> returns the actual error message. In the example above we’re doing the simplest possible thing, opening an alert box containing the validation failure message. You may want to display more information to users, such as highlight the relevant inputs. This you can do by returning an object from <code>validate()</code>, specifying which attributes are at fault and their associated error messages.</p>
-<p>##Form validation</p>
+<h2 id="form-validation">Form validation</h2>
 <p>Validation for form inputs in HTML5 is fairly straightforward. If a field is required, simply set <code>required</code> on the <code>&lt;input /&gt;</code> element. Likewise, modern browsers, such as Chrome and Firefox, validate the format of email addresses given to email inputs.</p>
 <pre><code>&lt;form&gt;
   &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;${name}&quot; required autofocus&gt;
@@ -206,7 +206,7 @@ unless item.save()
 <li><a href="http://diveintohtml5.org/forms.html">http://diveintohtml5.org/forms.html</a></li>
 </ul>
 <p>For older browsers that don’t support HTML5 validation, you’ll need to use a shim. I can recommend the <a href="http://www.matiasmancini.com.ar/jquery-plugin-ajax-form-validation-html5.html">jQuery.HTML5FORM</a> plugin.</p>
-<p>##Server-side validation</p>
+<h2 id="server-side-validation">Server-side validation</h2>
 <p>If possible, all validation should be done on the client-side. However sometimes this isn’t possible, especially with validating the uniqueness of a value. It’s a tricky problem, and Spine doesn’t have a good solution for this scenario yet.</p>
 <p>You have a choice, either block the form whilst the Ajax request to the server is pending, displaying a validation error if the request fails. Or alternatively, you can validate the input before the form has been submitted with a background Ajax request.</p>
 <p>For example, during the <a href="http://twitter.com">Twitter</a> signup process, the username field validates before the form is submitted, as soon as the username input is unfocused.</p>

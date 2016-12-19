@@ -1,6 +1,6 @@
 {
   "locals": {
-    "url": "http://localhost:8000",
+    "url": "http://spine.github.io",
     "title": "Spine JS",
     "description": "documentation for Spine JS and associated projects",
     "versionNum": "1.6.2"

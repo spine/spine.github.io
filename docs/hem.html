@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -56,13 +56,13 @@
 <p><a href="https://github.com/spine/hem">Hem</a> is a dependency management tool for JavaScript Web apps; you can think of it as <a href="http://gembundler.com/">Bundler</a> for Node, or <a href="https://github.com/sstephenson/stitch">Stitch</a> on steroids.</p>
 <p>This is rather awesome, as it means you don’t need to faff around with coping around JavaScript files. jQuery can be a npm dependency, so can jQueryUI and all your custom components. Hem will resolve dependencies dynamically, bundling them together into one file to be served up. Upon deployment, you can serialize your application to disk and serve it statically.</p>
 <p>Hem was primarily designed for developing Spine.js based Single Page Web Applications (SPA’s), so a major role it fills is to tie up some of the other lose ends of a frontend development project - things like running tests, precompiling code, and preparing it for deployment. It can even help out in proxying to an API if your app needs that.</p>
-<p>##Getting started</p>
+<h2 id="getting-started">Getting started</h2>
 <p>If you want to dive straight into using Hem and building Spine applications, check out the <a href="/docs/started.html">getting started article</a>. Otherwise keep reading to learn more about Hem.</p>
-<p>##Installation</p>
+<h2 id="installation">Installation</h2>
 <p>First, if you haven’t got them installed already, you’ll need <a href="http://nodejs.org">Node</a> and <a href="http://npmjs.org">npm</a>. Then, to install Hem:</p>
 <pre><code>npm install -g hem
 </code></pre><p>Hem will now be available globally under the <code>hem</code> executable. Now, there are a few things you need to understand about Hem before we go any further.</p>
-<p>##Dependencies</p>
+<h2 id="dependencies">Dependencies</h2>
 <p>Hem has two types of dependency resolutions: Node modules and Stitch modules.</p>
 <ul>
 <li><p>Node modules: Hem will recursively resolve any external Node modules your code references. This means that Spine, jQuery etc, can all be external Node modules - you don’t have lots of libraries floating around your application. This also has the advantage of explicit versioning; you’ll have much more control over  external libraries.</p>
@@ -71,10 +71,10 @@
 </li>
 </ul>
 <p>In a nutshell, Hem will make sure your application and all its dependencies are wrapped up in a single file, ready to be served to web browsers.</p>
-<p>##CommonJS</p>
+<h2 id="commonjs">CommonJS</h2>
 <p>CommonJS modules are at the core of Hem, and are the format Hem expects every module to adhere to. As well as ensuring your code is encapsulated and modular, CommonJS modules give you dependency management, scope isolation, and namespacing. They should be used in any JavaScript application that spans more than a few files.</p>
 <p>To find out more about why CommonJS modules are the best solution to JavaScript dependency management, see the <a href="/docs/commonjs.html">CommonJS guide</a></p>
-<p>###The format</p>
+<h2 id="-the-format">#The format</h2>
 <p>The format is remarkably straightforward, but is something you’ll have to adhere to in every file to make it work. CommonJS uses explicit exporting; so to expose a property inside a module to other modules, you’ll need to do something like this:</p>
 <pre><code># In app/controllers/users.coffee:
 class Users extends Spine.Controller
@@ -83,16 +83,16 @@ class Users extends Spine.Controller
 module.exports = Users
 </code></pre><p>The format mandates that a <code>module</code> object will be available in every module. However, if you’re targeting both the CommonJS format, and a normal environment, you can do a conditional export, checking that the <code>module</code> object exists.</p>
 <pre><code>module?.exports = Users
-</code></pre><p>###Requiring modules</p>
+</code></pre><h2 id="-requiring-modules">#Requiring modules</h2>
 <p>Requiring other modules is just as straightforward; just use the <code>require()</code> function.</p>
 <pre><code>Users = require(&quot;controllers/users&quot;)
 </code></pre><p>In Hem apps, all module paths are relative to the <code>app</code> folder - so don’t require files relative to the specific module.</p>
-<p>##CSS</p>
+<h2 id="css">CSS</h2>
 <p>Hem will also bundle up all your application’s CSS into one file, ready to serve up to clients. CSS encapsulation and modularity is just as important as JavaScript de-coupling (and can get as equally messy if it’s not done right); Hem goes some way to help you with this. To compile CSS, Hem uses an excellent library called <a href="http://learnboost.github.com/stylus">Stylus</a>. Stylus is mostly a superset of CSS, and the normal CSS syntax will work just fine if that’s all you want.</p>
 <p>However the awesome part of Stylus is the extra syntactical sugar it brings to CSS. Features like optional braces and colons, mixins, variables and significant whitespace all vastly improve your application’s CSS, and decreases the amount of typing necessary. In a nutshell, Stylus is to CSS as CoffeeScript is to JavaScript.</p>
 <p>Stylus files are indicated by the <code>.styl</code> extension, and are automatically compiled down to CSS by Hem. This all happens in the background, so you don’t need to worry about it.</p>
 <p>Also in the pipeline is the ability to bundle up CSS from Node modules.</p>
-<p>##slug.json</p>
+<h2 id="slug-json">slug.json</h2>
 <p>Hem has some good defaults (convention over configuration), but sometimes you’ll need to change them, especially when adding libraries and dependencies.</p>
 <p>For configuration, Hem use a <code>slug.json</code> file, located in the root of your application. Below is an example, with all the default</p>
 <pre><code>{
@@ -133,7 +133,7 @@ In addition, Hem lets you specify an array of npm/Node dependencies, to be inclu
   ]
 }
 </code></pre><p>These dependencies will be statically analyzed, to recursively resolve additional dependencies, and then wrapped in the CommonJS module format, being served up with the rest of your application’s JavaScript. In other words, you don’t have to have <code>jquery.js</code>, <code>spine.js</code> and <code>json2.js</code> floating around inside your application, they can be Node modules, installed through <a href="http://npmjs.org">npm</a>.</p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>Ok, so now we’ve looked at how to configure Hem, let’s actually use it in an application. As I mentioned earlier, this step is much easier with an application previously generated by <a href="/docs/app.html">Spine.app</a>, and I advise you go down this route if you’re unfamiliar with Hem.</p>
 <p>Now, we can start a development server, which will dynamically build our application every request, using the <code>server</code> command:</p>
 <pre><code>hem server
@@ -156,7 +156,7 @@ Including the following in your slug.json configures that:</p>
 <p>When you’re ready to deploy, you should <code>build</code> your application, serializing it to disk.</p>
 <pre><code>hem build
 </code></pre><p>This will ensure that your server can statically serve your application, without having to use Node, or have any npm dependencies installed.</p>
-<p>##Deploying</p>
+<h2 id="deploying">Deploying</h2>
 <p>For a quick introduction into how to deploy your application on Heroku, check out the <a href="/docs/app.html">Spine.app article</a>.</p>
 </div>
   </body>

@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="container col-sm-9 content"><p>Spine includes a Ajax module to easily allow model data persistence via Ajax. This can then integrate with backend REST APIs, such as <a href="/docs/rails.htm">Rails</a>. This guide will show you the basics of using the Ajax &amp; Spine, and then cover some of the edge cases.</p>
 <p>If you are integrating with Rails, you should also check out the <a href="/docs/rails.html">Rails guide</a> and <a href="https://github.com/maccman/spine.rails3">example application</a>.</p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>To use Ajax to persistence model data, extend models with <code>Spine.Model.Ajax</code>.</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
@@ -104,7 +104,7 @@ Content-Length: 28
 Content-Type: application/json
 
 {&quot;id&quot;:&quot;c-1&quot;, &quot;name&quot;:&quot;Peter&quot;}
-</code></pre><p>##Server responses</p>
+</code></pre><h2 id="server-responses">Server responses</h2>
 <p>Spine expects a JSON representation of the record as a server response to <code>create</code> and <code>update</code> requests.</p>
 <p>After a new <code>Page</code> record has been created, Spine sends a POST request to <code>/pages</code> containing the following:</p>
 <pre><code>POST /pages HTTP/1.1
@@ -125,15 +125,15 @@ Connection: keep-alive
 {&quot;name&quot;:&quot;Dummy page&quot;,&quot;id&quot;:1}
 </code></pre><p>Notice the ID change; the server has substituted the client-side generated ID with its own. Spine takes this all into account, and will refer to the record by its server-side ID in the future. For more information on how this works, see the <a href="/docs/rails.html">Rails integration guide</a>.</p>
 <p>Since Spine version 1.6 If the server response of a POST or DELETE fails the ajax module automatically brings the Spine model collection back in sync with the server. That is, for a failed POST the model will be marked as new so that a subsequent <code>.save()</code> triggers another POST instead of a PUT, and for a failed DELETE the record is restored locally, so that a DELETE could be called again if desired.</p>
-<p>##A note on API design</p>
+<h2 id="a-note-on-api-design">A note on API design</h2>
 <p>Ideally, when presenting an Ajax API to Spine apps, you should abstract out as much of the model data and application logic as possible. Make the API as simple as possible. When you’re building APIs, it’s good to get into the mindset of an API client. Approach it as if you knew nothing about the database schema or backend. What are the fundaments that you, as a client, need from the service? What’s the simplest abstraction? Then you’ll have a good API.</p>
 <p>One good example is the <code>user_id</code> and <code>User</code> model relationship. A common pattern present in applications is scoping by a user. In other words, a logged in user owns a particular resource, and can only perform actions on his or her own resources. Every resource has a <code>user_id</code>, which scopes it by a particular user. This is a classic example of a relationship you don’t need to expose in your API. Every request to the API already has the current logged in user specified in the session cookies - you don’t need to specify it again in the API schema.</p>
-<p>##Setting the Host</p>
+<h2 id="setting-the-host">Setting the Host</h2>
 <p>By default, Ajax requests are relative to the current domain. If your Ajax endpoint is remote, you’ll need to set the <code>host</code> property:</p>
 <pre><code>//= CoffeeScript
 Spine.Model.host = &quot;http://my-endpoint&quot;
 </code></pre><p>This sets the <code>host</code> property globally, for all models.</p>
-<p>##Fetching initial records</p>
+<h2 id="fetching-initial-records">Fetching initial records</h2>
 <p>When your application first loads, you need to make an Ajax call, pre-populating its data. You can do this with the <code>fetch()</code> function.</p>
 <pre><code>//= CoffeeScript
 Photo.fetch()
@@ -153,14 +153,14 @@ var App = Spine.Controller.sub({
   }
 });
 </code></pre><p>Calling fetch will send of an Ajax GET request to your server, and expect a response containing an array of records. Once the request has finished, the <em>refresh</em> event will be triggered.</p>
-<p>##Asynchronous UI</p>
+<h2 id="asynchronous-ui">Asynchronous UI</h2>
 <p>One of Spine’s core values is asynchronous UIs. In a nutshell, this means that UIs should ideally never block. You shouldn’t present the user with any ‘loading’ or ‘pending’ messages, everything should be pre-loaded in the backend. This is in stark contrast to other older JavaScript frameworks, which block the UI whenever the user performs an action, like updating a record.</p>
 <p>All of Spine’s server communication is asynchronous - that is Spine never waits for a response. Requests are sent after the operation has completed successfully client-side. In other words, a POST request will be sent to the server after the record has successfully saved client-side, and the UI has updated. The server is completely de-coupled from the client, clients don’t necessarily need a server in order to function.</p>
 <p>Users don’t care that requests are still pending in the background, they just want a fast user interface. When I send an email, I don’t want the UI to block up until the background request to the server has finished. Users don’t have to know, or care, about server requests being fired off in the background - they should be able to continue using the application without any loading spinners.</p>
 <p>The second advantage is that a de-coupled server greatly simplifies your code. You don’t need to cater for the scenario that the record may be displayed in your interface, but isn’t editable until a server response returns. Lastly, if you ever decided to add offline support to your application, having a de-coupled server makes this a doddle.</p>
-<p>###Validation</p>
+<h2 id="-validation">#Validation</h2>
 <p>Obviously there are caveats for those advantages, but I think those are easily addressed. Server-side model validation is a contentious issue, for example - what if that fails? However, this is solved by client-side validation. Validation should fail before a record ever gets sent to the server. If validation does fail server-side, it’s an error in your client-side validation logic rather than with user input.</p>
-<p>###Callbacks</p>
+<h2 id="-callbacks">#Callbacks</h2>
 <p>When the server does return an unsuccessful response, an <em>ajaxError</em> event will be fired on the model, including the record, XMLHttpRequest object, Ajax settings and the thrown error.</p>
 <pre><code>//= CoffeeScript
 Contact.bind &quot;ajaxError&quot;, (record, xhr, settings, error) -&gt;
@@ -183,7 +183,7 @@ contact.bind &#39;save&#39;, (contact) -&gt;
 contact.save()
 </code></pre><p>There’s no difference between a record being saved on the client side, and being saved in response to an Ajax request.</p>
 <p>If you need more control over Ajax event callbacks, you should use custom requests, as detailed in the next section.</p>
-<p>##Custom requests</p>
+<h2 id="custom-requests">Custom requests</h2>
 <p>Sometimes it’s necessary to do custom Ajax requests. The easiest way of doing this is by using jQuery directly inside your models:</p>
 <pre><code>//= CoffeeScript
 class Photo extends Spine.Model
@@ -231,7 +231,7 @@ Photo.scope = -&gt;
   new Date().getFullYear().toString()
 assertEqual( Photo.url(), &quot;/2013/photos&quot; )
 </code></pre><p>These customizations allow for lots of options when extending Model classes or defining relationships in Spine’s MVC structure.</p>
-<p>##Ajax queue</p>
+<h2 id="ajax-queue">Ajax queue</h2>
 <p>By default ajax requests that are not ‘GET’ requests are sent out serially, i.e. a request is only sent after the previous request has finished. This is to ensure data consistency without blocking up the UI.</p>
 <p>For example, let’s say a user creates a record, and then immediately deletes it. The <code>DELETE</code> requests needs to be send after the <code>POST</code> request has finished, otherwise the server won’t know what record we’re talking about.</p>
 <p>Spine does this by having an internal queue of requests. If you want to use this queue, i.e. you have a Ajax request that needs to be sent serially alongside all the others, you can append to it like this:</p>
@@ -243,7 +243,7 @@ Spine.Ajax.queue -&gt;
 <pre><code>//= CoffeeScript
 photo.save(parallel:true)
 </code></pre><p>Similarly you can force GET requests to be serial by passing <code>parallel:false</code></p>
-<p>##Custom serialization</p>
+<h2 id="custom-serialization">Custom serialization</h2>
 <p>You may not have control over the format your servers return data in, or want to use a slightly different JSON format. That’s ok, you can just override the <code>fromJSON()</code> and <code>toJSON()</code> functions.</p>
 <pre><code>//= CoffeeScript
 class Photo extends Spine.Model
@@ -297,7 +297,7 @@ Photo.include({
   }
 });
 </code></pre><p>Ensure that <code>toJSON()</code> returns an object (not a JSON string), and that <code>fromJSON()</code> returns a record instance.</p>
-<p>##Before unload</p>
+<h2 id="before-unload">Before unload</h2>
 <p>When the user closes the page, it’s possible that there are still pending requests to the server yet to be completed. Closing the page means those requests will be lost, which could lose changes the user’s made.</p>
 <p>You can warn users of this issue by setting a <em>onbeforeunload</em> event message if requests are still pending.</p>
 <pre><code>//= CoffeeScript
@@ -305,7 +305,7 @@ window.onbeforeunload = -&gt;
   if Spine.Ajax.pending
     &#39;&#39;&#39;Data is still being sent to the server;
        you may lose unsaved changes if you close the page.&#39;&#39;&#39;
-</code></pre><p>##Pagination</p>
+</code></pre><h2 id="pagination">Pagination</h2>
 <p>Sometimes your database will be so large that it’s impossible to pre-load it all client-side. The solution is to pre-load a segment of the database, and then use pagination to load more data as required.</p>
 <p>Pagination is best done with an infinite scrolling pattern, rather than showing users a list of pages. It’s actually very straightforward to do. Spine’s <code>fetch()</code> function takes an optional set of parameters that will be merged into the request options. All we need to do is send along the index of the last fetched record.</p>
 <pre><code>//= CoffeeScript
@@ -340,7 +340,7 @@ $(&#39;.items&#39;).waypoint(
   -&gt; Photo.fetch()
   offset: &#39;90%&#39;
 )
-</code></pre><p>##Disabling Ajax</p>
+</code></pre><h2 id="disabling-ajax">Disabling Ajax</h2>
 <p>Ajax requests are sent automatically whenever any model records are created, updated or deleted. You can prevent this behavior (i.e. stopping a DELETE request going out when a record is destroyed) by using <code>Ajax.disable(function)</code></p>
 <pre><code>//= CoffeeScript
 Spine.Ajax.disable -&gt;
@@ -358,9 +358,9 @@ class Photo extends Spine.Model
 var Photo = Spine.Model.sub();
 Photo.configure(&#39;Photo&#39;, &#39;index&#39;);
 Photo.extend(Spine.Model.Ajax.Methods);
-</code></pre><p>##Cross domain requests</p>
+</code></pre><h2 id="cross-domain-requests">Cross domain requests</h2>
 <p>The <a href="/docs/rails_cont.html">Rails guide</a> has a good introduction to using Spine’s Ajax module with remote servers via the <a href="https://developer.mozilla.org/En/HTTP_access_control">CORs</a> spec. The examples are all in Ruby, but the general concepts will apply to any language.</p>
-<p>##Zepto Disclaimer</p>
+<h2 id="zepto-disclaimer">Zepto Disclaimer</h2>
 <p><em>Spines ajax module is not functional with zepto.js because of the reliance on jQuery’s Promise model and its queue. Zepto does have a Deffered addon that may work, and there have been attempts to port queue as well. It’s probably not to tricky to get working so let us know if you have any success</em></p>
 </div>
   </body>

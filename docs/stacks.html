@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
     <div class="container col-sm-9 content"><p>Stacks are a way of grouping controllers, ensuring that only one controller is activated and displayed at any one time. They’re useful in all sorts of common scenarios, such as implementing tabs or displaying independent controllers.</p>
 <p>Behind the scenes, Stacks are just Spine Controllers, with an internal <a href="/docs/manager.html">Manager</a> and some API sugar. Stacks are actually defined in the <code>manager.coffee</code> lib, so you’ll need to require it before using them.</p>
 <pre><code>Stack = require(&#39;spine/lib/manager&#39;).Stack;
-</code></pre><p>##Usage</p>
+</code></pre><h2 id="usage">Usage</h2>
 <p>A basic stack looks like this, a class extending from <code>Spine.Stack</code>:</p>
 <pre><code>//= CoffeeScript
 class PostsShow extends Spine.Controller
@@ -111,12 +111,12 @@ assertEqual(posts.show.isActive(), true);
 
 assert(posts.show.el.hasClass(&#39;active&#39;));
 assertEqual(posts.edit.el.hasClass(&#39;active&#39;), false);
-</code></pre><p>###CSS</p>
+</code></pre><h2 id="-css">#CSS</h2>
 <p>A Stack doesn’t alter the display CSS property of its controllers, but rather simply adds and removes an <em>active</em> class. You should add the following snippet to your page’s CSS, ensuring that only controller’s with an active class are displayed.</p>
 <pre><code>.stack &gt; *:not(.active) {
   display: none
 }
-</code></pre><p>##Routes</p>
+</code></pre><h2 id="routes">Routes</h2>
 <p>Stacks have a shorthand for adding <a href="/docs/routing.html">routes</a> via the <code>routes</code> property:</p>
 <pre><code>//= CoffeeScript
 class PostsShow extends Spine.Controller
@@ -147,7 +147,7 @@ var Posts = Spine.Stack.sub({
   }
 });
 </code></pre><p>The <code>routes</code> property is in the format of <code>{route: controllerName}</code>. In this case, we’re passing just passing in the controller name as a string. When the route is navigated to, the controller will be activated. We can also use a callback function instead of a controller name.</p>
-<p>##Other options</p>
+<h2 id="other-options">Other options</h2>
 <p>The only other support property in Stacks, is the <code>default</code> option. Set this as a controller name, indicating to Spine you want a specific controller to be activated when the Stack is instantiated.</p>
 <pre><code>//= CoffeeScript
 class PostsShow extends Spine.Controller
@@ -178,7 +178,7 @@ var Posts = Spine.Stack.sub({
 
 var posts = new Posts;
 assert( posts.show.isActive() );
-</code></pre><p>##Advanced options</p>
+</code></pre><h2 id="advanced-options">Advanced options</h2>
 <p>If you need lower-level control, then you should use Spine’s Managers directly. See the <a href="/docs/manager.html">Manager’s guide</a> for more information.</p>
 </div>
   </body>

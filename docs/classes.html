@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
     <div class="container col-sm-9 content"><p>Classes are a great way of encapsulating logic and name-spacing. They’re used throughout Spine, especially when it comes to models and controllers. JavaScript’s object literals are fine for static classes, but it’s often useful to create classical classes with inheritance and instances.</p>
 <p>Although JavaScript doesn’t have native class support, it can be emulated fairly convincingly using constructor functions and prototypal inheritance. Classes are just another tool, and are as useful in JavaScript as they are in any other language. </p>
 <p>If you’re using pure JavaScript to build your applications, rather than CoffeeScript, you should check out the penultimate section in this guide, <em>JavaScript Classes</em>. </p>
-<p>##Implementation</p>
+<h2 id="implementation">Implementation</h2>
 <p>For classes, Spine uses CoffeeScript’s <a href="http://arcturo.github.com/library/coffeescript/03_classes.html">native class implementation</a>, for example:</p>
 <pre><code>class User
   # Class method
@@ -80,7 +80,7 @@ user = User.find(1)
   constructor: -&gt;
     super
 </code></pre><p>If you’re extending another class, and overriding the <code>constructor</code> function, make sure you call <code>super</code> - especially when it comes to Spine models and controllers.</p>
-<p>##Context</p>
+<h2 id="context">Context</h2>
 <p>JavaScript programs often involve a lot of context changes, especially when it comes to event callbacks. Rather than manually proxying callbacks, so they’re executed in the correct scope, CoffeeScript’s function syntax provides a useful alternative, fat arrow functions (<code>=&gt;</code>). </p>
 <pre><code>class TaskApp extends Spine.Controller
   constructor: -&gt;
@@ -97,7 +97,7 @@ user = User.find(1)
     Task.each(@addOne)
 </code></pre><p>In the example above, <code>addOne()</code> and <code>addAll()</code> are both using the fat arrow function definitions (<code>=&gt;</code>), rather than the normal thin arrows (<code>-&gt;</code>). This preserves the function’s execution context, so although the <code>Task</code> event callbacks are executing them in the context of <code>Task</code>, they’re proxied and run in the the correct context, <code>TaskApp</code>.</p>
 <p>For more information about classes, see <a href="http://arcturo.github.com/library/coffeescript/03_classes.html">The Little Book on CoffeeScript</a>.</p>
-<p>##Modules</p>
+<h2 id="modules">Modules</h2>
 <p>Spine extends CoffeeScript’s classes with support for modules, using <code>Spine.Module</code>. This gives you <code>@extend()</code> and <code>@include()</code> support, for easily adding class and instance properties respectively. To use modules, just inherit a class from <code>Spine.Module</code>.</p>
 <pre><code>class MyTest extends Spine.Module
   @extend ClassModule
@@ -115,7 +115,7 @@ user = User.find(1)
   find: (id) -&gt; /* ... */
   extended: -&gt; 
     console.log(&quot;module extended: &quot;, @)
-</code></pre><p>##JavaScript classes</p>
+</code></pre><h2 id="javascript-classes">JavaScript classes</h2>
 <p>If you’re writing your CoffeeScript languages in plain JavaScript, you obviously don’t have access to CoffeeScript’s class syntax. Spine solves this problem for you, by exposing <code>Spine.Class</code>:</p>
 <pre><code>var Users = Spine.Class.sub();
 </code></pre><p>Calling <code>sub()</code> on a class will subclass it. You can either pass <code>sub()</code> a set of instance and class properties, or call <code>extend()</code> and <code>include()</code> directly on the class. </p>
@@ -148,7 +148,7 @@ var user = new User({name: &quot;Spock&quot;});
   }
 });
 </code></pre><p>As you can see in the example above, using Spine controllers and models from JavaScript is simply a matter of calling <code>sub()</code> on them.</p>
-<p>##API</p>
+<h2 id="api">API</h2>
 <p>For more information about classes, please see the <a href="/docs/%=%20api_path(%22classes%22">full API</a> %&gt;).</p>
 </div>
   </body>

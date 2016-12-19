@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,11 +54,11 @@
     </div>
     <div class="container col-sm-9 content"><p>As JavaScript templating libraries go, you can’t go far wrong with <a href="https://github.com/jquery/jquery-tmpl">jQuery.tmpl</a>. It’s an official jQuery plugin, and the documentation is based on <a href="http://api.jquery.com/category/plugins/templates/">jQuery’s website</a>.</p>
 <p>As well as having a straightforward syntax, the major advantage to jQuery.tmpl, above some of it’s contemporaries, such as <a href="https://github.com/janl/mustache.js">Mustache</a>, is that you can retrieve the associated data from an element. In other words, if a click event is fired on a HTML element, you can retrieve the original record used to render the element. This is a really common scenario, which most of the templating libraries don’t cater for.</p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>The simplest way of using jQuery.tmpl is by <a href="https://github.com/jquery/jquery-tmpl/zipball/master">downloading the project</a>, and including <code>jquery.js</code> and <code>jquery.tmpl.js</code> as <code>&lt;script&gt;</code> tags in your application’s head.</p>
 <pre><code>&lt;script src=&quot;jquery.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;jquery.tmpl.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-</code></pre><p>##jQuery.tmpl syntax</p>
+</code></pre><h2 id="jquery-tmpl-syntax">jQuery.tmpl syntax</h2>
 <p>The syntax is fairly straightforward, only consisting of a couple of templating tags, <code>{{}}</code> and <code>${}</code>. For example:</p>
 <pre><code>{{if messages.length}}
   &lt;ul&gt;
@@ -88,7 +88,7 @@ Iterate over an expression. <code>$index</code> refers to the current index, whi
 </li>
 </ul>
 <p>Templates are evaluated within a context, such as a model instance. This context is passed to the template renderer.</p>
-<p>##Rendering templates</p>
+<h2 id="rendering-templates">Rendering templates</h2>
 <p>jQuery.tmpl templates can be stored as inline custom script tags inside your application’s HTML.</p>
 <pre><code>&lt;script id=&quot;itemTemplate&quot; type=&quot;text/x-jquery-tmpl&quot;&gt;
   &lt;li&gt;${name}&lt;/li&gt;
@@ -112,7 +112,7 @@ var Contacts = Spine.Controller.sub({
 });
 </code></pre><p>If you pass an array to <code>$.fn.tmpl()</code>, as in the above example, the library will iterate over the array, rendering each item and returning the combined result.</p>
 <p>The first time you call <code>$.fn.tmpl()</code>, the template is compiled and then rendered. For subsequent calls, the compiled template will be cached, speeding up the whole process.</p>
-<p>##Data association</p>
+<h2 id="data-association">Data association</h2>
 <p>As I mentioned in this guide’s introduction, rendered template elements are associated with the original data used to render them. We can fetch the associated data using <code>$.fn.tmplItem()</code>, like so:</p>
 <pre><code>//= CoffeeScript
 contact = $(&quot;items:first&quot;).tmplItem().data
@@ -146,7 +146,7 @@ var Contacts = Spine.Controller.sub({
   }
 });
 </code></pre><p>When an <code>.item</code> is clicked, the <code>click()</code> callback is invoked, and through data association we can find out which record the click was referring to.</p>
-<p>##Binding</p>
+<h2 id="binding">Binding</h2>
 <p>Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let’s take a simple example, a list of contacts. The controller will bind to the <code>Contact</code> model’s <em>refresh</em> and <em>change</em> events, which are triggered whenever the model’s data changes. When the event is triggered, the controller re-renders the view.</p>
 <pre><code>//= CoffeeScript
 class ContactsList extends Spine.Controller
@@ -169,7 +169,7 @@ var Contacts = Spine.Controller.sub({
   }
 });
 </code></pre><p>There are several common binding patterns, see the <a href="/docs/controller_patterns.html">controller patterns guide</a> for more information.</p>
-<p>##Bundling templates</p>
+<h2 id="bundling-templates">Bundling templates</h2>
 <p>Often it’s useful to use some sort of dependency management system to bundle templates with your application, rather than fill up your app’s HTML with endless custom script tags. Luckily, there a few server options that will automatically bundle up templates for you.</p>
 <p>If you’re developing your Spine app with <a href="/docs/%=%20docs_url(%22hem%22">Hem</a> %&gt;) then you’ve already got jQuery.tmpl support, simply name views with an extension of <code>.tmpl</code>, and they’ll automatically be compiled as templates and included in your application. Remember to include the <code>jquery.tmpl</code> npm module as a dependency in your application’s <code>package.json</code> file, and also in the <code>slug.json</code> file.</p>
 <p>If you’re using Rails and Sprockets, then the <a href="https://github.com/rdy/sprockets-jquery-tmpl">sprockets-jquery-tmpl</a> will automatically add any jQuery.tmpl templates with <code>.tmpl</code> extensions to the asset pipeline. You’ll also need to include the library using a pre-processor comment:</p>

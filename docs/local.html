@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
     <div class="container col-sm-9 content"><p>Spine has support for <a href="http://diveintohtml5.org/storage.html">HTML5 Local Storage</a> to persist model data between page reloads. Local Storage is a quick and simple way of storing data, and the vast majority of modern browsers support it (Chrome, Firefox 3.5+, IE 8+, and mobile browsers). It’s great for offline applications too. </p>
 <p><em>Note: The stock browser of Android 2.3 or earlier has a bug related to parsing JSON which means you should make sure you are using a <a href="https://github.com/douglascrockford/JSON-js">shim</a> if you are targeting that browser.</em></p>
 <p>Browsers give each ‘origin’ or domain at least 5mb of data by default. If you exceed this storage quota than the <code>QUOTA_EXCEEDED_ERR</code> exception will be thrown. </p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>To persist a model using HTML5 Local Storage, simply extend it with <code>Spine.Model.Local</code>.</p>
 <pre><code>//= CoffeeScript
 class Contact extend Spine.Model

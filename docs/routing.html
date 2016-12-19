@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="container col-sm-9 content"><p>Spine provides application routing based on the URL’s hash fragment, for example the URL <code>http://example.com/#/users</code> has the hash fragment <code>/users</code>. Hash fragments can be completely arbitrary and don’t trigger page reloads, maintaining page state. Your application can also be indexed by hash fragments using Google’s <a href="http://code.google.com/web/ajaxcrawling/index.html">Ajax Crawling specification</a>.</p>
 <p>Internally Spine uses the <em>hashchange</em> event to detect changes in the URLs hash. This event has only been developed recently, and is only available in newer browsers. To support antiquated browsers, you can use the excellent <a href="http://benalman.com/projects/jquery-hashchange-plugin/">jQuery hashchange plugin</a>, which emulates the event using iframes and other clever trickery. </p>
-<p>##Adding routes</p>
+<h2 id="adding-routes">Adding routes</h2>
 <p>So, how to use the API? It’s very simple. First you need to include <a href="https://raw.github.com/spine/spine/master/src/route.coffee">route.coffee</a>, which contains the module <code>Spine.Route</code>. Then you can start adding routes inside your controller. <code>Spine.Route</code> gives you a <code>routes()</code> function inside controllers, which you can call passing a hash of routes and callbacks.</p>
 <pre><code>//= CoffeeScript
 class App extends Spine.Controller
@@ -89,7 +89,7 @@ var App = Spine.Controller.sub({
 <pre><code>//= CoffeeScript
 Spine.Route.add /\/groups(\/)?/, -&gt; console.log(&quot;groups&quot;)
 </code></pre><p>Like you can see in the example above, routes can also be raw regexes, giving you full control over matching.</p>
-<p>##Initial Setup</p>
+<h2 id="initial-setup">Initial Setup</h2>
 <p>When the page loads initially, even if the URL has a hash fragment, the <code>hashchange</code> event won’t be called. It’ll only be called for subsequent changes. This means, after our application has been setup, we need to manually tell Spine that we want to run the routes &amp; check the URL’s hash. This can be done by invoking <code>Spine.Route.setup()</code>.</p>
 <pre><code>//= CoffeeScript
 Spine.Route.setup()
@@ -101,7 +101,7 @@ Spine.Route.setup({redirect: true})
 callback = (path, options)-&gt;
   alert &quot;#{path}, and #{options}&quot;
 Spine.Route.setup({redirect: callback})
-</code></pre><p>##Navigate</p>
+</code></pre><h2 id="navigate">Navigate</h2>
 <p>Lastly, Spine gives controllers a <code>navigate()</code> function, which can be passed a fragment to change the URL’s hash. You can also pass <code>navigate()</code> multiple arguments, which will be joined by a forward slash (<code>/</code>) to create the fragment. </p>
 <pre><code>//= CoffeeScript
 class Users extends Spine.Controller
@@ -123,7 +123,7 @@ new Users({item: User.first()});
 <pre><code>//= CoffeeScript
 # Don&#39;t trigger routes by passing false
 Spine.Route.navigate(&quot;/users&quot;, false)
-</code></pre><p>##HTML5 History</p>
+</code></pre><h2 id="html5-history">HTML5 History</h2>
 <p>Spine also gives you the option of using HTML5’s History API, which has the advantage of being able to alter the url without a page refresh or using hash fragments. This means cleaner URLs in a format your users are accustomed to. </p>
 <p>To use the History API, instead of hash fragments, pass <code>{history: true}</code> to <code>setup()</code>:</p>
 <pre><code>//= CoffeeScript
@@ -132,11 +132,11 @@ Spine.Route.setup(history: true)
 <p>However, there are some things you need to be aware of when using the History API. Firstly, every URL you send to <code>navigate()</code> needs to have a real HTML representation. Although the browser won’t request the new URL at that point, it will be requested if the page is subsequently reloaded. In other words you can’t make up arbitrary URLs, like you can with hash fragments; every URL passed to the API needs to exist. One way of implementing this is with server side support. </p>
 <p>When browsers request a URL (expecting a HTML response) you first make sure on server-side that the endpoint exists and is valid. Then you can just serve up the main application, which will read the URL, invoking the appropriate routes. For example, let’s say your user navigates to <code>http://example.com/users/1</code>. On the server-side, you check that the URL <code>/users/1</code> is valid, and that the User record with an ID of <code>1</code> exists. Then you can go ahead and just serve up the JavaScript application. </p>
 <p>The caveat to this approach is that it doesn’t give search engine crawlers any real content. If you want your application to be crawl-able, you’ll have to detect crawler bot requests, and serve them a ‘parallel universe of content’. That is beyond the scope of this documentation though. </p>
-<p>##Shimming</p>
+<h2 id="shimming">Shimming</h2>
 <p>Sometimes it’s convenient to use routes, without any changes to the page’s URL or hash fragment. This is an especially common scenario in full-screen mobile or PhoneGap applications, where the page’s address isn’t even displayed. To cater for this, <code>Route.setup()</code> takes a <code>shim</code> option; for example:</p>
 <pre><code>//= CoffeeScript
 Spine.Route.setup(shim: true)
-</code></pre><p>##Zepto Disclaimer</p>
+</code></pre><h2 id="zepto-disclaimer">Zepto Disclaimer</h2>
 <p><em>our current tests for Spine v1.1 do not show routing as fully functional with zepto.js</em></p>
 </div>
   </body>

@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -53,7 +53,7 @@
       </nav>
     </div>
     <div class="container col-sm-9 content"><p>Controllers are the last part to the trinity of Spine and are very simple, being more of a set of conventions than actual code. Controllers are the glue inside your application, tying the various components together. Generally, controllers deal with adding and responding to DOM events, rendering templates and keeping views and models in sync.</p>
-<p>##Implementation</p>
+<h2 id="implementation">Implementation</h2>
 <p>Controllers, like models, extend <code>Spine.Module</code> and so inherit all of its properties. This means you can use <code>extend()</code> and <code>include()</code> to add properties onto controllers, and can take advantage of all of Spine’s context management. To create a controller, inherit a class from <code>Spine.Controller</code>.</p>
 <pre><code>//= CoffeeScript
 class Tasks extends Spine.Controller
@@ -91,7 +91,7 @@ tasks = new Tasks(el: $(&quot;#tasks&quot;));
 <pre><code>//= CoffeeScript
 taskItem = new TaskItem(item: Task.first())
 </code></pre><p>Inside your controller’s <code>constructor()</code> function, you’ll generally add event listeners to models and views, referencing a function inside the controller.</p>
-<p>##Events</p>
+<h2 id="events">Events</h2>
 <p>Spine gives you a shortcut for adding event listeners onto DOM elements, with the <code>events</code> property.</p>
 <pre><code>//= CoffeeScript
 class Tasks extends Spine.Controller
@@ -154,7 +154,7 @@ var ToggleView = Spine.Controller.sub({
     // ...
   }
 });
-</code></pre><p>##Elements</p>
+</code></pre><h2 id="elements">Elements</h2>
 <p>When you first instantiate a controller, it’s common to set a bunch of instance variables referencing various elements. For example, setting the <code>items</code> variable on the <code>Tasks</code> controller:</p>
 <pre><code>//= CoffeeScript
 class Tasks extends Spine.Controller
@@ -188,7 +188,7 @@ var Tasks = Spine.Controller.sub({
     });
   }
 });
-</code></pre><p>##API documentation</p>
+</code></pre><h2 id="api-documentation">API documentation</h2>
 <p>For more information about controllers, please see the <a href="/docs/controllers.html">full API documentation</a>.</p>
 </div>
   </body>

@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="container col-sm-9 content"><p>Aside from the simplest of applications, the vast majority have need of multiple views and layouts. Unfortunately, in our JavaScript web applications, we don’t have the luxury of putting views on separate pages, since there’s no page reloading. Instead, we need to place all the views inside the page, showing or hiding them as appropriate. </p>
 <p><a href="http://spine.github.com/spine">Spine</a> has a couple of utilities to help you do this, <em>spine.manager.js</em>, and <em>spine.list.js</em>.</p>
-<p>##List</p>
+<h2 id="list">List</h2>
 <p>The <code>Spine.List</code> class is basically for a dynamic set of tabs populated by model data. For example, the <a href="https://github.com/maccman/spine.contacts">Spine.Contacts</a> application uses <code>Spine.List</code> to render the list of contacts in the sidebar and changing the currently selected contact when clicked.</p>
 <p><img src="https://lh5.googleusercontent.com/_IH1OempnqUc/TZpgYfnlUBI/AAAAAAAABKg/UYLhdmoc15o/s500/contacts.png" alt="Spine Contacts"></p>
 <p>As always, the first step is is to include the required libraries. We’re going to need templating for rendering our list, and in this example we’ll be using <a href="https://github.com/jquery/jquery-tmpl">jQuery.tmpl</a>. We also need to include <a href="https://github.com/spine/spine/raw/master/lib/spine.tmpl.js">spine.tmpl.js</a> which includes some templating utilities. Lastly we obviously need to include <a href="https://github.com/spine/spine/raw/master/lib/spine.list.js">spine.list.js</a>,</p>

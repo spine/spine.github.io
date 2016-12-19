@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,9 +54,9 @@
     </div>
     <div class="container col-sm-9 content"><p>Spine provides a number of ways of handling relationships between models, such as <em>has many</em> and <em>belongs to</em> relationships.</p>
 <p>However, ideally you should try and abstract relationships out of your models on the client-side if they’re not absolutely necessary. Checkout <em>A note on API design</em> in the <a href="/docs/ajax.html">Ajax guide</a> for more information. Anyway, if relationships are necessary, here’s how to use them.</p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>Spine’s relationship logic is available in a separate module to the rest of the library, <a href="https://raw.github.com/spine/spine/master/lib/relation.js">relation.js</a>. You’ll need to include that in your application before continuing.</p>
-<p>##Has many associations</p>
+<h2 id="has-many-associations">Has many associations</h2>
 <p>You can set up <em>has many</em> associations by using <code>hasMany(name, path)</code>. For example:</p>
 <pre><code>//= CoffeeScript
 class Photo extends Spine.Model
@@ -92,7 +92,7 @@ album.photos().create(
 )
 
 album.photos().find( Photo.first().id )
-</code></pre><p>##Belongs to associations</p>
+</code></pre><h2 id="belongs-to-associations">Belongs to associations</h2>
 <p>A <em>belongs to</em> association is very similar, using the <code>belongsTo(name, path)</code> function.</p>
 <pre><code>//= CoffeeScript
 class Album extends Spine.Model

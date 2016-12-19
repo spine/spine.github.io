@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -53,7 +53,7 @@
       </nav>
     </div>
     <div class="container col-sm-9 content"><p>Getting started with any new framework or library can be daunting, but I’m going to do my best to ensure your first introduction to Spine is as straightforward as possible.</p>
-<p>##Three ways</p>
+<h2 id="three-ways">Three ways</h2>
 <p>There are three main ways of using Spine:</p>
 <ol>
 <li><p>Plain static JavaScript for those who aren’t ready to take the leap into CoffeeScript. Simply download the JavaScript files, include them in your HTML and you’re good to go! If you’re going down this route, please see the <a href="/docs/started_js.html">Getting Started with JavaScript guide</a>. You can also use <a href="http://twitter.github.com/bower/">Bower</a> to fetch spine for you. <code>bower install spine</code></p>
@@ -64,7 +64,7 @@
 </li>
 </ol>
 <p>This guide will cover the last approach, using Spine &amp; Hem. However as mentioned previously, if you’re not into CoffeeScript, or you’re using Rails, you may want to look at the other two approaches.</p>
-<p>##Spine.app &amp; Hem</p>
+<h2 id="spine-app-hem">Spine.app &amp; Hem</h2>
 <p>Firstly, to make life easier, we’re going to install <a href="/docs/app.html">Spine.app</a> and <a href="/docs/hem.html">Hem</a>. Spine.app is a Spine application generator. It’s not required to use Spine, but very useful all the same. Hem is bit like Bundler for JavaScript apps, see their respective guides for more information.</p>
 <p>If you haven’t got them installed already, you’ll need <a href="http://nodejs.org">Node</a> and <a href="http://npmjs.org">npm</a>. Both projects’ sites include excellent installation instructions. Now we can get on with installing the two npm modules we need, <code>spine.app</code> and <code>hem</code>:</p>
 <pre><code>npm install -g spine.app hem
@@ -75,7 +75,7 @@ cd my-app
 <pre><code>npm install .
 </code></pre><p>Finally we can use the <code>hem</code> executable to run a Hem server, which will temporarily host our Spine application during development.</p>
 <pre><code>hem server
-</code></pre><p>##Extending our application</p>
+</code></pre><h2 id="extending-our-application">Extending our application</h2>
 <p>Have an explore around the files Spine.app has generated. If you open up <a href="http://localhost:9294">http://localhost:9294</a> you’ll just see a blank page. Let’s change our default controller so that it actually does something.</p>
 <pre><code>mate ./app/index.coffee
 </code></pre><p>Let’s add a <code>@log()</code> statement, as demonstrated below:</p>
@@ -86,7 +86,7 @@ cd my-app
 
 module.exports = App
 </code></pre><p>Awesome. Now if you reload the application, you should see that log statement in the console.</p>
-<p>##Next steps</p>
+<h2 id="next-steps">Next steps</h2>
 <p>Now, we’ve only just scratched the surface here; JavaScript Web applications are a huge area, and constantly evolving. To take your next steps with Spine, read through the <a href="/docs/introduction.html">introduction</a>, the <a href="/docs/models.html">main</a> <a href="/docs/controllers.html">classes</a> and the source from some of the <a href="/docs/examples.html">example applications</a>.  </p>
 <p>You may also be interested in <a href="http://oreilly.com/catalog/0636920018421"><em>JavaScript Web Applications</em></a> by O’Reilly, which gives you a thorough introduction to all these topics.</p>
 <p><a href="http://oreilly.com/catalog/0636920018421"><img src="http://covers.oreilly.com/images/0636920018421/cat.gif" alt="JavaScript Web Applications"></a></p>

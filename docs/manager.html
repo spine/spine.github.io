@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="container col-sm-9 content"><p><code>Spine.Manager</code> is essentially a state machine for controllers. Controllers are added to the manager, and the manager controls state for its associated controllers. A controller’s state is either <em>active</em> or <em>deactive</em>. <code>Spine.Manager</code> ensures that only one controller is active at any one time; when another controller is ‘activated’, all other controllers in the manager will be deactivated.</p>
 <p>Managers are great for having a set of views, and ensuring that only one of those views is displayed at any one time.</p>
-<p>##Stacks</p>
+<h2 id="stacks">Stacks</h2>
 <p>You may find it easier to use <a href="/docs/stacks.html">Spine’s Stacks</a>, as they abstract Managers providing a more high level API.</p>
 <pre><code>//= CoffeeScript
 class PostsShow extends Spine.Controller
@@ -90,7 +90,7 @@ posts.show.active();
 posts.show.isActive(); // true
 posts.edit.isActive(); // false
 </code></pre><p>See the <a href="/docs/stacks.html">Stacks guide</a> for more information.</p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>To use the <code>Manager</code> class, we first need to include the <em>manager.js</em> script, which you can find in <a href="https://github.com/spine/spine/raw/master/lib/manager.js">Spine’s repository</a>. Let’s demonstrate this by creating a couple of controllers, adding them to a <code>Manager</code> instance, and change their state.</p>
 <pre><code>//= CoffeeScript
 class Users extends Spine.Controller
@@ -144,7 +144,7 @@ deactivate: -&gt;
   display: none !important;
 }
 </code></pre><p>When the two controllers are activated by the sidebar menu, the <em>active</em> class switches and the relevant view is shown.</p>
-<p>##Spine Mobile</p>
+<h2 id="spine-mobile">Spine Mobile</h2>
 <p>Managers are behind all the <a href="/docs/transitions.html">view transitions</a> in Spine Mobile. Checkout the <a href="https://github.com/maccman/spine.mobile">Spine Mobile source</a>, especially the <a href="https://github.com/maccman/spine.mobile/blob/master/src/stage.coffee">Stage controller</a>, for a good example of overriding the <code>activate()</code> and <code>deactivate()</code> functions in order to display custom transitions.</p>
 </div>
   </body>

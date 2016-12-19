@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -56,7 +56,7 @@
 <p>To ensure your application’s interface is completely asynchronous and responsive, you should be doing <strong>all</strong> the view rendering client-side. This means instead of server-side templates, like Ruby’s ERB or Python’s string formatting, we’re going to need client-side JavaScript templates.</p>
 <p>There are a number of good candidates, such as <a href="http://mustache.github.com">Mustache</a> and <a href="http://jade-lang.com/">Jade</a>. We’re going to demonstrate a library called <a href="https://github.com/sstephenson/eco">Eco</a> here.</p>
 <p>Besides Eco, Jade is the other template solution that is built into Hem. For info on using jade with a spine app see the <a href="/docs/views_jade.html">Jade guide</a>.</p>
-<p>##Eco templates</p>
+<h2 id="eco-templates">Eco templates</h2>
 <p>JavaScript templates are very similar to server side ones. You have template tags interoperated with HTML, and during rendering those tags get evaluated and replaced. The great thing about <a href="https://github.com/sstephenson/eco">Eco</a> templates, is they’re actually written in CoffeeScript, a language you should be familiar with if you’ve been developing Spine applications.</p>
 <p>Here’s an example:</p>
 <pre><code>&lt;%% if @projects.length: %&gt;
@@ -83,14 +83,14 @@
 </li>
 </ul>
 <p>Templates are evaluated with a context, such as a model instance. CoffeeScript’s <code>@</code> symbol, i.e. <code>this</code>, points to the context.</p>
-<p>##Compiling templates</p>
+<h2 id="compiling-templates">Compiling templates</h2>
 <p>Eco lets you compile templates dynamically in the browser, or pre-compile them using Node. I advise the latter, as pre-processing is a one-off process that saves your clients some processing time.</p>
 <p><a href="/docs/hem.html">Hem</a> actually comes with built in support for pre-compiling eco templates, it’s simply a case of naming views with a <code>.eco</code> extension. They’re wrapped up automatically with the rest of your application as functions, and can be used by just calling them:</p>
 <pre><code>render: -&gt;
   @html require(&quot;app/views/contact&quot;)(@contact)
 </code></pre><p>As you can see in the example above, we’re just requiring the view, then calling it immediately, passing in the relevant context (in this case, a model record).</p>
 <p>Calling the view returns the rendered template as a string, which we’re passing straight to the <code>@html()</code> function, updating the controller’s <code>@el</code> element.</p>
-<p>##Data association</p>
+<h2 id="data-association">Data association</h2>
 <p>Eco templates deal entirely with strings, so it isn’t possible to associate a template HTML element, with an object. For example, it isn’t possible to render a list of records with Eco templates, listen to click events on them, and then associate those click events with the original records. Unfortunately, this is a fairly common scenario in web applications.</p>
 <p>Luckily Hem comes to the rescue with <code>.jeco</code> templates. If you give view templates a <code>.jeco</code> extension, instead of <code>.eco</code>, they’ll be wrapped in a jQuery selector which associates the element with the data.</p>
 <pre><code># app/views/contacts.jeco
@@ -117,7 +117,7 @@ class Contacts extends Spine.Controller
     @log &quot;Contact #{item.name} was clicked&quot;
 </code></pre><p>The <code>tmpl.coffee</code> utility gives jQuery objects the <code>$.fn.item()</code> function, which will return the element’s associated data.</p>
 <p><code>.jeco</code> templates also have the advantage that you can give them an array to render, and they’ll automatically iterate over it.</p>
-<p>##Template helpers</p>
+<h2 id="template-helpers">Template helpers</h2>
 <p>Template helpers are extremely useful for view specific logic, without violating MVC by putting lots of code in the view. Template helpers should exist as properties on the controller. Helpers can then be called by passing an instance of the controller to the template when rendering it.</p>
 <p>For example, let’s take the Currencies controller from the <a href="https://github.com/maccman/spine.mobile.currency">sample Currency app</a>. We need to format the <code>@output</code> and <code>@input</code> numbers a comma every three digits for legibility. This is the perfect scenario for a helper:</p>
 <pre><code>class Currencies extends Spine.Controller
@@ -134,7 +134,7 @@ class Contacts extends Spine.Controller
   &lt;h1&gt;&lt;%%= @helper.format(@output) %&gt;&lt;/h1&gt;
 &lt;/section&gt;
 </code></pre><p>Simple and clean!</p>
-<p>##Binding</p>
+<h2 id="binding">Binding</h2>
 <p>Data binding is a very powerful technique for ensuring model data stays in sync with the view. The premise is that controllers bind to model events, re-rendering the view when those events are triggered. Let’s take a simple example, a list of contacts. The controller will bind to the <code>Contact</code> model’s <em>refresh</em> and <em>change</em> events, which are triggered whenever the model’s data changes. When the event is triggered, the controller re-renders the view.</p>
 <pre><code>class ContactsList extends Spine.Controller
   constructor: -&gt;

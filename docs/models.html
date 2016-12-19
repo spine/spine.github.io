@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
     <div class="container col-sm-9 content"><p>One of the challenges with moving state to the client-side is data management. Data management in stateful JavaScript applications is a completely different matter to how it’s normally handled in conventional server side apps. There’s no request/response model, and you don’t have access to server-side variables. Instead, data is fetched remotely and stored temporarily on the client-side. This has the advantage that data access is immediate, and users are rarely, if ever, left waiting for remote data to load.</p>
 <p>After the initial page load, remote data is stored locally in class structures called models. Models are the core to Spine, and absolutely critical to your applications. Not only do they store all the application’s data, but they are also where any logic associated with that data is kept.</p>
 <p>Models should be de-coupled from the rest of your application, and completely independent. Model data can be persisted with <a href="/docs/local.html">HTML5 Local Storage</a> or <a href="/docs/ajax.html">Ajax</a>.</p>
-<p>##Implementation</p>
+<h2 id="implementation">Implementation</h2>
 <p>Models are created by extending <code>Spine.Model</code>:</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
@@ -121,7 +121,7 @@ class User extends Contact
 //= JavaScript
 var User = Contact.sub();
 User.configure(&quot;User&quot;);
-</code></pre><p>##Saving/Retrieving Records</p>
+</code></pre><h2 id="saving-retrieving-records">Saving/Retrieving Records</h2>
 <p>Once an instance is created it can be saved in memory by calling <code>save()</code>.</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
@@ -179,7 +179,7 @@ Contact.each (contact) -&gt; console.log(contact.first_name)
 </code></pre><p>Or select a subset of records with <code>select()</code>.</p>
 <pre><code>//= CoffeeScript
 Contact.select (contact) -&gt; contact.first_name
-</code></pre><p>##Validation</p>
+</code></pre><h2 id="validation">Validation</h2>
 <p>Validating models is dirt simple, simply override the <code>validate()</code> function with your own custom one.</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
@@ -201,7 +201,7 @@ Contact.include({
 Contact.bind &quot;error&quot;, (rec, msg) -&gt;
   alert(&quot;Contact failed to save - &quot; + msg)
 </code></pre><p>In addition, <code>save()</code>, <code>create()</code> and <code>updateAttributes()</code> will all return false if validation fails. For more information about validation, see the <a href="/docs/forms.html">validation guide</a>.</p>
-<p>##Serialization</p>
+<h2 id="serialization">Serialization</h2>
 <p>Spine’s models include special support for JSON serialization. To serialize a record, call <code>JSON.stringify()</code> passing the record, or to serialize every record, pass the model.</p>
 <pre><code>JSON.stringify(Contact)
 JSON.stringify(Contact.first())
@@ -214,11 +214,11 @@ Contact.include
   toXML: -&gt;
     serializeToXML(@attributes())
 </code></pre><p>If you’re using an older browser which doesn’t have native JSON support (i.e. IE 7), you’ll need to include <a href="https://github.com/douglascrockford/JSON-js/blob/master/json2.js">json2.js</a> which adds legacy support.</p>
-<p>##Persistence</p>
+<h2 id="persistence">Persistence</h2>
 <p>While storing records in memory is useful for quick retrieval, persisting them in one way or another is often required. Spine includes a number of pre-existing storage modules, such as Ajax and HTML5 Local Storage, which you can use for persistence. Please check out the <a href="/docs/ajax.html">Ajax</a> and <a href="/docs/local.html">Local Storage guides</a> for more information.</p>
 <p>If you want to pull from one of these sources to populate your model collection use <code>fetch()</code></p>
 <pre><code>Contact.fetch()
-</code></pre><p>##Events</p>
+</code></pre><h2 id="events">Events</h2>
 <p>You’ve already seen that models have some events associated with them, such as <em>error</em> and <em>ajaxError</em>, but what about callbacks to create/update/destroy operations? Well, conveniently Spine includes those too, allowing you to bind to the following events:</p>
 <ul>
 <li><em>save</em> - record was saved (either created/updated)</li>
@@ -241,7 +241,7 @@ contact.bind &quot;save&quot;, -&gt;
   updateInterface()
 </code></pre><p>The callback’s context will be the record that the event listener was placed on. You’ll find model events crucial when it comes to binding records to the view, making sure the view is kept in sync with your application’s data.</p>
 <p>If you want to remove events, you can unbind specific events by calling <code>unbind()</code> on the Model. See the <a href="/docs/events.html">event documentation</a> for more information on how you should use <code>unbind()</code>. Model instances also have an <code>unbind()</code> function, but it can only be used to remove every event listener associated with that instance.</p>
-<p>##Dynamic records</p>
+<h2 id="dynamic-records">Dynamic records</h2>
 <p>One rather neat addition to Spine’s models is dynamic records, which use prototypal inheritance to stay updated. Any calls to <code>find()</code>, <code>all()</code>, <code>first()</code>, <code>last()</code> etc, and model event callbacks return a <em>clone</em> of the saved record. This means that whenever a record is updated, all of its clones will immediately reflect that update.</p>
 <p>Let’s give you a code example; we’re going to create an asset, and a clone of that asset. You’ll notice that when the asset is updated, the clone has also automatically changed.</p>
 <pre><code>//= CoffeeScript
@@ -256,9 +256,9 @@ asset.updateAttributes(name: &quot;bob&quot;)
 # Clone reflects changes
 assertEqual(clone.name, &quot;bob&quot;)
 </code></pre><p>This means that you never have to bother calling some sort of <code>reload()</code> functions on instances. You can be sure that all instances are constantly in sync with their saved versions.</p>
-<p>##Relationships</p>
+<h2 id="relationships">Relationships</h2>
 <p>Spine’s relationship module (spine.relation) adds has support for <em>has-many</em>, <em>has-one</em> and <em>belongs-to</em> model relationships. For more information, see the <a href="/docs/relations.html">relationships guide</a>.</p>
-<p>##API documentation</p>
+<h2 id="api-documentation">API documentation</h2>
 <p>For more information about models, please see the <a href="/docs/models.html">full API documentation</a>.</p>
 </div>
   </body>

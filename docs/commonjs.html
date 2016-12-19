@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
@@ -76,7 +76,7 @@ exports.hello = function(){ return &#39;hello world&#39;; };
 var example = require(&quot;example&quot;);
 alert(example.hello());
 </code></pre><p>Although their syntax is simple, I can’t emphasize enough how useful CommonJS modules are. They go a long way to solve conflicts and variable pollution problems in JavaScript - two absolutely critical pieces to JavaScript dependency management.</p>
-<p>##Usage</p>
+<h2 id="usage">Usage</h2>
 <p>Properties are exported by either setting them on the <code>exports</code> object, or by setting the <code>module.exports</code> variable.</p>
 <pre><code>  //= CoffeeScript
   class MyClass
@@ -88,11 +88,11 @@ alert(example.hello());
 </code></pre><p>External modules are then imported in using the <code>require()</code> function, setting the returned value to a local variable:</p>
 <pre><code>  //= CoffeeScript
   MyClass = require(&#39;models/my_class&#39;)
-</code></pre><p>##Tools</p>
+</code></pre><h2 id="tools">Tools</h2>
 <p>If you’re building Spine applications with <a href="/docs/hem.html">Hem</a>, then all this has been taken care of for you. Your CoffeeScript and JavaScript scripts will automatically be wrapped up in the CommonJS format.</p>
 <p>If you’re not using Hem, but you are using <a href="http://nodejs.org">Node.js</a>, you should checkout <a href="https://github.com/sstephenson/stitch">Stitch</a>, which will make sure all your libraries are <em>stitched</em> together into CommonJS modules, ready to run straight inside the browser.</p>
 <p>I’ve also ported Stitch to Ruby, with the <a href="https://github.com/maccman/stitch-rb">stitch-rb</a> project. This lets you use CommonJS modules right inside your Rails applications. Usage is simple, checkout the <a href="https://github.com/maccman/stitch-rb">README</a> for more information.</p>
-<p>##Alternatives</p>
+<h2 id="alternatives">Alternatives</h2>
 <p>There are lots of alternative solutions to the problem of JavaScript dependency management, and you should definitely check them out if CommonJS modules aren’t the right fit for you. <a href="http://requirejs.org/">RequireJS</a> is a JavaScript file and modules loader, and has the advantage that it is browser-based, and doesn’t require any server side support.</p>
 <p><a href="https://github.com/sstephenson/sprockets">Sprockets</a> is another good alternative, and if you’re using Rails, it has the added advantage that it’s already baked into the asset-pipeline. Whilst it doesn’t use CommonJS modules, it does ensure that individual modules are executed inside a closure, localizing the context. A good half-way house.</p>
 </div>
