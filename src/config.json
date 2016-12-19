@@ -22,5 +22,6 @@
   },
   "paginator": {
     "perPage": 3
-  }
+  },
+  "output": "../"
 }
