@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,72 +20,39 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
-      <h2>Documentation</h2>
-      <article>
-        <div>
-          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
-        </div>
-        <div>
-          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
-        </div>
-        <div>
-          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
-        </div>
-        <div>
-          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
-        </div>
-        <div>
-          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
-        </div>
-        <div>
-          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
-        </div>
-        <div>
-          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
-        </div>
-        <div>
-          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
-        </div>
-        <div>
-          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
-        </div>
-      </article>
-      <h2>Guides</h2>
-      <article>
-        <div>
-          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
-        </div>
-        <div>
-          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
-        </div>
-        <div>
-          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
-        </div>
-        <div>
-          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
-        </div>
-        <div>
-          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
-        </div>
-        <div>
-          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
-        </div>
-        <div>
-          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
-        </div>
-        <div>
-          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
-        </div>
-      </article>
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container col-sm-9"><p>Spine.app is a Spine application generator. It’ll create the basic application structure, as well as controllers and models. This can then be served up, or compiled, using <a href="/docs/%=%20docs_path(%22hem%22">Hem</a> %&gt;).</p>
+    <div class="container col-sm-9 content"><p>Spine.app is a Spine application generator. It’ll create the basic application structure, as well as controllers and models. This can then be served up, or compiled, using <a href="/docs/hem.html">Hem</a>.</p>
 <p>Spine.app is an excellent way of getting started with Spine applications, and a highly recommended workflow.</p>
 <p>##Installation</p>
 <p>First, if you haven’t got them installed already, you’ll need <a href="http://nodejs.org">Node</a> and <a href="http://npmjs.org">npm</a>. Then, to install Spine.app:</p>
@@ -126,14 +94,14 @@ my_app/test/public/lib/jasmine.css
 my_app/test/public/lib/jasmine.js
 my_app/test/specs
 </code></pre><p>As you can see spine.app has set up simple but fairly complete structure for your application.</p>
-<p>The <code>Procfile</code> is for <a href="http://heroku.com">Heroku</a>, which we’ll cover later. <code>slug.json</code> is for Hem, see the <a href="/docs/%=%20docs_path(%22hem%22">article on that</a> %&gt;) for more information. The rest is your classical MVC structure, which should look very familiar to you if you’ve used Rails.</p>
+<p>The <code>Procfile</code> is for <a href="http://heroku.com">Heroku</a>, which we’ll cover later. <code>slug.json</code> is for Hem, see the <a href="/docs/hem.html">article on that</a> for more information. The rest is your classical MVC structure, which should look very familiar to you if you’ve used Rails.</p>
 <p>First let’s navigate to our application, and install it’s npm dependencies:</p>
 <pre><code>$ cd my_app
 $ npm install .
 </code></pre><p>These dependencies will be stored locally in the <code>my_app/npm_modules</code> folder. Spine.app is currently set up to help you build a app that is fairly compatible with less capable browsers by relying on some shims and including jquery 1.9.1. If you are targeting more cutting edge browsers you’ll want to refine your dependencies in <code>slug.json</code> and <code>app/lib/setup.coffee</code></p>
 <p>Now you can generate some controllers, models and get to building your app!</p>
 <p>##Generating controllers</p>
-<p>Simple enough, just use the <code>controller</code> generator, specifying the name of the controller. </p>
+<p>Simple enough, just use the <code>controller</code> generator, specifying the name of the controller.</p>
 <pre><code>spine controller users
 </code></pre><p>In the example above, Spine will generate a controller under <code>./app/controllers/users.coffee</code></p>
 <pre><code>Spine = require(&#39;spine&#39;)
@@ -155,17 +123,17 @@ class User extends Spine.Model
   @configure &quot;User&quot;
 </code></pre><p>And a jasmine spec under <code>./test/specs/models/user.coffee</code></p>
 <p>##Serving your application</p>
-<p>As soon as it’s generated and its dependencies are installed your application will be ready to be served using <a href="/docs/%=%20docs_path(%22hem%22">Hem</a> %&gt;). Firstly, you’ll need to install Hem, and your application’s dependencies:</p>
+<p>As soon as it’s generated and its dependencies are installed your application will be ready to be served using <a href="/docs/hem.html">Hem</a>. Firstly, you’ll need to install Hem, and your application’s dependencies:</p>
 <pre><code>npm install .
 npm install -g hem
 </code></pre><p>And now we can use Hem to serve up the application:</p>
 <pre><code>hem server
-</code></pre><p>For more information regarding Hem, please see the <a href="/docs/%=%20docs_path(%22hem%22">Hem Guide</a> %&gt;).</p>
+</code></pre><p>For more information regarding Hem, please see the <a href="/docs/hem.html">Hem Guide</a>.</p>
 <p>##Building your application</p>
 <p>You can also use Hem to test and build your application. This will serialize all your JavaScript/CoffeeScript to one file (<code>./public/application.js</code>), all your CSS/Stylus to (<code>./public/application.css</code>). You’ll need to do this before pushing your site to a remote server, so it can be served statically.</p>
 <pre><code>hem test
-</code></pre><p>By default hem test expects the headless browser Phantom to be installed for running tests against but you can configure this to use others as well. </p>
-<p>Testing in this way will build your CSS and JS and run the tests against those. </p>
+</code></pre><p>By default hem test expects the headless browser Phantom to be installed for running tests against but you can configure this to use others as well.</p>
+<p>Testing in this way will build your CSS and JS and run the tests against those.</p>
 <p>Assuming tests pass you would be able to commit it to your source controll and deploy</p>
 <p>If you’re feeling lucky or if you ran your tests in the browser while <code>hem server</code> was going you can go straight to</p>
 <pre><code>hem build
@@ -174,7 +142,7 @@ npm install -g hem
 <p>If you take a peek inside <code>package.json</code>, you’ll see that there’s a dependency on <code>ace</code>. Ace is a super simple static file server, and all we need to serve up our application in production. Our application’s <code>Procfile</code> looks like this:</p>
 <pre><code>web: ace ./public
 </code></pre><p>This instructs Heroku to use Ace to serve up the application’s <code>public</code> directory.</p>
-<p>Now, all we need to deploy our app is run a few Heroku commands. You’ll need to install the Heroku <a href="https://rubygems.org/gems/heroku">gem</a> if you haven’t already. </p>
+<p>Now, all we need to deploy our app is run a few Heroku commands. You’ll need to install the Heroku <a href="https://rubygems.org/gems/heroku">gem</a> if you haven’t already.</p>
 <pre><code>heroku create my-spine-app --stack cedar
 git add .
 git commit -m &quot;first deploy&quot;

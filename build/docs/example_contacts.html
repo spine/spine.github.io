@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,79 +20,46 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
-      <h2>Documentation</h2>
-      <article>
-        <div>
-          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
-        </div>
-        <div>
-          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
-        </div>
-        <div>
-          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
-        </div>
-        <div>
-          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
-        </div>
-        <div>
-          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
-        </div>
-        <div>
-          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
-        </div>
-        <div>
-          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
-        </div>
-        <div>
-          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
-        </div>
-        <div>
-          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
-        </div>
-      </article>
-      <h2>Guides</h2>
-      <article>
-        <div>
-          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
-        </div>
-        <div>
-          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
-        </div>
-        <div>
-          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
-        </div>
-        <div>
-          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
-        </div>
-        <div>
-          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
-        </div>
-        <div>
-          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
-        </div>
-        <div>
-          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
-        </div>
-        <div>
-          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
-        </div>
-      </article>
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container col-sm-9"><p>This example will show you how to use Spine, Hem and Eco to build a basic contacts manager.</p>
+    <div class="container col-sm-9 content"><p>This example will show you how to use Spine, Hem and Eco to build a basic contacts manager.</p>
 <p>Some of the source will be omitted for the sake of brevity (such as the CSS). You can find the <a href="https://github.com/maccman/spine.contacts">complete source on GitHub</a>, as well as a <a href="http://spine-contacts.herokuapp.com">live demo</a>. This is what we’ll end up with:</p>
 <p><img src="https://lh5.googleusercontent.com/_IH1OempnqUc/TZpgYfnlUBI/AAAAAAAABKg/UYLhdmoc15o/s500/contacts.png" alt="Spine Contacts"></p>
 <p>Before we get started, I advise you to do the following:</p>
 <ul>
 <li>Gain a basic understanding of <a href="http://jashkenas.github.com/coffee-script">CoffeeScript</a></li>
-<li>Read the <a href="/docs/%=%20docs_path(%22introduction%22">Introduction to Spine</a> %&gt;)</li>
-<li>Skim the guides on the main Spine classes, such as <a href="/docs/%=%20docs_path(%22models%22">Models</a> %&gt;) and <a href="/docs/%=%20docs_path(%22controllers%22">Controllers</a> %&gt;)</li>
+<li>Read the <a href="/docs/introduction,html">Introduction to Spine</a></li>
+<li>Skim the guides on the main Spine classes, such as <a href="/docs/models.html">Models</a> and <a href="/docs/controllers.html">Controllers</a></li>
 </ul>
 <p>Now you’ve got all that under your belt, let’s think about what we need in this Contact’s application from a high level architectural standpoint.</p>
 <ul>
@@ -103,13 +71,13 @@
 </ul>
 <p>Basically your classic CRUD methods. Let’s get started!</p>
 <p>##Setup</p>
-<p>Firstly, to make life easier, we’re going to install <a href="/docs/%=%20docs_path(%22app%22">Spine.app</a> %&gt;) and <a href="/docs/%=%20docs_path(%22hem%22">Hem</a> %&gt;). Spine.app is a Spine application generator. It’s not required to use Spine, but very useful all the same. Hem is bit like Bundler for JavaScript apps, see their respective guides for more information.</p>
+<p>Firstly, to make life easier, we’re going to install <a href="/docs/app.html">Spine.app</a> and <a href="/docs/hem.html">Hem</a>. Spine.app is a Spine application generator. It’s not required to use Spine, but very useful all the same. Hem is bit like Bundler for JavaScript apps, see their respective guides for more information.</p>
 <p>If you haven’t got them installed already, you’ll need <a href="http://nodejs.org">Node</a> and <a href="http://npmjs.org">npm</a>. Both projects’ sites include excellent installation instructions. Now we can get on with installing the two npm modules we need, <code>spine.app</code> and <code>hem</code>:</p>
 <pre><code>npm install -g spine.app hem
-</code></pre><p>Now we’ve got an executable called <code>spine</code> which we can use to generate new applications. </p>
+</code></pre><p>Now we’ve got an executable called <code>spine</code> which we can use to generate new applications.</p>
 <pre><code>spine app contacts
 cd contacts
-</code></pre><p>Check out the article on <a href="/docs/%=%20docs_path(%22app%22">Spine.app</a> %&gt;) for more information concerning its usage. Now let’s install the default dependencies listed in our application’s <code>package.json</code>:</p>
+</code></pre><p>Check out the article on <a href="/docs/app.html">Spine.app</a> for more information concerning its usage. Now let’s install the default dependencies listed in our application’s <code>package.json</code>:</p>
 <pre><code>npm install .
 </code></pre><p>Finally we can use the <code>hem</code> executable to run a Hem server, which will temporarily host our Spine application during development.</p>
 <pre><code>hem server
@@ -126,7 +94,7 @@ cd contacts
 <pre><code>spine controller contacts
 spine controller contacts_main
 spine controller contacts_sidebar
-</code></pre><p>These controller’s will be created under <code>app/controllers.</code> We could put all the controllers inside one file, but by splitting them up we’re de-coupling them, ensuring our code is clear and doesn’t descend into Spaghetti hell. </p>
+</code></pre><p>These controller’s will be created under <code>app/controllers.</code> We could put all the controllers inside one file, but by splitting them up we’re de-coupling them, ensuring our code is clear and doesn’t descend into Spaghetti hell.</p>
 <p>##Contact model</p>
 <p>So earlier we generated a <code>Contact</code> model. Let’s flesh that out, and add some functionality. Replace <code>app/models/contact.coffee</code> with the following:</p>
 <pre><code>Spine = require(&#39;spine&#39;)
@@ -148,15 +116,15 @@ class Contact extends Spine.Model
 module.exports = Contact
 </code></pre><p>Ok, so that need’s some explaining. Let’s take that apart piece by piece. Firstly, we’re calling <code>configure()</code>, passing in the name of the model and its attributes. This is something you’ll need to do whenever you create a model, and it should be done immediately before anything else inside the model. As you can see, our <code>Contact</code> model is going to have two attributes, a <code>name</code> and an <code>email</code>.</p>
 <p>The next line ensures our model is persisted with HTML5 Local Storage. Spine’s Local Storage module is included by default in our generated application, so this line is all that’s required to make sure that model data is persisted between page reloads.</p>
-<p>The last part of the model is a class (static) function called <code>filter()</code>. This takes a query string and returns an array of contacts that match that string, comparing both the email address and name of each contact stored in the model. This function will come in handy in our sidebar, allowing us to filter the list of contacts easily. </p>
+<p>The last part of the model is a class (static) function called <code>filter()</code>. This takes a query string and returns an array of contacts that match that string, comparing both the email address and name of each contact stored in the model. This function will come in handy in our sidebar, allowing us to filter the list of contacts easily.</p>
 <p>Lastly the model is exported, so it’s available to be required from other modules.</p>
 <p>##ContactsMain</p>
 <p>Right, now our model is setup we can move onto the controllers. Let’s tackle the <code>Main</code> controller first. Replace the contents of <code>app/controllers/contacts_main.coffee</code> with the following:</p>
 <pre><code>Spine   = require(&#39;spine&#39;)
 Contact = require(&#39;models/contact&#39;)
 $       = Spine.$
-</code></pre><p>That sets up some variables we’re going to use, such as the <code>Contact</code> model and jQuery. </p>
-<p>The main section of our application is going to have two main ‘views’, a show view and an edit view. This will translate into two controller’s <code>Show</code> and <code>Edit</code> respectively. We want to make sure only one of these controller is shown at any one time, so we’re going to use a <a href="/docs/%=%20docs_path(%22stacks%22">Stack</a> %&gt;) to manage them.</p>
+</code></pre><p>That sets up some variables we’re going to use, such as the <code>Contact</code> model and jQuery.</p>
+<p>The main section of our application is going to have two main ‘views’, a show view and an edit view. This will translate into two controller’s <code>Show</code> and <code>Edit</code> respectively. We want to make sure only one of these controller is shown at any one time, so we’re going to use a <a href="/docs/stacks.html">Stack</a> to manage them.</p>
 <p>So let’s go ahead and implement the <code>Show</code> controller, appending the following to <code>app/controllers/contacts_main.coffee</code>:</p>
 <pre><code>class Show extends Spine.Controller
   # Set the HTML class
@@ -173,7 +141,7 @@ $       = Spine.$
     @active @change
 
   render: -&gt;
-    # Render a template, replacing the 
+    # Render a template, replacing the
     # controller&#39;s HTML
     @html require(&#39;views/show&#39;)(@item)
 
@@ -185,7 +153,7 @@ $       = Spine.$
     # Navigate to the &#39;edit&#39; view whenever
     # the edit link is clicked
     @navigate(&#39;/contacts&#39;, @item.id, &#39;edit&#39;)
-</code></pre><p>So, the first property in <code>Show</code> is <code>className</code>, which set a class of <code>show</code> on the controller’s internal HTML element. This will help us style the controller later. </p>
+</code></pre><p>So, the first property in <code>Show</code> is <code>className</code>, which set a class of <code>show</code> on the controller’s internal HTML element. This will help us style the controller later.</p>
 <p>Next we’re setting up some events, specifically a <em>click</em> event on any element with a class of <code>edit</code>. In this case, our template is going to contain a <code>&lt;a class=&quot;edit&quot;&gt;Edit&lt;/a&gt;</code> link which, when clicked, will invoke the controller’s <code>edit()</code> function, navigating to the edit route.</p>
 <p>In the controller’s constructor, we’re binding to the <em>active</em> event, specifying the <code>change()</code> function as a callback. We’re going to pass some router params when triggering the event, which will be used by our callback to find the relevant contact, and then re-render the view. This part will make more sense when you see how the controller is activated later on in the tutorial.</p>
 <p>Notice in the <code>render()</code> function we’re requiring a template under <code>views/show</code>, calling it and passing in the current item. Let’s go ahead now and define that template. Create a file under <code>app/views/show.eco</code> containing the following:</p>
@@ -197,7 +165,7 @@ $       = Spine.$
   &lt;p&gt;&lt;%%= @name %&gt;&lt;/p&gt;
   &lt;p&gt;&lt;%%= @email %&gt;&lt;/p&gt;
 &lt;/div&gt;
-</code></pre><p>This is an <a href="/docs/%=%20docs_path(%22views%22">eco</a> %&gt;) template, and the syntax inside the template tags (<code>&lt;%%= %&gt;</code>) is CoffeeScript. We’re pulling out the <code>name</code> and <code>email</code> properties from the contact, displaying them in the page. We’ve also got that edit link we talked about earlier, ready to be clicked.</p>
+</code></pre><p>This is an <a href="/docs/views.html">eco</a> template, and the syntax inside the template tags (<code>&lt;%%= %&gt;</code>) is CoffeeScript. We’re pulling out the <code>name</code> and <code>email</code> properties from the contact, displaying them in the page. We’ve also got that edit link we talked about earlier, ready to be clicked.</p>
 <p>###Edit controller</p>
 <p>Now we’ve defined our <code>Show</code> controller which will show us information about the selected contacts, we can go ahead and define an <code>Edit</code> controller for updating contacts. Append the following to <code>app/controllers/contacts_main.coffee</code>.</p>
 <pre><code>class Edit extends Spine.Controller
@@ -208,7 +176,7 @@ $       = Spine.$
     &#39;click .save&#39;: &#39;submit&#39;
     &#39;click .delete&#39;: &#39;delete&#39;
 
-  elements: 
+  elements:
     &#39;form&#39;: &#39;form&#39;
 
   constructor: -&gt;
@@ -253,16 +221,16 @@ $       = Spine.$
 &lt;/div&gt;
 </code></pre><p>It’s pretty self explanatory; again we’re just pulling out properties from the current context using the <code>&lt;%%= %&gt;</code> syntax.</p>
 <p>###Main Stack</p>
-<p>The last step for our <code>Main</code> controller, is to define a stack that will manage our other two controllers, <code>Show</code> and <code>Edit</code>. Both controllers, <code>Show</code> and <code>Edit</code>, need to be shown independently one at a time. Adding both controllers to a <a href="/docs/%=%20docs_path(%22stacks%22">Spine Stack</a> %&gt;) will ensures this happens automatically.</p>
+<p>The last step for our <code>Main</code> controller, is to define a stack that will manage our other two controllers, <code>Show</code> and <code>Edit</code>. Both controllers, <code>Show</code> and <code>Edit</code>, need to be shown independently one at a time. Adding both controllers to a <a href="/docs/stacks.html">Spine Stack</a> will ensures this happens automatically.</p>
 <pre><code>class Main extends Spine.Stack
   controllers:
     show: Show
     edit: Edit
 
 module.exports = Main
-</code></pre><p>The last line exports the controller, so it’s available to other modules (see the <a href="/docs/%=%20docs_path(%22common_js%22">CommonJS guide</a> %&gt;) for more information). The full source for this controller is <a href="https://github.com/maccman/spine.contacts/blob/master/app/controllers/contacts.main.coffee">available on GitHub</a>.</p>
+</code></pre><p>The last line exports the controller, so it’s available to other modules (see the <a href="/docs/common_js.html">CommonJS guide</a> for more information). The full source for this controller is <a href="https://github.com/maccman/spine.contacts/blob/master/app/controllers/contacts.main.coffee">available on GitHub</a>.</p>
 <p>##Contacts Sidebar</p>
-<p>The <code>Sidebar</code> controller is going to list contacts and let users filter them by name and email. Additionally users’s can select a contact, which is then displayed in the main view. </p>
+<p>The <code>Sidebar</code> controller is going to list contacts and let users filter them by name and email. Additionally users’s can select a contact, which is then displayed in the main view.</p>
 <p>Although this controller is fairly large, it’s pretty straightforward. Let’s take a look at the full code, and then I’ll explain it in detail. Replace <code>app/controllers/contacts_sidebar.coffee</code> with the following:</p>
 <pre><code>Spine   = require(&#39;spine&#39;)
 Contact = require(&#39;models/contact&#39;)
@@ -287,13 +255,13 @@ class Sidebar extends Spine.Controller
 
     # Setup a Spine List
     @list = new List
-      el: @items, 
-      template: require(&#39;views/item&#39;), 
+      el: @items,
+      template: require(&#39;views/item&#39;),
       selectFirst: true
 
     @list.bind &#39;change&#39;, @change
 
-    @active (params) -&gt; 
+    @active (params) -&gt;
       @list.change(Contact.find(params.id))
 
     Contact.bind(&#39;refresh change&#39;, @render)
@@ -354,7 +322,7 @@ class Contacts extends Spine.Controller
     @main    = new Main
 
     @routes
-      &#39;/contacts/:id/edit&#39;: (params) -&gt; 
+      &#39;/contacts/:id/edit&#39;: (params) -&gt;
         @sidebar.active(params)
         @main.edit.active(params)
       &#39;/contacts/:id&#39;: (params) -&gt;
@@ -366,11 +334,11 @@ class Contacts extends Spine.Controller
     Contact.fetch()
 
 module.exports = Contacts
-</code></pre><p>Right, so that’s a shorter controller than the previous two we implemented, lets have a look at what it’s up to. Firstly you’ll notice that we’re requiring in our other two controller’s <code>Main</code> and <code>Sidebar</code>. In the <code>Contacts</code> constructor these are instantiated, saved as local variables and ultimately appended to the controller. </p>
+</code></pre><p>Right, so that’s a shorter controller than the previous two we implemented, lets have a look at what it’s up to. Firstly you’ll notice that we’re requiring in our other two controller’s <code>Main</code> and <code>Sidebar</code>. In the <code>Contacts</code> constructor these are instantiated, saved as local variables and ultimately appended to the controller.</p>
 <p>We’re also setting up some routes, <code>/contacts/:id</code> and <code>/contacts/:id/edit</code>. Spine will listen to changes in the URL’s hash, and invoke the matched route callbacks. For example, if the user navigates to <code>#/contacts/1</code>, then the <code>/contacts/:id</code> route will be activated, and the <code>Show</code> controller activated. We’re passing through the route params, so our controllers <code>change()</code> callbacks can pull out the contact’s ID, and match it up with one from the model.</p>
 <p>Lastly we’re calling <code>Contact.fetch()</code>, which fetches all the contacts out of local storage, populating the <code>Contact</code> model.</p>
 <p>##App controller</p>
-<p>So our contacts app is now finished, and has all the functionality we need for listing, creating and updating contacts. So how do we actually go about instantiating it, adding it to the page? Well this is where the <code>App</code> controller comes in, Spine’s main controller. This is automatically instantiated and appended to the document’s body when the page loads. </p>
+<p>So our contacts app is now finished, and has all the functionality we need for listing, creating and updating contacts. So how do we actually go about instantiating it, adding it to the page? Well this is where the <code>App</code> controller comes in, Spine’s main controller. This is automatically instantiated and appended to the document’s body when the page loads.</p>
 <p>All we need to do is instantiate <code>Contacts</code> controller, appending it to <code>App</code>. Replace <code>app/index.coffee</code> with the following:</p>
 <pre><code>require(&#39;lib/setup&#39;)
 
@@ -388,7 +356,7 @@ class App extends Spine.Controller
 module.exports = App
 </code></pre><p>Awesome! Refresh the page, and you should see your working contacts application (albeit unstyled). Remember, you can clone the <a href="https://github.com/maccman/spine.contacts">complete source from GitHub</a> if you run into any difficulties, as well as copy some <a href="https://github.com/maccman/spine.contacts/tree/master/css">attractive CSS</a>.</p>
 <p>##Next steps</p>
-<p>Congratulations if you’ve got this far. We’ve explored a lot of Spine, and you should have a good handle on the framework now. You’re all set to go off and create your own applications. </p>
+<p>Congratulations if you’ve got this far. We’ve explored a lot of Spine, and you should have a good handle on the framework now. You’re all set to go off and create your own applications.</p>
 </div>
   </body>
 </html>

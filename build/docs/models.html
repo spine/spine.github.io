@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,74 +20,41 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
-      <h2>Documentation</h2>
-      <article>
-        <div>
-          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
-        </div>
-        <div>
-          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
-        </div>
-        <div>
-          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
-        </div>
-        <div>
-          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
-        </div>
-        <div>
-          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
-        </div>
-        <div>
-          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
-        </div>
-        <div>
-          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
-        </div>
-        <div>
-          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
-        </div>
-        <div>
-          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
-        </div>
-      </article>
-      <h2>Guides</h2>
-      <article>
-        <div>
-          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
-        </div>
-        <div>
-          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
-        </div>
-        <div>
-          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
-        </div>
-        <div>
-          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
-        </div>
-        <div>
-          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
-        </div>
-        <div>
-          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
-        </div>
-        <div>
-          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
-        </div>
-        <div>
-          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
-        </div>
-      </article>
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container col-sm-9"><p>One of the challenges with moving state to the client-side is data management. Data management in stateful JavaScript applications is a completely different matter to how it’s normally handled in conventional server side apps. There’s no request/response model, and you don’t have access to server-side variables. Instead, data is fetched remotely and stored temporarily on the client-side. This has the advantage that data access is immediate, and users are rarely, if ever, left waiting for remote data to load. </p>
-<p>After the initial page load, remote data is stored locally in class structures called models. Models are the core to Spine, and absolutely critical to your applications. Not only do they store all the application’s data, but they are also where any logic associated with that data is kept. </p>
-<p>Models should be de-coupled from the rest of your application, and completely independent. Model data can be persisted with <a href="/docs/%=%20docs_path(%22local%22">HTML5 Local Storage</a> %&gt;) or <a href="/docs/%=%20docs_path(%22ajax%22">Ajax</a> %&gt;).</p>
+    <div class="container col-sm-9 content"><p>One of the challenges with moving state to the client-side is data management. Data management in stateful JavaScript applications is a completely different matter to how it’s normally handled in conventional server side apps. There’s no request/response model, and you don’t have access to server-side variables. Instead, data is fetched remotely and stored temporarily on the client-side. This has the advantage that data access is immediate, and users are rarely, if ever, left waiting for remote data to load.</p>
+<p>After the initial page load, remote data is stored locally in class structures called models. Models are the core to Spine, and absolutely critical to your applications. Not only do they store all the application’s data, but they are also where any logic associated with that data is kept.</p>
+<p>Models should be de-coupled from the rest of your application, and completely independent. Model data can be persisted with <a href="/docs/local.html">HTML5 Local Storage</a> or <a href="/docs/ajax.html">Ajax</a>.</p>
 <p>##Implementation</p>
 <p>Models are created by extending <code>Spine.Model</code>:</p>
 <pre><code>//= CoffeeScript
@@ -96,14 +64,14 @@ class Contact extends Spine.Model
 //= JavaScript
 var Contact = Spine.Model.sub();
 Contact.configure(&quot;Contact&quot;, &quot;first_name&quot;, &quot;last_name&quot;);
-</code></pre><p>You should call <code>configure()</code> before anything else inside the model, since it bootstraps various variables and events. Pass <code>configure()</code> the model name, and any attributes the model has. </p>
+</code></pre><p>You should call <code>configure()</code> before anything else inside the model, since it bootstraps various variables and events. Pass <code>configure()</code> the model name, and any attributes the model has.</p>
 <p>Models are like any other CoffeeScript class, so you can add class/instance methods as usual:</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
   @configure &quot;Contact&quot;, &quot;first_name&quot;, &quot;last_name&quot;
 
-  @filter: (query) -&gt; 
-    @select (c) -&gt; 
+  @filter: (query) -&gt;
+    @select (c) -&gt;
       c.first_name.indexOf(query) isnt -1
 
   fullName: -&gt; [@first_name, @last_name].join(&#39; &#39;)
@@ -125,7 +93,7 @@ Contact.include({
     return(this.first_name + &quot; &quot; + this.last_name);
   }
 });
-</code></pre><p>Models are Spine <a href="/docs/%=%20docs_path(%22classes%22">modules</a> %&gt;), so you can treat them as such, extending and including properties.</p>
+</code></pre><p>Models are Spine <a href="/docs/classes.html">modules</a>, so you can treat them as such, extending and including properties.</p>
 <pre><code>//= CoffeeScript
 class Contact extends Spine.Model
   @configure &quot;Contact&quot;, &quot;first_name&quot;, &quot;last_name&quot;
@@ -182,9 +150,9 @@ Class Contact extends Spine.Model
 
   notFound: (missingId)-&gt;
     @one &#39;ajaxSuccess&#39;, -&gt;
-      alert(&#39;found that one after all&#39;) 
+      alert(&#39;found that one after all&#39;)
     @fetch(id:missingId)
-    # actually would be good to write custom ajax that returns a promise object 
+    # actually would be good to write custom ajax that returns a promise object
 </code></pre><p>Once you’ve changed any of a record’s attributes, you can update it in-memory by re-calling <code>save()</code>.</p>
 <pre><code>//= CoffeeScript
 contact = Contact.create(first_name: &quot;Polo&quot;)
@@ -232,7 +200,7 @@ Contact.include({
 <pre><code>//= CoffeeScript
 Contact.bind &quot;error&quot;, (rec, msg) -&gt;
   alert(&quot;Contact failed to save - &quot; + msg)
-</code></pre><p>In addition, <code>save()</code>, <code>create()</code> and <code>updateAttributes()</code> will all return false if validation fails. For more information about validation, see the <a href="/docs/%=%20docs_path(%22forms%22">validation guide</a> %&gt;).</p>
+</code></pre><p>In addition, <code>save()</code>, <code>create()</code> and <code>updateAttributes()</code> will all return false if validation fails. For more information about validation, see the <a href="/docs/forms.html">validation guide</a>.</p>
 <p>##Serialization</p>
 <p>Spine’s models include special support for JSON serialization. To serialize a record, call <code>JSON.stringify()</code> passing the record, or to serialize every record, pass the model.</p>
 <pre><code>JSON.stringify(Contact)
@@ -245,9 +213,9 @@ assertEqual( contact.attributes(), {first_name: &quot;Leo&quot;} )
 Contact.include
   toXML: -&gt;
     serializeToXML(@attributes())
-</code></pre><p>If you’re using an older browser which doesn’t have native JSON support (i.e. IE 7), you’ll need to include <a href="https://github.com/douglascrockford/JSON-js/blob/master/json2.js">json2.js</a> which adds legacy support. </p>
+</code></pre><p>If you’re using an older browser which doesn’t have native JSON support (i.e. IE 7), you’ll need to include <a href="https://github.com/douglascrockford/JSON-js/blob/master/json2.js">json2.js</a> which adds legacy support.</p>
 <p>##Persistence</p>
-<p>While storing records in memory is useful for quick retrieval, persisting them in one way or another is often required. Spine includes a number of pre-existing storage modules, such as Ajax and HTML5 Local Storage, which you can use for persistence. Please check out the <a href="/docs/%=%20docs_path(%22ajax%22">Ajax</a> %&gt;) and <a href="/docs/%=%20docs_path(%22local%22">Local Storage guides</a> %&gt;)) for more information. </p>
+<p>While storing records in memory is useful for quick retrieval, persisting them in one way or another is often required. Spine includes a number of pre-existing storage modules, such as Ajax and HTML5 Local Storage, which you can use for persistence. Please check out the <a href="/docs/ajax.html">Ajax</a> and <a href="/docs/local.html">Local Storage guides</a> for more information.</p>
 <p>If you want to pull from one of these sources to populate your model collection use <code>fetch()</code></p>
 <pre><code>Contact.fetch()
 </code></pre><p>##Events</p>
@@ -268,14 +236,14 @@ Contact.bind &quot;create&quot;, (newRecord) -&gt;
 </code></pre><p>For model level callbacks, any associated record is always passed to the callback. The other option is to bind to the event directly on the record.</p>
 <pre><code>//= CoffeeScript
 contact = Contact.first()
-contact.bind &quot;save&quot;, -&gt; 
+contact.bind &quot;save&quot;, -&gt;
   # Contact was updated
   updateInterface()
-</code></pre><p>The callback’s context will be the record that the event listener was placed on. You’ll find model events crucial when it comes to binding records to the view, making sure the view is kept in sync with your application’s data. </p>
-<p>If you want to remove events, you can unbind specific events by calling <code>unbind()</code> on the Model. See the <a href="/docs/%=%20docs_path(%22events%22">event documentation</a> %&gt;) for more information on how you should use <code>unbind()</code>. Model instances also have an <code>unbind()</code> function, but it can only be used to remove every event listener associated with that instance. </p>
+</code></pre><p>The callback’s context will be the record that the event listener was placed on. You’ll find model events crucial when it comes to binding records to the view, making sure the view is kept in sync with your application’s data.</p>
+<p>If you want to remove events, you can unbind specific events by calling <code>unbind()</code> on the Model. See the <a href="/docs/events.html">event documentation</a> for more information on how you should use <code>unbind()</code>. Model instances also have an <code>unbind()</code> function, but it can only be used to remove every event listener associated with that instance.</p>
 <p>##Dynamic records</p>
 <p>One rather neat addition to Spine’s models is dynamic records, which use prototypal inheritance to stay updated. Any calls to <code>find()</code>, <code>all()</code>, <code>first()</code>, <code>last()</code> etc, and model event callbacks return a <em>clone</em> of the saved record. This means that whenever a record is updated, all of its clones will immediately reflect that update.</p>
-<p>Let’s give you a code example; we’re going to create an asset, and a clone of that asset. You’ll notice that when the asset is updated, the clone has also automatically changed. </p>
+<p>Let’s give you a code example; we’re going to create an asset, and a clone of that asset. You’ll notice that when the asset is updated, the clone has also automatically changed.</p>
 <pre><code>//= CoffeeScript
 asset = Asset.create(name: &quot;whatshisname&quot;)
 
@@ -289,9 +257,9 @@ asset.updateAttributes(name: &quot;bob&quot;)
 assertEqual(clone.name, &quot;bob&quot;)
 </code></pre><p>This means that you never have to bother calling some sort of <code>reload()</code> functions on instances. You can be sure that all instances are constantly in sync with their saved versions.</p>
 <p>##Relationships</p>
-<p>Spine’s relationship module (spine.relation) adds has support for <em>has-many</em>, <em>has-one</em> and <em>belongs-to</em> model relationships. For more information, see the <a href="/docs/%=%20docs_path(%22relations%22">relationships guide</a> %&gt;).</p>
+<p>Spine’s relationship module (spine.relation) adds has support for <em>has-many</em>, <em>has-one</em> and <em>belongs-to</em> model relationships. For more information, see the <a href="/docs/relations.html">relationships guide</a>.</p>
 <p>##API documentation</p>
-<p>For more information about models, please see the <a href="/docs/%=%20api_path(%22models%22">full API documentation</a> %&gt;).</p>
+<p>For more information about models, please see the <a href="/docs/models.html">full API documentation</a>.</p>
 </div>
   </body>
 </html>

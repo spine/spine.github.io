@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,79 +20,46 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
-      <h2>Documentation</h2>
-      <article>
-        <div>
-          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
-        </div>
-        <div>
-          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
-        </div>
-        <div>
-          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
-        </div>
-        <div>
-          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
-        </div>
-        <div>
-          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
-        </div>
-        <div>
-          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
-        </div>
-        <div>
-          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
-        </div>
-        <div>
-          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
-        </div>
-        <div>
-          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
-        </div>
-      </article>
-      <h2>Guides</h2>
-      <article>
-        <div>
-          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
-        </div>
-        <div>
-          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
-        </div>
-        <div>
-          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
-        </div>
-        <div>
-          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
-        </div>
-        <div>
-          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
-        </div>
-        <div>
-          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
-        </div>
-        <div>
-          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
-        </div>
-        <div>
-          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
-        </div>
-      </article>
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container col-sm-9"><p>Building a Todo List application is a great way to learn about Spine, and Spine’s conventions. It’s a simple enough app, but contains enough interesting problems to be useful, such as binding, persisting model data and template rendering. </p>
+    <div class="container col-sm-9 content"><p>Building a Todo List application is a great way to learn about Spine, and Spine’s conventions. It’s a simple enough app, but contains enough interesting problems to be useful, such as binding, persisting model data and template rendering.</p>
 <p>Indeed Addy Osmani has an <a href="http://addyosmani.github.com/todomvc">excellent project</a> curating the various Todo examples for the different frameworks so they can be easily compared. From the site:</p>
 <blockquote>
 <p>TodoMVC is a common set of JavaScript examples for MVC frameworks like SproutCore, JavaScriptMVC, Backbone, YUILibrary, Spine, Sammy, AngularJS and others.</p>
 </blockquote>
 <p>Some of the source will be omitted for the sake of brevity (such as the CSS). You can find the <a href="https://github.com/maccman/spine.todos">complete source on GitHub</a>, as well as a <a href="http://maccman.github.com/spine.todos">live demo</a>. This is what we’ll end up with:</p>
 <p><img src="https://lh4.googleusercontent.com/_IH1OempnqUc/TZF16JZSTlI/AAAAAAAABKM/ojAu7OBqXp8/s500/Screen%20shot%202011-03-29%20at%2019.01.44.png" alt="Todos"></p>
-<p>So let’s think about what we need from a high level architectural standpoint. </p>
+<p>So let’s think about what we need from a high level architectural standpoint.</p>
 <ul>
 <li>A <code>Task</code> model to store and persist tasks</li>
 <li>A way of creating tasks</li>
@@ -140,7 +108,7 @@
     &lt;/footer&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-</code></pre><p>So far so good. Now in order to tie this into our Spine app, we’re going to have to go back to the fundamentals, the <code>Task</code> model. </p>
+</code></pre><p>So far so good. Now in order to tie this into our Spine app, we’re going to have to go back to the fundamentals, the <code>Task</code> model.</p>
 <p>##Task model</p>
 <p>So the <code>Task</code> model is remarkably straightforward. Firstly a task has two attributes, a <code>name</code> and a <code>done</code> status that indicates whether it’s been completed. These attributes are passed to <code>configure()</code>, as you can see in the example below:</p>
 <pre><code>//= CoffeeScript
@@ -187,11 +155,11 @@ Task.extend({
   }
 });
 </code></pre><p>The model is being extended by <code>Spine.Model.Local</code> which automatically persists <code>Task</code> records to HTML5 Local Storage, so they’re saved between page requests.</p>
-<p>We’ve then got some static methods, <code>active()</code> and <code>done()</code>, which return an array of unfinished and finished tasks respectively. </p>
-<p>Finally we have a static <code>destroyDone()</code> function, that iterates over all the tasks with a <code>true</code> <code>done</code> attribute, destroying them. This will be the function called when the ‘Clear completed’ link in the HTML is clicked. </p>
+<p>We’ve then got some static methods, <code>active()</code> and <code>done()</code>, which return an array of unfinished and finished tasks respectively.</p>
+<p>Finally we have a static <code>destroyDone()</code> function, that iterates over all the tasks with a <code>true</code> <code>done</code> attribute, destroying them. This will be the function called when the ‘Clear completed’ link in the HTML is clicked.</p>
 <p>##Application controller</p>
-<p>So let’s look at the core of the application’s logic, the controllers. Since each task has a fair bit of logic associated with it, such as edit in place, we’re going to use the <a href="/docs/%=%20docs_path(%22controller_patterns%22">element controller pattern</a> %&gt;). </p>
-<p>In other words, we’re going to have one controller, <code>TaskApp</code>, which will be in charge creating new tasks, and rendering the initial task list. Then we’ll have another controller called <code>Tasks</code>, instances of which will be associated with an individual <code>Task</code> record. <code>Tasks</code> instances will be in charge of editing, updating and destroying their associated task. </p>
+<p>So let’s look at the core of the application’s logic, the controllers. Since each task has a fair bit of logic associated with it, such as edit in place, we’re going to use the <a href="/docs/controller_patterns.html">element controller pattern</a>.</p>
+<p>In other words, we’re going to have one controller, <code>TaskApp</code>, which will be in charge creating new tasks, and rendering the initial task list. Then we’ll have another controller called <code>Tasks</code>, instances of which will be associated with an individual <code>Task</code> record. <code>Tasks</code> instances will be in charge of editing, updating and destroying their associated task.</p>
 <p>To keep thing simple, we’ll keep things ‘read-only’ at the moment, and won’t provide any functionality for creating, editing or deleting tasks:</p>
 <pre><code>//= CoffeeScript
 class TaskApp extends Spine.Controller
@@ -232,9 +200,9 @@ var TaskApp = Spine.Controller.sub({
     Task.each(this.proxy(this.addOne));
   }
 });
-</code></pre><p>You can see we’ve got a couple of things going on, an <code>elements</code> object, a constructor function, and several instance functions. Let’s take a look at that <code>elements</code> hash first. </p>
-<p>On the left of the <code>elements</code> hash (i.e. the key) is a DOM element selector. The value of the hash is just a string, <code>&quot;items&quot;</code>. Spine takes this elements hash, and populates local variables pointing to the DOM elements. In this case, Spine will create a <code>items</code> variable, pointing to any element that matches the <code>.items</code> selector, which here will be the <code>&lt;div class=&quot;items&quot; /&gt;</code> element, defined in the HTML section earlier. </p>
-<p>In a nutshell this means we can now refer to <code>this.items</code> in our controller, which points to the <code>&lt;div class=&quot;items&quot; /&gt;</code> element. As you can see, we’re refering to <code>items</code> in the <code>addOne()</code> function, appending a element to it. </p>
+</code></pre><p>You can see we’ve got a couple of things going on, an <code>elements</code> object, a constructor function, and several instance functions. Let’s take a look at that <code>elements</code> hash first.</p>
+<p>On the left of the <code>elements</code> hash (i.e. the key) is a DOM element selector. The value of the hash is just a string, <code>&quot;items&quot;</code>. Spine takes this elements hash, and populates local variables pointing to the DOM elements. In this case, Spine will create a <code>items</code> variable, pointing to any element that matches the <code>.items</code> selector, which here will be the <code>&lt;div class=&quot;items&quot; /&gt;</code> element, defined in the HTML section earlier.</p>
+<p>In a nutshell this means we can now refer to <code>this.items</code> in our controller, which points to the <code>&lt;div class=&quot;items&quot; /&gt;</code> element. As you can see, we’re refering to <code>items</code> in the <code>addOne()</code> function, appending a element to it.</p>
 <p>Now let’s take a look at the constructor function. It’s binding to several events on the <code>Task</code> model, such as <em>create</em> and <em>refresh</em>. Since we’re delegating handling of updates and deletes to the <code>Tasks</code> controller, we don’t need to to worry about that here. The two pieces of logic are:</p>
 <ul>
 <li><p>When a new task is created, the <em>create</em> event will be fired, calling <code>addOne()</code> which instantiates the <code>Tasks</code> controller, rendering it and appending the resultant element to <code>this.items</code></p>
@@ -242,7 +210,7 @@ var TaskApp = Spine.Controller.sub({
 <li><p>When a <em>refresh</em> event is called (i.e. the tasks have been loaded from Local Storage), <code>addAll()</code> will be called. This function iterates over all the tasks, passing them to <code>addOne()</code>.</p>
 </li>
 </ul>
-<p>For more in-depth explanations of controllers, see the <a href="/docs/%=%20docs_path(%22controllers%22">controllers guide</a> %&gt;).</p>
+<p>For more in-depth explanations of controllers, see the <a href="/docs/controllers.html">controllers guide</a>.</p>
 <p>##Task item controller</p>
 <p>Ok, let’s look at the last bit, the <code>Tasks</code> controller. This will be in charge of individual <code>Task</code> records, making sure the view updates then the task does. It’s super simple, only about a dozen lines long:</p>
 <pre><code>//= CoffeeScript
@@ -276,33 +244,33 @@ var Tasks = Spine.Controller.sub({
     this.release();
   }
 });
-</code></pre><p>In the constructor, we’re setting up listeners to the <em>update</em> and <em>destroy</em> events, calling <code>render()</code> and <code>remove()</code> respectively. In other words, when the task updates, we want to re-render the view to reflect its changes. Likewise, when the task is destroyed, we want to remove the view. </p>
-<p>You’ll notice that the <code>this.item</code> variable is never defined. It’s actually passed as a property when the <code>Tasks</code> class is instantiated, back in the <code>TaskApp</code> controller; Spine sets all options passed to controllers as local variables. </p>
-<p>In the <code>render()</code> function we’re rendering a <a href="https://github.com/jquery/jquery-tmpl">jQuery.tmpl</a> JavaScript template, called <code>#taskTemplate</code>. This returns a piece of HTML that we’re using to replace the controller’s current element. In other words, the rendered template is now present under <code>this.el</code>, and can be appended to the tasks list. </p>
+</code></pre><p>In the constructor, we’re setting up listeners to the <em>update</em> and <em>destroy</em> events, calling <code>render()</code> and <code>remove()</code> respectively. In other words, when the task updates, we want to re-render the view to reflect its changes. Likewise, when the task is destroyed, we want to remove the view.</p>
+<p>You’ll notice that the <code>this.item</code> variable is never defined. It’s actually passed as a property when the <code>Tasks</code> class is instantiated, back in the <code>TaskApp</code> controller; Spine sets all options passed to controllers as local variables.</p>
+<p>In the <code>render()</code> function we’re rendering a <a href="https://github.com/jquery/jquery-tmpl">jQuery.tmpl</a> JavaScript template, called <code>#taskTemplate</code>. This returns a piece of HTML that we’re using to replace the controller’s current element. In other words, the rendered template is now present under <code>this.el</code>, and can be appended to the tasks list.</p>
 <p>##Template</p>
-<p>The <code>#taskTemplate</code> used in the <code>Tasks</code> controller needs defining, so let’s do that. One way of including templates in the page is by using custom script tags. These don’t get evaluated by the browser, which just interprets them as plain text. jQuery.tmpl can then access the templates, rendering pieces of HTML. </p>
+<p>The <code>#taskTemplate</code> used in the <code>Tasks</code> controller needs defining, so let’s do that. One way of including templates in the page is by using custom script tags. These don’t get evaluated by the browser, which just interprets them as plain text. jQuery.tmpl can then access the templates, rendering pieces of HTML.</p>
 <pre><code>&lt;script type=&quot;text/x-jquery-tmpl&quot; id=&quot;taskTemplate&quot;&gt;
   &lt;div class=&quot;item {{if done}}done{{/if}}&quot;&gt;
     &lt;div class=&quot;view&quot; title=&quot;Double click to edit...&quot;&gt;
-      &lt;input type=&quot;checkbox&quot; {{if done}}checked=&quot;checked&quot;{{/if}}&gt; 
+      &lt;input type=&quot;checkbox&quot; {{if done}}checked=&quot;checked&quot;{{/if}}&gt;
       &lt;span&gt;${name}&lt;/span&gt; &lt;a class=&quot;destroy&quot;&gt;&lt;/a&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/script&gt;
-</code></pre><p>The template tags demonstrated above, such as <code>{{if done}}</code>, are specific to jQuery.tmpl, and <a href="http://api.jquery.com/category/plugins/templates/">documented on jQuery’s site</a>. In your own applications, you have a choice of template libraries, such as jQuery.tmpl, <a href="http://mustache.github.com/">Mustache</a>, or <a href="https://github.com/sstephenson/eco">Eco</a>. Use whichever you prefer, Spine doesn’t mind. </p>
-<p>Now when <code>$(&quot;#taskTemplate&quot;).tmpl(this.item)</code> is called in the <code>Tasks</code> controller our template will render correctly. </p>
+</code></pre><p>The template tags demonstrated above, such as <code>{{if done}}</code>, are specific to jQuery.tmpl, and <a href="http://api.jquery.com/category/plugins/templates/">documented on jQuery’s site</a>. In your own applications, you have a choice of template libraries, such as jQuery.tmpl, <a href="http://mustache.github.com/">Mustache</a>, or <a href="https://github.com/sstephenson/eco">Eco</a>. Use whichever you prefer, Spine doesn’t mind.</p>
+<p>Now when <code>$(&quot;#taskTemplate&quot;).tmpl(this.item)</code> is called in the <code>Tasks</code> controller our template will render correctly.</p>
 <p>##Setup</p>
-<p>So now we have two controllers: <code>TaskApp</code> and <code>Tasks</code>. The former needs to get instantiated when the page loads, so some code actually gets run. You can do this simply enough, by using jQuery’s <a href="http://api.jquery.com/ready/"><code>ready()</code></a> utility, which will execute a function when the DOM’s loaded. </p>
+<p>So now we have two controllers: <code>TaskApp</code> and <code>Tasks</code>. The former needs to get instantiated when the page loads, so some code actually gets run. You can do this simply enough, by using jQuery’s <a href="http://api.jquery.com/ready/"><code>ready()</code></a> utility, which will execute a function when the DOM’s loaded.</p>
 <pre><code>//= CoffeeScript
 jQuery ($) -&gt;
   new TaskApp(el: $(&quot;#tasks&quot;))
-</code></pre><p>Then we’re instantiating <code>TaskApp</code>, setting it’s internal element (<code>el</code>) to the main <code>#tasks</code> div. </p>
+</code></pre><p>Then we’re instantiating <code>TaskApp</code>, setting it’s internal element (<code>el</code>) to the main <code>#tasks</code> div.</p>
 <p>##In action</p>
-<p>Now we’ve gone far enough without checking that things work as they should. Open up <code>index.html</code> and, if everything’s going to plan, you shouldn’t see any errors in the console. The task list will be blank (we haven’t created any tasks yet), and the form won’t work, as we haven’t yet hooked it up. However, we can create a <code>Task</code> from the console. </p>
+<p>Now we’ve gone far enough without checking that things work as they should. Open up <code>index.html</code> and, if everything’s going to plan, you shouldn’t see any errors in the console. The task list will be blank (we haven’t created any tasks yet), and the form won’t work, as we haven’t yet hooked it up. However, we can create a <code>Task</code> from the console.</p>
 <p><img src="https://lh6.googleusercontent.com/-53aBupxfc6o/Tn8YtiaUwEI/AAAAAAAABaA/9wd4x5mffEE/s640/Screen%252520Shot%2525202011-09-25%252520at%25252013.03.20.png" alt="Console"></p>
-<p>Once you’ve run the above in the console, we should be looking at a brand new task in the list of tasks. Notice that if you refresh the page, the task still persists using Local Storage. </p>
+<p>Once you’ve run the above in the console, we should be looking at a brand new task in the list of tasks. Notice that if you refresh the page, the task still persists using Local Storage.</p>
 <p>##Creating new tasks</p>
-<p>It’s all very good creating tasks from the console, but we can hardly expect our users to do that. Let’s hook up the task creation form to provide a better interface. All the HTML is already there (in <code>index.html</code>); all we have to do is add some event listeners to that form, creating some tasks. </p>
+<p>It’s all very good creating tasks from the console, but we can hardly expect our users to do that. Let’s hook up the task creation form to provide a better interface. All the HTML is already there (in <code>index.html</code>); all we have to do is add some event listeners to that form, creating some tasks.</p>
 <pre><code>//= CoffeeScript
 class TaskApp extends Spine.Controller
   # Add event listeners
@@ -377,14 +345,14 @@ class TaskApp extends Spine.Controller
   });
 </code></pre><p>So you can see we’ve added two new functions to <code>TaskApp</code>, <code>create()</code> and <code>clear()</code>. There’s also a new property called <code>events</code>.</p>
 <p>What the <code>events</code> property does is add events onto the controller’s element. It’s in the form of <code>{&quot;eventName selector&quot;, &quot;callbackName&quot;}</code>. In this case we’re adding a <em>submit</em> event onto the task creation form, invoking <code>create()</code> when the event triggers.</p>
-<p>In the <code>create()</code> function, we’re creating a new task with a name set to the text input’s value. </p>
-<p>We’re also listening for a <em>click</em> event on the <code>&lt;a class=&quot;clear&quot; /&gt;</code> element, which will call <code>clear()</code>, deleting all the tasks that have been completed. </p>
+<p>In the <code>create()</code> function, we’re creating a new task with a name set to the text input’s value.</p>
+<p>We’re also listening for a <em>click</em> event on the <code>&lt;a class=&quot;clear&quot; /&gt;</code> element, which will call <code>clear()</code>, deleting all the tasks that have been completed.</p>
 <p>##In action</p>
-<p>Now refresh <code>index.html</code> to see the fruits of our labour. We should be able to type a task name, and press return to submit the form, creating a new task. </p>
+<p>Now refresh <code>index.html</code> to see the fruits of our labour. We should be able to type a task name, and press return to submit the form, creating a new task.</p>
 <p><img src="https://lh6.googleusercontent.com/-1aG32m4fbus/Tn8dbvNsGPI/AAAAAAAABaI/ISlAu82Jl2o/s640/Screen%252520Shot%2525202011-09-25%252520at%25252013.23.49.png" alt="Creating tasks"></p>
 <p>Excellent, we’re making great progress, but how about completing and deleting tasks?</p>
 <p>##Completing &amp; deleting tasks</p>
-<p>So the last part of our tutorial is going to cover completing and deleting tasks. These two actions are specific to each Task item, so we need to add this functionality to the <code>Tasks</code> controller. </p>
+<p>So the last part of our tutorial is going to cover completing and deleting tasks. These two actions are specific to each Task item, so we need to add this functionality to the <code>Tasks</code> controller.</p>
 <pre><code>//= CoffeeScript
 class Tasks extends Spine.Controller
   events:
@@ -433,7 +401,7 @@ var Tasks = Spine.Controller.sub({
     this.item.destroy();
   }
 });
-</code></pre><p>So, the key part of this is the two event handlers we’ve added, a <em>change</em> event on the task’s checkbox, and a <em>click</em> event on the task’s <code>&lt;a class=&quot;destroy&quot; /&gt;</code> link. </p>
+</code></pre><p>So, the key part of this is the two event handlers we’ve added, a <em>change</em> event on the task’s checkbox, and a <em>click</em> event on the task’s <code>&lt;a class=&quot;destroy&quot; /&gt;</code> link.</p>
 <ul>
 <li><p>The checkbox’s <em>change</em> event invokes the <code>toggle()</code> function, which toggles the tasks’s <code>done</code> status, then resaving the task - very straightforward!</p>
 </li>
@@ -441,9 +409,9 @@ var Tasks = Spine.Controller.sub({
 </li>
 </ul>
 <p>That’s all there is to it. Since we’re binding to the <em>update</em> function, whenever the task changes the view will automatically be re-rendered, checking or un-checking the checkbox as appropriate. Similarly, when the task is destroyed, the controller’s <code>destroy()</code> function will be called, removing the task from the view.     </p>
-<p>This tutorial is long enough as is, so we won’t go into in-place editing or updating. If you want an example of that, see the <a href="https://github.com/maccman/spine.todos">full source</a>. </p>
+<p>This tutorial is long enough as is, so we won’t go into in-place editing or updating. If you want an example of that, see the <a href="https://github.com/maccman/spine.todos">full source</a>.</p>
 <p>##Next steps</p>
-<p>So this tutorial should have given you a good overview of Spine, and basic architecture techniques. Next you may want to brush up on some of Spine’s API, by viewing the <a href="/docs/%=%20docs_path(%22controllers%22">controllers</a> %&gt;) or <a href="/docs/%=%20docs_path(%22models%22">models</a> %&gt;) guides, or perhaps look at the next example, how to build a <a href="/docs/%=%20docs_path(%22example_contacts%22">contacts manager</a> %&gt;).</p>
+<p>So this tutorial should have given you a good overview of Spine, and basic architecture techniques. Next you may want to brush up on some of Spine’s API, by viewing the <a href="/docs/controllers.html">controllers</a> or <a href="/docs/models.html">models</a> guides, or perhaps look at the next example, how to build a <a href="/docs/example_contacts.html">contacts manager</a>.</p>
 </div>
   </body>
 </html>

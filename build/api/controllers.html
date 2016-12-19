@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,12 +20,12 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
       <p><a href="classes.html">Classes</a><br>Spine's Class API for JavaScript compatibility.</p>
       <p><a href="models.html">Models</a><br>Spine's Model API</p>
@@ -34,9 +35,9 @@
     </div>
     <div class="container col-sm-9"><p>##Class methods</p>
 <h3 id="-extend-module-"><code>@extend(Module)</code></h3>
-<p>Add class methods; see <a href="/api/%=%20docs_path(%22modules%22">modules</a> %&gt;).</p>
+<p>Add class methods; see <a href="/api/modules.html">modules</a>.</p>
 <h3 id="-include-module-"><code>@include(Module)</code></h3>
-<p>Add instance methods; see <a href="/api/%=%20docs_path(%22modules%22">modules</a> %&gt;)</p>
+<p>Add instance methods; see <a href="/api/modules.html">modules</a></p>
 <h3 id="-sub-"><code>sub()</code></h3>
 <p>JavaScript compatibility function for creating a new controller.</p>
 <pre><code>var Users = Spine.Controller.sub({
@@ -133,11 +134,11 @@ var Users = Spine.Controller.sub({
     super
     // My other stuff
 </code></pre><h3 id="-bind-name-function-"><code>bind(name, function)</code></h3>
-<p>Bind custom events. See <a href="/api/%=%20docs_path(%22events%22">events</a> %&gt;) for more information.</p>
+<p>Bind custom events. See <a href="/api/events.html">events</a> for more information.</p>
 <h3 id="-trigger-name-data-"><code>trigger(name, data...)</code></h3>
-<p>Trigger custom events. See <a href="/api/%=%20docs_path(%22events%22">events</a> %&gt;) for more information.</p>
+<p>Trigger custom events. See <a href="/api/events.html">events</a> for more information.</p>
 <h3 id="-unbind-name-function-"><code>unbind(name, [function])</code></h3>
-<p>Unbind custom events. See <a href="/api/%=%20docs_path(%22events%22">events</a> %&gt;) for more information.</p>
+<p>Unbind custom events. See <a href="/api/events.html">events</a> for more information.</p>
 <h3 id="-log-message-"><code>log(message)</code></h3>
 <p>Append a message to the console.</p>
 <pre><code>//= CoffeeScript

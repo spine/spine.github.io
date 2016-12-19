@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,78 +20,45 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
-      <h2>Documentation</h2>
-      <article>
-        <div>
-          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
-        </div>
-        <div>
-          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
-        </div>
-        <div>
-          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
-        </div>
-        <div>
-          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
-        </div>
-        <div>
-          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
-        </div>
-        <div>
-          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
-        </div>
-        <div>
-          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
-        </div>
-        <div>
-          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
-        </div>
-        <div>
-          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
-        </div>
-      </article>
-      <h2>Guides</h2>
-      <article>
-        <div>
-          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
-        </div>
-        <div>
-          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
-        </div>
-        <div>
-          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
-        </div>
-        <div>
-          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
-        </div>
-        <div>
-          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
-        </div>
-        <div>
-          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
-        </div>
-        <div>
-          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
-        </div>
-        <div>
-          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
-        </div>
-      </article>
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container col-sm-9"><p>Forms are a staple part of almost every web application, so it’s important to know how to manipulate them, fetch data and update models. Likewise, validation is just as important, and it’s likely you’ll need some sort of validation for every model. </p>
+    <div class="container col-sm-9 content"><p>Forms are a staple part of almost every web application, so it’s important to know how to manipulate them, fetch data and update models. Likewise, validation is just as important, and it’s likely you’ll need some sort of validation for every model.</p>
 <p>This guide will explain about the whole of this process, such as how to handle form information, update records, and validate models.</p>
 <p>##Capturing form events</p>
 <p>The first step is actually to capture the form’s <em>submit</em> event, so we know when a user wants to submit a form. The easiest way of doing this, is with Spine’s controllers <code>events</code> option, for example:</p>
 <pre><code>//= CoffeeScript
 class Contacts extends Spine.Controller
-  events: 
+  events:
     &quot;submit form.contactForm&quot;: &quot;create&quot;
 
   create: (e) -&gt;
@@ -128,7 +96,7 @@ var Contacts = Spine.Controller.sub({
     // Form stuff
   }
 });
-</code></pre><p>Calling <code>preventDefault()</code> on the event prevents the default action, and is preferable to the alternative of returning <code>false</code> from the function. The latter approach cancels event propagation (something we could need later), and makes debugging extremely difficult if any code inside the event callback throws errors. </p>
+</code></pre><p>Calling <code>preventDefault()</code> on the event prevents the default action, and is preferable to the alternative of returning <code>false</code> from the function. The latter approach cancels event propagation (something we could need later), and makes debugging extremely difficult if any code inside the event callback throws errors.</p>
 <p>##Retrieving form data</p>
 <p>So, now we know when forms are being submitted, but how about actually retrieving the data contained inside the form. We could manually go through every input element in the form, reading their value, but we’re lazy so let’s automate it!</p>
 <p>Spine’s models have a <code>fromForm(form)</code> function, which takes a form and returns a new record ready to be saved. Just give your form inputs the correct <code>name</code> attribute (matching the model’s attributes), and everything will work correctly.</p>
@@ -151,7 +119,7 @@ var Contacts = Spine.Controller.sub({
   }
 });
 </code></pre><p>##Updating a record</p>
-<p>Updating a record is now trivial, we have the data, all we need is the record. If you’re using the <a href="/docs/%=%20docs_path(%22controller_patterns%22,%20anchor:" title="element-pattern"><em>element pattern</em></a> %&gt;), then you’ve already got a local reference to the record. All you need to do now is load in the record’s new values from the form, and save it:</p>
+<p>Updating a record is now trivial, we have the data, all we need is the record. If you’re using the <a href="/docs/controller_patterns.html,%20anchor:element-pattern.html"><em>element pattern</em></a>, then you’ve already got a local reference to the record. All you need to do now is load in the record’s new values from the form, and save it:</p>
 <pre><code>//= CoffeeScript
 class ContactItem extends Spine.Controller
   events: {&quot;submit form.contactForm&quot;: &quot;update&quot;}
@@ -179,7 +147,7 @@ var ContactItem = Spine.Controller.sub({
 </code></pre><p>And our controller like this:</p>
 <pre><code>//= CoffeeScript
 class Contacts extends Spine.Controller
-  events: 
+  events:
     &quot;submit .item form&quot;: &quot;update&quot;
 
   update: (e) -&gt;
@@ -222,14 +190,14 @@ Contact.include({
 unless item.save()
   msg = item.validate()
   return alert(msg)
-</code></pre><p><code>save()</code> and <code>updateAttributes()</code> both return <code>false</code> if validation fails. <code>validate()</code> returns the actual error message. In the example above we’re doing the simplest possible thing, opening an alert box containing the validation failure message. You may want to display more information to users, such as highlight the relevant inputs. This you can do by returning an object from <code>validate()</code>, specifying which attributes are at fault and their associated error messages. </p>
+</code></pre><p><code>save()</code> and <code>updateAttributes()</code> both return <code>false</code> if validation fails. <code>validate()</code> returns the actual error message. In the example above we’re doing the simplest possible thing, opening an alert box containing the validation failure message. You may want to display more information to users, such as highlight the relevant inputs. This you can do by returning an object from <code>validate()</code>, specifying which attributes are at fault and their associated error messages.</p>
 <p>##Form validation</p>
 <p>Validation for form inputs in HTML5 is fairly straightforward. If a field is required, simply set <code>required</code> on the <code>&lt;input /&gt;</code> element. Likewise, modern browsers, such as Chrome and Firefox, validate the format of email addresses given to email inputs.</p>
 <pre><code>&lt;form&gt;
   &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;${name}&quot; required autofocus&gt;
   &lt;input type=&quot;email&quot; name=&quot;email&quot; value=&quot;${email}&quot; required&gt;
 &lt;/form&gt;
-</code></pre><p>When the form is submitted, if the validation fails then messages will be shown by the inputs to help users rectify the situation. </p>
+</code></pre><p>When the form is submitted, if the validation fails then messages will be shown by the inputs to help users rectify the situation.</p>
 <p><img src="https://lh3.googleusercontent.com/-lPyyIM3cYFs/ToMCYzC0UoI/AAAAAAAABaY/bqYi8BnKK08/s800/Screen%252520Shot%2525202011-09-28%252520at%25252012.17.18.png" alt="Validation"></p>
 <p>You can specify your own validation messages using the <code>:invalid</code> css pseudo selectors. For more information about HTML5 form validation, see the following articles:</p>
 <ul>
@@ -239,11 +207,11 @@ unless item.save()
 </ul>
 <p>For older browsers that don’t support HTML5 validation, you’ll need to use a shim. I can recommend the <a href="http://www.matiasmancini.com.ar/jquery-plugin-ajax-form-validation-html5.html">jQuery.HTML5FORM</a> plugin.</p>
 <p>##Server-side validation</p>
-<p>If possible, all validation should be done on the client-side. However sometimes this isn’t possible, especially with validating the uniqueness of a value. It’s a tricky problem, and Spine doesn’t have a good solution for this scenario yet. </p>
+<p>If possible, all validation should be done on the client-side. However sometimes this isn’t possible, especially with validating the uniqueness of a value. It’s a tricky problem, and Spine doesn’t have a good solution for this scenario yet.</p>
 <p>You have a choice, either block the form whilst the Ajax request to the server is pending, displaying a validation error if the request fails. Or alternatively, you can validate the input before the form has been submitted with a background Ajax request.</p>
 <p>For example, during the <a href="http://twitter.com">Twitter</a> signup process, the username field validates before the form is submitted, as soon as the username input is unfocused.</p>
 <p><img src="https://lh4.googleusercontent.com/-XNnmzWmhacU/ToMJHIIUgGI/AAAAAAAABag/RRzrjQMmtRo/s800/Screen%252520Shot%2525202011-09-28%252520at%25252012.45.42.png" alt="Validate uniqueness"></p>
-<p>As I mentioned earlier, it’s best to avoid uniqueness validation if at all possible. Most web applications will only need it at the user registration stage, and I suggest you leave registration and authentication to a backend service like Rails, rather than use Spine. </p>
+<p>As I mentioned earlier, it’s best to avoid uniqueness validation if at all possible. Most web applications will only need it at the user registration stage, and I suggest you leave registration and authentication to a backend service like Rails, rather than use Spine.</p>
 </div>
   </body>
 </html>

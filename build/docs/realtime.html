@@ -7,10 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/docs.css">
     <title>Spine JS</title>
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
@@ -19,77 +20,44 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/">Home</a></li>
-            <li><a href="docs/">Documentation</a></li>
+            <li><a href="http://localhost:8000/docs/">Documentation</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class="container col-sm-3">
-      <h2>Documentation</h2>
-      <article>
-        <div>
-          <h3><a href="introduction.html">Introduction</a></h3><span>Overview of Spine</span>
-        </div>
-        <div>
-          <h3><a href="started.html">Getting started</a></h3><span>Getting started with Spine</span>
-        </div>
-        <div>
-          <h3><a href="controllers.html">Controllers</a></h3><span>Intro to Spine's Controllers</span>
-        </div>
-        <div>
-          <h3><a href="models.html">Models</a></h3><span>Data storage and manipulation</span>
-        </div>
-        <div>
-          <h3><a href="events.html">Events</a></h3><span>Custom and controller events</span>
-        </div>
-        <div>
-          <h3><a href="routing.html">Routing</a></h3><span>HTML5 history and hash support</span>
-        </div>
-        <div>
-          <h3><a href="views.html">Views</a></h3><span>JS Template rendering</span>
-        </div>
-        <div>
-          <h3><a href="example.html">Examples</a></h3><span>TodoList example</span>
-        </div>
-        <div>
-          <h3><a href="bindings.html">Two-Way Bindings</a></h3><span>Expiremental Two-Way binding module</span>
-        </div>
-      </article>
-      <h2>Guides</h2>
-      <article>
-        <div>
-          <h3><a href="controller_patterns.html">Controller patterns</a></h3><span>Common controller abstractions</span>
-        </div>
-        <div>
-          <h3><a href="manager.html">Manager</a></h3><span>Controller state machine</span>
-        </div>
-        <div>
-          <h3><a href="forms.html">Forms & Validation</a></h3><span>Process forms and validate models</span>
-        </div>
-        <div>
-          <h3><a href="ajax.html">Ajax</a></h3><span>Custom Ajax integration with models</span>
-        </div>
-        <div>
-          <h3><a href="hem.html">Hem</a></h3><span>Dependency management with Hem</span>
-        </div>
-        <div>
-          <h3><a href="app.html">Spine.app</a></h3><span>Generating Spine Apps</span>
-        </div>
-        <div>
-          <h3><a href="rails.html">Rails integration</a></h3><span>Integrate Spine with Rails using REST</span>
-        </div>
-        <div>
-          <h3><a href="realtime.html">Realtime apps</a></h3><span>Make your Spine app realtime!</span>
-        </div>
-      </article>
+      <nav class="bs-docs-sidebar affix">
+        <h2>Documentation</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+          <li><a href="events.html" title="Custom and controller events">Events</a></li>
+          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+          <li><a href="views.html" title="Template rendering">Views</a></li>
+          <li><a href="example.html" title="TodoList example">Examples</a></li>
+        </ul>
+        <h2>Guides</h2>
+        <ul class="nav bs-docs-sidenav">
+          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container col-sm-9"><p>One advantage of using the MVC and Binding patterns is that making your application realtime is a piece of cake. All the server needs to do is inform client-side models of data changes, and the client’s interface will be updated automatically. We can do this easily using a project I wrote called <a href="https://github.com/maccman/juggernaut">Juggernaut</a>. </p>
-<p>Juggernaut is basically realtime PubSub for web apps. Browsers subscribe to channels, and servers publish to them. Juggernaut will do the rest, negotiating the best type of realtime connection with the server dependent on browser support. It’ll first try WebSockets, and then fallback to Comet and polling. </p>
+    <div class="container col-sm-9 content"><p>One advantage of using the MVC and Binding patterns is that making your application realtime is a piece of cake. All the server needs to do is inform client-side models of data changes, and the client’s interface will be updated automatically. We can do this easily using a project I wrote called <a href="https://github.com/maccman/juggernaut">Juggernaut</a>.</p>
+<p>Juggernaut is basically realtime PubSub for web apps. Browsers subscribe to channels, and servers publish to them. Juggernaut will do the rest, negotiating the best type of realtime connection with the server dependent on browser support. It’ll first try WebSockets, and then fallback to Comet and polling.</p>
 <p>I’ve built an <a href="https://github.com/maccman/spine.rails3/tree/fowa">application demonstrating this</a> and you can also see a <a href="http://spine-fowa.herokuapp.com">live example here</a>.</p>
-<p>There’s also a <a href="/docs/%=%20pages_path(%22screencasts%22">short screencast</a> %&gt;) explaining how to integrate Spine with <a href="http://pusher.com">Pusher</a>, a hosted WebSocket server.</p>
+<p>There’s also a <a href="/docs/screencasts.html">short screencast</a> explaining how to integrate Spine with <a href="http://pusher.com">Pusher</a>, a hosted WebSocket server.</p>
 <p>##Usage</p>
-<p>Let’s implement a Juggernaut handler. It’ll subscribe to the <code>/observer</code> channel, and then process observer events. During processing, it tries to find the model the message is associated with, then creates, updates or destroys records as necessary. </p>
+<p>Let’s implement a Juggernaut handler. It’ll subscribe to the <code>/observer</code> channel, and then process observer events. During processing, it tries to find the model the message is associated with, then creates, updates or destroys records as necessary.</p>
 <pre><code>//= CoffeeScript
 #= require juggernaut
 
@@ -184,10 +152,10 @@ jQuery(function(){ new JuggernautHandler({host: &#39;localhost&#39;, port: 8080}
     def publish(type, rec)
       Juggernaut.publish(
         &quot;/observer&quot;,
-        { 
-          type:   type, 
-          id:     rec.id, 
-          class:  rec.class.name, 
+        {
+          type:   type,
+          id:     rec.id,
+          class:  rec.class.name,
           record: rec
          }
       )
@@ -195,7 +163,7 @@ jQuery(function(){ new JuggernautHandler({host: &#39;localhost&#39;, port: 8080}
 end
 </code></pre><p>Once the record has changed, the <code>publish</code> method is called. This method publishes a message to the <code>/observer</code> channel, pushing it out to all the connected clients.</p>
 <p>##Next steps</p>
-<p>For more information on Juggernaut, and its installation, please see the <a href="https://github.com/maccman/juggernaut">project’s README</a>. I also recommend checking out the source of the <a href="https://github.com/maccman/spine.rails3/tree/fowa">example Rails &amp; Spine integration application</a>, as this uses Juggernaut for its realtime models. </p>
+<p>For more information on Juggernaut, and its installation, please see the <a href="https://github.com/maccman/juggernaut">project’s README</a>. I also recommend checking out the source of the <a href="https://github.com/maccman/spine.rails3/tree/fowa">example Rails &amp; Spine integration application</a>, as this uses Juggernaut for its realtime models.</p>
 </div>
   </body>
 </html>
