@@ -1,21 +1,32 @@
 # spine.github.io
 
-New Spine.js website.
+Official Spine.js website.
 
-Looking to contribute? This is a great place to start!
+Looking to contribute? Documentation is always a great place to start!
 
 ## Getting Started
 
-[Wintersmith](http://wintersmith.io/)
+We are using an basic template format of [Wintersmith](http://wintersmith.io/) which is a static site generator.
 
-using an inital basic templete from wintersmith so not much fancy stuff at this point. just some stylus jade and markdown stuff.
+To contribute a change you'll want to edit the files (md or jade etc.) in the `src` dir of this repo.
+
+To get that change to propegate to the html that actually gets published you need to use Wintersmith.
+
 
 `npm install -g wintersmith`
 
 In the `src/` directory:
+`npm install.`
+
+change the url in `config.json ` to something like: "http://localhost:8000", if you do that then when
 `wintersmith preview`
 
 [view in browser](localhost:8000/)
 
 When every thing looks good (in `src/`):
+
+If you changed the url in `config.json` then change it back:
+
 `wintersmith build`
+
+That's the stuff!
