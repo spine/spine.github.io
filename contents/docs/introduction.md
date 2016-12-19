@@ -11,7 +11,7 @@ The library is written in [CoffeeScript](http://jashkenas.github.com/coffee-scri
 
 Spine is tiny, the core library comes in at around 600 lines of CoffeeScript. Being lightweight and simple is fundamental to Spine, and it's only dependency is jquery or zepto.
 
-##Core values
+## Core values
 
 * *MVC* - The MVC pattern, or Model View Controller, is at the heart of Spine applications. It ensures your application is modular, name-spaced and doesn't descend into a mess of view and model logic by having a consistent architecture. It's great for teams, and brings a well needed structure to JavaScript development.
 
@@ -19,7 +19,7 @@ Spine is tiny, the core library comes in at around 600 lines of CoffeeScript. Be
 
 * *Simplicity* - Spine is a minimum possible viable product. It doesn't dictate your views, your HTML or your CSS. It is not a huge framework consisting of twenty different kinds of widgets. The goal is to get out your way; letting you go ahead and do what you do best, build awesome web applications.
 
-##Why should you use Spine?
+## Why should you use Spine?
 
 JavaScript frameworks are a dime a dozen, and more are appearing everyday. So what makes Spine so special?
 
@@ -36,7 +36,7 @@ JavaScript frameworks are a dime a dozen, and more are appearing everyday. So wh
 
 But don't take our word for it. Take a look at the source of the [example applications](examples.html), and decide for yourself.
 
-##Components
+## Components
 
 * *Spine* - The main library, containing the core classes, such as `Model` and `Controller`.
 
@@ -48,7 +48,7 @@ But don't take our word for it. Take a look at the source of the [example applic
 
 * *Hem* - Spine's (optional but awesome) [dependency manager and development server](hem.html).
 
-##CoffeeScript
+## CoffeeScript
 
 Spine is written in [CoffeeScript](http://jashkenas.github.com/coffee-script/), a little language that compiles into JavaScript. You don't have to write Spine applications in CoffeeScript, pure JavaScript will work fine. However, using CoffeeScript will be the path of least resistance, and the one we personally advocate.
 
@@ -60,7 +60,7 @@ Spine's documentation caters for both JavaScript and CoffeeScript developers; yo
 
 Alternatively, you can toggle the language site-wide by using the language selector in the top right of the documentation.
 
-##Learning Spine
+## Learning Spine
 
 Spine itself is fairly straight-forward, as the library is small and the API minimal. However, it's the concepts behind JavaScript web applications that can be tricky to grasp at first. Moving state to the client-side, rendering on the client-side, and structuring your JavaScript using MVC and CommonJS modules can all be quite a learning curve.
 
@@ -77,7 +77,7 @@ Then you should experiment with the [getting started guide](started.html), learn
 
 Finally it is definitely recommended to browse [the source of spine itself](http://github.com/spine/spine) as well as the source of some example applications, such as the [Todos](http://github.com/maccman/spine.todos) and [Contacts](http://github.com/maccman/spine.contacts) apps.
 
-##Companion guide
+## Companion guide
 
 Spine was originally built alongside a book, [*JavaScript Web Applications*](http://oreilly.com/catalog/0636920018421) by O'Reilly. The book is a really good introduction to MVC, dependency management, templates and testing, all useful concepts whichever framework you end up using.
 
