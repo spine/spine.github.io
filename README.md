@@ -6,7 +6,7 @@ Looking to contribute? This is a great place to start!
 
 ## Getting Started
 
-The Spine.js Documentation website uses [wintersmith]() to generate static HTML for [Spine.js Docs]()
+The Spine.js Documentation website uses [wintersmith](http://wintersmith.io/) to generate static HTML for [Spine.js Docs](http://spine.github.io/)
 
 ### src/
 
