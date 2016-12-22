@@ -4,28 +4,32 @@ mixin listItem(label, hrefVal, titleText)
 		a(href!=hrefVal, title!=titleText)!= label
 
 block content
-	.container.col-sm-3
-		nav.bs-docs-sidebar.affix
-			h2 Documentation
-			ul.nav.bs-docs-sidenav
-				+listItem('Introduction', 'introduction.html', 'Overview of Spine')
-				+listItem('Getting started', 'started.html', 'Getting started with Spine')
-				+listItem('Controllers', 'controllers.html', 'Intro to Spines Controllers')
-				+listItem('Models', 'models.html', 'Data storage and manipulation')
-				+listItem('Events', 'events.html', 'Custom and controller events')
-				+listItem('Routing', 'routing.html', 'HTML5 history and hash support')
-				+listItem('Views', 'views.html', 'Template rendering')
-				+listItem('Examples', 'example.html', 'TodoList example')
-			
-			h2 Guides
-			ul.nav.bs-docs-sidenav
-				+listItem('Controller patterns', 'controller_patterns.html', 'Common controller abstractions')
-				+listItem('Manager', 'manager.html', 'Controller state machine')
-				+listItem('Forms & Validation', 'forms.html', 'Process forms and validate models')
-				+listItem('Ajax', 'ajax.html', 'Custom Ajax integration with models')
-				+listItem('Hem', 'hem.html', 'Dependency management with Hem')
-				+listItem('Spine.app', 'app.html', 'Generating Spine Apps')
-				+listItem('Rails integration', 'rails.html', 'Integrate Spine with Rails using REST')
-				+listItem('Realtime apps', 'realtime.html', 'Make your Spine app realtime!')
+	.container-fluid
+		.col-sm-3.col-md-2.col-md-offset-1.col-lg-2.col-lg-offset-2
+			.collapse.navbar-collapse
+				nav.bs-docs-sidebar.affix
+					h2 Intro
+					ul.nav.bs-docs-sidenav
+						+listItem('Introduction', 'introduction.html', 'Overview of Spine')
+						+listItem('Getting started', 'started.html', 'Getting started with Spine')
+					h2 Core Concepts
+					ul.nav.bs-docs-sidenav
+						+listItem('Controllers', 'controllers.html', 'Intro to Spines Controllers')
+						+listItem('Models', 'models.html', 'Data storage and manipulation')
+						+listItem('Events', 'events.html', 'Custom and controller events')
+						+listItem('Routing', 'routing.html', 'HTML5 history and hash support')
+						+listItem('Views', 'views.html', 'Template rendering')
+						+listItem('Examples', 'example.html', 'TodoList example')
+					
+					h2 Guides
+					ul.nav.bs-docs-sidenav
+						+listItem('Controller patterns', 'controller_patterns.html', 'Common controller abstractions')
+						+listItem('Manager', 'manager.html', 'Controller state machine')
+						+listItem('Forms & Validation', 'forms.html', 'Process forms and validate models')
+						+listItem('Ajax', 'ajax.html', 'Custom Ajax integration with models')
+						+listItem('Hem', 'hem.html', 'Dependency management with Hem')
+						+listItem('Spine.app', 'app.html', 'Generating Spine Apps')
+						+listItem('Rails integration', 'rails.html', 'Integrate Spine with Rails using REST')
+						+listItem('Realtime apps', 'realtime.html', 'Make your Spine app realtime!')
 
-	.container.col-sm-9.content!= page.html
+		.col-sm-9.col-md-8.col-lg-6.content!= page.html

@@ -1,81 +1,82 @@
 extends layout
 
 block content
-	p
-		| Todos is a very simple to-do application. Users can CRUD tasks, and mark them as complete.
-		| The source is 
-		a(href='http://github.com/maccman/spine.todos') available on GitHub
-		| . 
-		a(href='http://maccman.github.com/spine.todos') [Demo]
-	img(src='https://lh4.googleusercontent.com/_IH1OempnqUc/TZF16JZSTlI/AAAAAAAABKM/ojAu7OBqXp8/s500/Screen%20shot%202011-03-29%20at%2019.01.44.png')
-	p
-		| There is also the great 
-		a(href='http://todomvc.com/') TodoMVC project
-		|  that compares frontend frameworks. A Spine Example is available there as well. 
-		a(href='https://github.com/addyosmani/todomvc/tree/gh-pages/architecture-examples/spine') On GitHub
-		| . 
-		a(href='http://todomvc.com/architecture-examples/spine/') [Demo]
-	hr
-	p
-		| Spine contacts is a simple address book, allowing users to CRUD contacts. The full source is 
-		a(href='http://github.com/maccman/spine.contacts') available on GitHub
-		| . 
-		a(href='http://spine-contacts.herokuapp.com') [Demo]
-	img(src='https://lh5.googleusercontent.com/_IH1OempnqUc/TZpgYfnlUBI/AAAAAAAABKg/UYLhdmoc15o/s500/contacts.png')
-	hr
-	p
-		| Exercise Slot Machine is a another simple app. Users can manage exercises and do random selections on them. The full source is 
-		a(href='http://github.com/aeischeid/exerciseSlots') available on GitHub
-		| . 
-		a(href='http://www.aaideas.com/currentprojects/exerciseslots/') [Demo]
-	hr
-	p
-		| Holla is one of the more advanced examples, and 
-		a(href='http://github.com/maccman/holla') can be found on GitHub
-		| . Holla is a group chat application, and uses a combination of 
-		a(href='http://rubyonrails.org') Rails
-		| , 
-		a(href='http://github.com/maccman/juggernaut') Juggernaut
-		|  and Spine to let users chat in realtime. *WebKit only*. 
-		a(href='http://maccman-holla.heroku.com') [Demo]
-	img(src='https://lh4.googleusercontent.com/_IH1OempnqUc/TZF1gMnidmI/AAAAAAAABKE/b9rp9RdtA3o/s500/Screen%20shot%202011-03-29%20at%2018.58.12.png')
-	hr
-	p
-		| The next example shows how to easily implement infinite scrolling using Spine & Rails. The source code can be found 
-		a(href='http://github.com/maccman/spine.infinite') on GitHub
-		| , and there's also a 
-		a(href='http://spine-infinite.herokuapp.com/') live demo
-		| .
-	img(src='https://lh6.googleusercontent.com/-XoGlAJopIWY/Tp2jqNAIH_I/AAAAAAAABbU/MG7v_OtmZ4k/s500/Screen%252520Shot%2525202011-10-18%252520at%25252017.04.27.png')
-	hr
-	p
-		| A demonstration of integrating 
-		a(href='https://github.com/maccman/spine.rails3') Spine & Rails 3
-		| . There's also an example of realtime sync in the 
-		a(href='https://github.com/maccman/spine.rails3/tree/fowa') fowa
-		|  branch. 
-		a(href='http://spine-fowa.herokuapp.com/') [Demo]
-	img(src='https://lh4.googleusercontent.com/-vxBcOT0TIpM/ToNWaL-o83I/AAAAAAAABao/ObsGjxoX5oQ/s500/Screen%252520Shot%2525202011-09-27%252520at%25252022.16.41.png')
-	hr
-	p
-		| A complex 
-		a(href='https://github.com/anito/app.director') photo album app
-		|  using CakePHP and Spine.js. 
-		a(href='http://gap.webpremiere.de/director_app') [Demo]
-	img(src='https://lh4.googleusercontent.com/-BCcP-3R-LXQ/T3uNLsNxY0I/AAAAAAAADP8/K1VUhC5ABSs/s1006/Bildschirmfoto+2012-04-04+um+01.50.01.jpg')
-	hr
-	p
-		| A sort of WYSIWYG web-app designer. 
-		a(href='https://github.com/maccman/stylo') Stylo
-		|  allows you to manipulate various HTML elements, add styles and edit text. 
-		a(href='http://styloapp.com/') [Demo]
-	img(src='https://a248.e.akamai.net/camo.github.com/45a7a80eec28d8396806167b08eeb77108180f58/687474703a2f2f696d672e737662746c652e636f6d2f6d6163636d616e2d32343037373637313833323632382d7261772e706e67')
-	hr
-	p
-		| TESTMAN. Uses Spine and Bootstrap with Jade templates. 
-		a(href='https://github.com/globalvetlink/apiTestMan') TestMan
-		|  is a tool for building up a suite of api test meant as a companion to PostMan.
-	hr
-	p
-		| An interview and itroduction to Spine folloed by a guided tutorial for a 
-		a(href='http://addyosmani.com/blog/building-apps-spinejs/') bit.ly client app
+	.container
+		p
+			| Todos is a very simple to-do application. Users can CRUD tasks, and mark them as complete.
+			| The source is 
+			a(href='http://github.com/maccman/spine.todos') available on GitHub
+			| . 
+			a(href='http://maccman.github.com/spine.todos') [Demo]
+		img(src='https://lh4.googleusercontent.com/_IH1OempnqUc/TZF16JZSTlI/AAAAAAAABKM/ojAu7OBqXp8/s500/Screen%20shot%202011-03-29%20at%2019.01.44.png')
+		p
+			| There is also the great 
+			a(href='http://todomvc.com/') TodoMVC project
+			|  that compares frontend frameworks. A Spine Example is available there as well. 
+			a(href='https://github.com/addyosmani/todomvc/tree/gh-pages/architecture-examples/spine') On GitHub
+			| . 
+			a(href='http://todomvc.com/architecture-examples/spine/') [Demo]
+		hr
+		p
+			| Spine contacts is a simple address book, allowing users to CRUD contacts. The full source is 
+			a(href='http://github.com/maccman/spine.contacts') available on GitHub
+			| . 
+			a(href='http://spine-contacts.herokuapp.com') [Demo]
+		img(src='https://lh5.googleusercontent.com/_IH1OempnqUc/TZpgYfnlUBI/AAAAAAAABKg/UYLhdmoc15o/s500/contacts.png')
+		hr
+		p
+			| Exercise Slot Machine is a another simple app. Users can manage exercises and do random selections on them. The full source is 
+			a(href='http://github.com/aeischeid/exerciseSlots') available on GitHub
+			| . 
+			a(href='http://www.aaideas.com/currentprojects/exerciseslots/') [Demo]
+		hr
+		p
+			| Holla is one of the more advanced examples, and 
+			a(href='http://github.com/maccman/holla') can be found on GitHub
+			| . Holla is a group chat application, and uses a combination of 
+			a(href='http://rubyonrails.org') Rails
+			| , 
+			a(href='http://github.com/maccman/juggernaut') Juggernaut
+			|  and Spine to let users chat in realtime. *WebKit only*. 
+			a(href='http://maccman-holla.heroku.com') [Demo]
+		img(src='https://lh4.googleusercontent.com/_IH1OempnqUc/TZF1gMnidmI/AAAAAAAABKE/b9rp9RdtA3o/s500/Screen%20shot%202011-03-29%20at%2018.58.12.png')
+		hr
+		p
+			| The next example shows how to easily implement infinite scrolling using Spine & Rails. The source code can be found 
+			a(href='http://github.com/maccman/spine.infinite') on GitHub
+			| , and there's also a 
+			a(href='http://spine-infinite.herokuapp.com/') live demo
+			| .
+		img(src='https://lh6.googleusercontent.com/-XoGlAJopIWY/Tp2jqNAIH_I/AAAAAAAABbU/MG7v_OtmZ4k/s500/Screen%252520Shot%2525202011-10-18%252520at%25252017.04.27.png')
+		hr
+		p
+			| A demonstration of integrating 
+			a(href='https://github.com/maccman/spine.rails3') Spine & Rails 3
+			| . There's also an example of realtime sync in the 
+			a(href='https://github.com/maccman/spine.rails3/tree/fowa') fowa
+			|  branch. 
+			a(href='http://spine-fowa.herokuapp.com/') [Demo]
+		img(src='https://lh4.googleusercontent.com/-vxBcOT0TIpM/ToNWaL-o83I/AAAAAAAABao/ObsGjxoX5oQ/s500/Screen%252520Shot%2525202011-09-27%252520at%25252022.16.41.png')
+		hr
+		p
+			| A complex 
+			a(href='https://github.com/anito/app.director') photo album app
+			|  using CakePHP and Spine.js. 
+			a(href='http://gap.webpremiere.de/director_app') [Demo]
+		img(src='https://lh4.googleusercontent.com/-BCcP-3R-LXQ/T3uNLsNxY0I/AAAAAAAADP8/K1VUhC5ABSs/s1006/Bildschirmfoto+2012-04-04+um+01.50.01.jpg')
+		hr
+		p
+			| A sort of WYSIWYG web-app designer. 
+			a(href='https://github.com/maccman/stylo') Stylo
+			|  allows you to manipulate various HTML elements, add styles and edit text. 
+			a(href='http://styloapp.com/') [Demo]
+		img(src='https://a248.e.akamai.net/camo.github.com/45a7a80eec28d8396806167b08eeb77108180f58/687474703a2f2f696d672e737662746c652e636f6d2f6d6163636d616e2d32343037373637313833323632382d7261772e706e67')
+		hr
+		p
+			| TESTMAN. Uses Spine and Bootstrap with Jade templates. 
+			a(href='https://github.com/globalvetlink/apiTestMan') TestMan
+			|  is a tool for building up a suite of api test meant as a companion to PostMan.
+		hr
+		p
+			| An interview and itroduction to Spine folloed by a guided tutorial for a 
+			a(href='http://addyosmani.com/blog/building-apps-spinejs/') bit.ly client app
