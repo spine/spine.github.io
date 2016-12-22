@@ -3,7 +3,7 @@ title: API Doc - Modules
 template: api.jade
 ---
 
-##Class methods
+## Class methods
 
 ### `@extend(properties)`
 
@@ -19,9 +19,9 @@ Wraps a function, so it's always executed in this class's context.
 
 ### `@init()`
 
-A JavaScript Compatibility method. `@init()` is a noop, but can be overridden. It'll be called when the class is instantiated, with the arguments passed to the constructor function. 
+A JavaScript Compatibility method. `@init()` is a noop, but can be overridden. It'll be called when the class is instantiated, with the arguments passed to the constructor function.
 
-##Instance methods
+## Instance methods
 
 ### `proxy(function)`
 

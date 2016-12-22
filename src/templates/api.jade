@@ -1,26 +1,17 @@
 extends layout
+mixin listItem(label, hrefVal, titleText)
+	li(class=page.html==hrefVal ? 'active' : '')
+		a(href!=hrefVal, title!=titleText)!= label
 
 block content
 	.container.col-sm-3
-		p
-			a(href='classes.html') Classes
-			br
-			| Spine's Class API for JavaScript compatibility.
-		p
-			a(href='models.html') Models
-			br
-			| Spine's Model API
-		p
-			a(href='controllers.html') Controllers
-			br
-			| Spine's Controller API
-		p
-			a(href='events.html') Events
-			br
-			| Spine's Event Module
-		p
-			a(href='routing.html') Routing
-			br
-			| Spine's Controller Routing API
+		nav.bs-docs-sidebar.affix
+			h2 Core APIs
+			ul.nav.bs-docs-sidenav
+				+listItem('Classes', 'classes.html', "Spine's Class API for JavaScript compatibility.")
+				+listItem('Models', 'models.html', 'Model API')
+				+listItem('Controllers', 'controllers.html', 'Controller API')
+				+listItem('Events', 'events.html', 'Events Module API')
+				+listItem('Routing', 'routing.html', 'Routing Module API')
 
-	.container.col-sm-9!= page.html
+	.container.col-sm-9.content!= page.html

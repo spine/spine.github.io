@@ -3,7 +3,7 @@ title: API Doc - Controllers
 template: api.jade
 ---
 
-##Class methods
+## Class methods
 
 ### `@extend(Module)`
 
@@ -128,7 +128,7 @@ A jQuery/Zepto selector, scoped to `el`.
     });
 
 
-##Instance methods
+## Instance methods
 
 ### `constructor(options = {})`
 

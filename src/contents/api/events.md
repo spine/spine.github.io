@@ -3,7 +3,7 @@ title: API Doc - Events
 template: api.jade
 ---
 
-##Class methods
+## Class methods
 
 ### `@bind(eventNames, callback)`
 
@@ -34,7 +34,7 @@ Trigger events in the current context. `eventNames` can be a space separated lis
 Unbind events. If called without any arguments, then all events will will un-bound. If called with only eventNames, then all those event's listeners will be un-bound. If called with a specific event name and callback, than only that callback will be removed.
 
 
-##Instance methods
+## Instance methods
 
 ### `@listenTo(modelOrControllerInstance, eventNames, callback)`
 
@@ -53,4 +53,3 @@ Listen for events on a given controller or model instance. The handler will be e
 Stop listening for events on a given controller or model instance. `eventNames` can be a space separated list of event types.
 
     @stopListening(model, 'create update', -> )
-

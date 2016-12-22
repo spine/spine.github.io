@@ -3,7 +3,7 @@ title: API Doc - Models
 template: api.jade
 ---
 
-##Class methods
+## Class methods
 
 ### `@configure(modelName, attributes...)`
 
@@ -186,7 +186,7 @@ Alternative method for creating a new model class. This is a JavaScript compatib
 
     var User = Model.setup("User", ["first_name", "last_name"])
 
-##Instance methods
+## Instance methods
 
 ### `newRecord`
 

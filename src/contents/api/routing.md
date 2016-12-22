@@ -3,7 +3,7 @@ title: API Doc - Routing
 template: api.jade
 ---
 
-##Class methods
+## Class methods
 
 ### `@historySupport`
 
@@ -36,7 +36,7 @@ The last argument can be an `options` object. Supported options are:
 
 * `trigger: true` - trigger route callbacks
 
-##Controller methods
+## Controller methods
 
 Controllers are extended with following instance methods:
 
