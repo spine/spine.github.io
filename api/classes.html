@@ -7,34 +7,41 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://spine.github.io/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io//spine.css">
     <title>Spine JS</title>
   </head>
   <body>
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
-          <p id="docVersion" class="navbar-text">v1.6.2</p>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" title="Source on Github" class="navbar-brand">Spine</a><a id="docVersion" href="https://github.com/spine/spine/archive/v.1.6.2.zip" class="navbar-text">v1.6.2 <span class="glyphicon glyphicon-cloud-download"></span></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io//api/">API</a></li>
+            <li><a href="http://spine.github.io//docs/">Docs</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container col-sm-3">
-      <p><a href="classes.html">Classes</a><br>Spine's Class API for JavaScript compatibility.</p>
-      <p><a href="models.html">Models</a><br>Spine's Model API</p>
-      <p><a href="controllers.html">Controllers</a><br>Spine's Controller API</p>
-      <p><a href="events.html">Events</a><br>Spine's Event Module</p>
-      <p><a href="routing.html">Routing</a><br>Spine's Controller Routing API</p>
-    </div>
-    <div class="container col-sm-9"><p>Spine provides classes as part of its JavaScript compatibility layer, as internally, Spine uses CoffeeScript classes. </p>
-<p>##Class methods</p>
+    <div class="container-fluid">
+      <div class="col-sm-3 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-2">
+        <div class="collapse navbar-collapse">
+          <nav class="bs-docs-sidebar affix">
+            <h2>Core APIs</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="classes.html" title="Spine's Class API for JavaScript compatibility.">Classes</a></li>
+              <li><a href="models.html" title="Model API">Models</a></li>
+              <li><a href="controllers.html" title="Controller API">Controllers</a></li>
+              <li><a href="events.html" title="Events Module API">Events</a></li>
+              <li><a href="routing.html" title="Routing Module API">Routing</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-sm-9 col-md-8 col-lg-6 content"><p>Spine provides classes as part of its JavaScript compatibility layer, as internally, Spine uses CoffeeScript classes.</p>
+<h2 id="class-methods">Class methods</h2>
 <h3 id="-sub-includeproperties-extendproperties-"><code>@sub([includeProperties, extendProperties])</code></h3>
 <p>Used to create new classes, or inherit from existing ones. For example, creating a new class would look like this:</p>
 <pre><code>var User = Spine.Class.sub();
@@ -55,7 +62,7 @@ var user = new User;
 <pre><code>var User = Spine.Class.sub();
 User.extend({
   find: function(){
-    /* ... */ 
+    /* ... */
   }
 });
 
@@ -70,9 +77,10 @@ User.include({
 assertEqual( (new User).name, &quot;Default Name&quot; );
 </code></pre><h3 id="-proxy-function-"><code>@proxy(function)</code></h3>
 <p>Wraps a function in a proxy, so it’s always invoked in the class’ context.</p>
-<p>##Instance methods</p>
+<h2 id="instance-methods">Instance methods</h2>
 <h3 id="-proxy-"><code>proxy()</code></h3>
 <p>Wraps a function in a proxy, so it’s always invoked in the instance’s context.</p>
 </div>
+    </div>
   </body>
 </html>

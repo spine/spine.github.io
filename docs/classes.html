@@ -7,52 +7,57 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://spine.github.io/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io//spine.css">
     <title>Spine JS</title>
   </head>
   <body>
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
-          <p id="docVersion" class="navbar-text">v1.6.2</p>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" title="Source on Github" class="navbar-brand">Spine</a><a id="docVersion" href="https://github.com/spine/spine/archive/v.1.6.2.zip" class="navbar-text">v1.6.2 <span class="glyphicon glyphicon-cloud-download"></span></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io//api/">API</a></li>
+            <li><a href="http://spine.github.io//docs/">Docs</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container col-sm-3">
-      <nav class="bs-docs-sidebar affix">
-        <h2>Documentation</h2>
-        <ul class="nav bs-docs-sidenav">
-          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
-          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
-          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
-          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
-          <li><a href="events.html" title="Custom and controller events">Events</a></li>
-          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
-          <li><a href="views.html" title="Template rendering">Views</a></li>
-          <li><a href="example.html" title="TodoList example">Examples</a></li>
-        </ul>
-        <h2>Guides</h2>
-        <ul class="nav bs-docs-sidenav">
-          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
-          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
-          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
-          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
-          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
-          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
-          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
-          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="container col-sm-9 content"><p>Classes are a great way of encapsulating logic and name-spacing. They’re used throughout Spine, especially when it comes to models and controllers. JavaScript’s object literals are fine for static classes, but it’s often useful to create classical classes with inheritance and instances.</p>
+    <div class="container-fluid">
+      <div class="col-sm-3 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-2">
+        <div class="collapse navbar-collapse">
+          <nav class="bs-docs-sidebar affix">
+            <h2>Intro</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+              <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+            </ul>
+            <h2>Core Concepts</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+              <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+              <li><a href="events.html" title="Custom and controller events">Events</a></li>
+              <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+              <li><a href="views.html" title="Template rendering">Views</a></li>
+              <li><a href="example.html" title="TodoList example">Examples</a></li>
+            </ul>
+            <h2>Guides</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+              <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+              <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+              <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+              <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+              <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+              <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+              <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-sm-9 col-md-8 col-lg-6 content"><p>Classes are a great way of encapsulating logic and name-spacing. They’re used throughout Spine, especially when it comes to models and controllers. JavaScript’s object literals are fine for static classes, but it’s often useful to create classical classes with inheritance and instances.</p>
 <p>Although JavaScript doesn’t have native class support, it can be emulated fairly convincingly using constructor functions and prototypal inheritance. Classes are just another tool, and are as useful in JavaScript as they are in any other language. </p>
 <p>If you’re using pure JavaScript to build your applications, rather than CoffeeScript, you should check out the penultimate section in this guide, <em>JavaScript Classes</em>. </p>
 <h2 id="implementation">Implementation</h2>
@@ -151,5 +156,6 @@ var user = new User({name: &quot;Spock&quot;});
 <h2 id="api">API</h2>
 <p>For more information about classes, please see the <a href="/docs/%=%20api_path(%22classes%22">full API</a> %&gt;).</p>
 </div>
+    </div>
   </body>
 </html>

@@ -7,52 +7,57 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://spine.github.io/docs.css">
+    <link rel="stylesheet" href="http://spine.github.io//spine.css">
     <title>Spine JS</title>
   </head>
   <body>
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="https://github.com/spine/spine" title="Source on Github" class="navbar-brand">Spine</a>
-          <p id="docVersion" class="navbar-text">v1.6.2</p>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" title="Source on Github" class="navbar-brand">Spine</a><a id="docVersion" href="https://github.com/spine/spine/archive/v.1.6.2.zip" class="navbar-text">v1.6.2 <span class="glyphicon glyphicon-cloud-download"></span></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><a href="http://spine.github.io/docs/">Documentation</a></li>
+            <li><a href="http://spine.github.io//api/">API</a></li>
+            <li><a href="http://spine.github.io//docs/">Docs</a></li>
             <li><a href="https://github.com/spine/spine">GitHub</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container col-sm-3">
-      <nav class="bs-docs-sidebar affix">
-        <h2>Documentation</h2>
-        <ul class="nav bs-docs-sidenav">
-          <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
-          <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
-          <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
-          <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
-          <li><a href="events.html" title="Custom and controller events">Events</a></li>
-          <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
-          <li><a href="views.html" title="Template rendering">Views</a></li>
-          <li><a href="example.html" title="TodoList example">Examples</a></li>
-        </ul>
-        <h2>Guides</h2>
-        <ul class="nav bs-docs-sidenav">
-          <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
-          <li><a href="manager.html" title="Controller state machine">Manager</a></li>
-          <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
-          <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
-          <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
-          <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
-          <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
-          <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="container col-sm-9 content"><p>In Spine’s terminology, views are simple fragments of HTML that make up the interface to your application. Spine doesn’t have any complex UI widgets or dictate the structure of your views, they’re completely up to you.</p>
+    <div class="container-fluid">
+      <div class="col-sm-3 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-2">
+        <div class="collapse navbar-collapse">
+          <nav class="bs-docs-sidebar affix">
+            <h2>Intro</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="introduction.html" title="Overview of Spine">Introduction</a></li>
+              <li><a href="started.html" title="Getting started with Spine">Getting started</a></li>
+            </ul>
+            <h2>Core Concepts</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="controllers.html" title="Intro to Spines Controllers">Controllers</a></li>
+              <li><a href="models.html" title="Data storage and manipulation">Models</a></li>
+              <li><a href="events.html" title="Custom and controller events">Events</a></li>
+              <li><a href="routing.html" title="HTML5 history and hash support">Routing</a></li>
+              <li><a href="views.html" title="Template rendering">Views</a></li>
+              <li><a href="example.html" title="TodoList example">Examples</a></li>
+            </ul>
+            <h2>Guides</h2>
+            <ul class="nav bs-docs-sidenav">
+              <li><a href="controller_patterns.html" title="Common controller abstractions">Controller patterns</a></li>
+              <li><a href="manager.html" title="Controller state machine">Manager</a></li>
+              <li><a href="forms.html" title="Process forms and validate models">Forms & Validation</a></li>
+              <li><a href="ajax.html" title="Custom Ajax integration with models">Ajax</a></li>
+              <li><a href="hem.html" title="Dependency management with Hem">Hem</a></li>
+              <li><a href="app.html" title="Generating Spine Apps">Spine.app</a></li>
+              <li><a href="rails.html" title="Integrate Spine with Rails using REST">Rails integration</a></li>
+              <li><a href="realtime.html" title="Make your Spine app realtime!">Realtime apps</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-sm-9 col-md-8 col-lg-6 content"><p>In Spine’s terminology, views are simple fragments of HTML that make up the interface to your application. Spine doesn’t have any complex UI widgets or dictate the structure of your views, they’re completely up to you.</p>
 <p>To ensure your application’s interface is completely asynchronous and responsive, you should be doing <strong>all</strong> the view rendering client-side. This means instead of server-side templates, like Ruby’s ERB or Python’s string formatting, we’re going to need client-side JavaScript templates.</p>
 <p>There are a number of good candidates, such as <a href="http://mustache.github.com">Mustache</a> and <a href="http://jade-lang.com/">Jade</a>. We’re going to demonstrate a library called <a href="https://github.com/sstephenson/eco">Eco</a> here.</p>
 <p>Besides Eco, Jade is the other template solution that is built into Hem. For info on using jade with a spine app see the <a href="/docs/views_jade.html">Jade guide</a>.</p>
@@ -146,5 +151,6 @@ class Contacts extends Spine.Controller
 </code></pre><p>Notice we’re using a ‘fat arrow’ for the <code>render()</code> function. This ensures that <code>render()</code> is invoked in the correct context of <code>ContactsList</code>, rather than <code>Contact</code>. For more information on function binding, see the <a href="/docs/classes.html">classes guide</a>.</p>
 <p>There are several common binding patterns, see the <a href="/docs/controller_patterns.html">controller patterns guide</a> for more information.</p>
 </div>
+    </div>
   </body>
 </html>
